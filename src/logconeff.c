@@ -11,7 +11,6 @@ int dim;
 double *xdata;
 int nouter;
 int truepoints;
-
 /*  Function to be minimized: */
 double sigmaeff(double *y);
 double dnull_entry();
@@ -33,7 +32,7 @@ void logconesteff (double *y_in, double *xdata_in, int *d_in, int *n_in, double 
   xdata = xdata_in; 
   nouter = *nouter_in;
   npoints = truepoints+nouter;
-
+  
   /* Use the solvopt algorithm */
     *sigmavalue_out=solvopt2(truepoints,y_in,&sigmaeff,&subgradeff,opt_out,&dnull_entry,&null_entry,parameters);
 
