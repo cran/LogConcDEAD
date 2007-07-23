@@ -79,6 +79,8 @@ using the \pkg{rgl} package.
 \examples{
 
 #example with some simple normal data
+
+set.seed(101)
 x <- matrix(rnorm(200),ncol=2)
 out <- lcd.mle(x)
 plot(out,itype="ic")

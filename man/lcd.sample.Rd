@@ -36,6 +36,8 @@ lcd.sample(out, nsample=1)
 \seealso{ \code{\link{lcd.mle}}}
 \examples{
 #simple normal data
+
+set.seed(101)
 x <- matrix(rnorm(200),ncol=2)
 out <- lcd.mle(x)
 lcd.sample(out,nsample=10)

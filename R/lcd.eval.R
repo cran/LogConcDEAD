@@ -98,7 +98,7 @@
   n <- nrow(out$x)
   d <- ncol(out$x)
 
-  if(is.vector(points) && length(points)==d) {
+  if(is.vector(points) && length(point)==d) {
     points <- t(as.matrix(points)) }
   ## check the dimensions of points
   if (is.matrix(points) && ncol(points)==d) {

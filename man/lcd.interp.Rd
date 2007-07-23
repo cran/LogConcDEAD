@@ -37,6 +37,7 @@ Richard Samworth}
 \examples{
 #simple normal data, a couple of plots
 
+set.seed(101)
 x <- matrix(rnorm(200),ncol=2)
 out <- lcd.mle(x)
 g <- lcd.interp(out)

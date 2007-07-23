@@ -89,7 +89,7 @@ int *convhullnmlc(double *x_in, int *nrow_in, int* ncol_in, int *nf)
     *nf = qh num_facets;
 
     /* allocate the memory for the output */
-    idx = Calloc((*nf)*dim,int);
+    idx = (int *)malloc((*nf)*dim*sizeof(int));
 	
     qh_vertexneighbors();
 		

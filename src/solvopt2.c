@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <math.h>  /* NEEDED FOR MATH MACROS. REMOVE, IF DEFINED ELSEWHERE */
 #include <stdio.h>
-#include <malloc.h>
+/* #include <malloc.h> */
 #include <R.h>
 
 #include <unistd.h>

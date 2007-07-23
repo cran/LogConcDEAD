@@ -31,6 +31,7 @@ Richard Samworth}
 }
 \seealso{ \code{\link{lcd.mle}}}
 \examples{
+set.seed(101)
 x <- matrix(rnorm(200),ncol=2)
 out <- lcd.mle(x)
 point <- c(0,0)

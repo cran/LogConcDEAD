@@ -41,6 +41,7 @@ lcd.marg2 (out, gridlen=100) }
 \examples{
 #simple normal data, a couple of plots
 
+set.seed(101)
 x <- matrix(rnorm(200),ncol=2)
 out <- lcd.mle(x)
 m1 <- lcd.marg(out)
