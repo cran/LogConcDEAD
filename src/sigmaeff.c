@@ -11,7 +11,7 @@ double sigmaeff(double y[])
   extern int npoints;
   extern int dim;
   extern double *xdata;
-  extern int nouter;
+  /*  extern int nouter;*/
   extern int truepoints;
   double ymin (double y[],int n);
   double min(double a, double b);
@@ -29,15 +29,12 @@ double sigmaeff(double y[])
   double sum;
   int inhull;
   double absdetA;
-  int *supporting;
-  int count=0;
+  /*int count=0;*/
 
   allpoints = Calloc((npoints)*(dim + 1),double);
   A = Calloc((dim)*(dim),double);
   z = Calloc((dim),double);
   zprod = Calloc((dim),double);
-  supporting = Calloc(npoints,int);
-  
    
   yminimum = ymin(y,truepoints) - 1.0; 
   totaldim=dim+1; 
@@ -112,13 +109,12 @@ double sigmaeff(double y[])
 
       }
     }
-
+  /* Free everything */
    Free(allpoints);
    Free(A);
    Free(z);
    Free(zprod);
    Free(outpoints);
-   Free(supporting);
  
    return(integral - mean(y,truepoints));
     }

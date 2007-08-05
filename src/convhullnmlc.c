@@ -31,15 +31,11 @@
 
 /*
 DEFUN_DLD (convhulln, args, ,
-"-*- texinfo -*-\n\
-@deftypefn {Loadable Function} {@var{H} =} convhulln (@var{p}[, @var{opt}])\n\
+/*
 Returns an index vector to the points of the enclosing convex hull.\n\
 The input matrix of size [n, dim] contains n points of dimension dim.\n\n\
 If a second optional argument is given, it must be a string containing\n\
-extra options for the underlying qhull command.  (See the Qhull\n\
-documentation for the available options.)\n\n\
-@seealso{convhull, delaunayn}\n\
-@end deftypefn")
+extra options for the underlying qhull command.  
 */
 
 
@@ -59,7 +55,7 @@ int *convhullnmlc(double *x_in, int *nrow_in, int* ncol_in, int *nf)
   FILE *outfile = stdout;      
   FILE *errfile = stderr;      /* error messages from qhull code */
 
-  idx = NULL;
+  /* idx = NULL;*/
   dim = *ncol_in;
   n = *nrow_in;
   
@@ -67,7 +63,8 @@ int *convhullnmlc(double *x_in, int *nrow_in, int* ncol_in, int *nf)
     error("Invalid input matrix.");
 
   j=0;
-  pt_array = (double *)malloc(n*dim*sizeof(double)); 
+  /* pt_array = malloc(n*dim*sizeof(double)); */
+  pt_array = Calloc(n*dim,double);
 
   for (i=0; i < n; i++)
     for (j=0; j < dim; j++)
@@ -77,7 +74,7 @@ int *convhullnmlc(double *x_in, int *nrow_in, int* ncol_in, int *nf)
 
    /* hmm lots of options for qhull here */
 
-  sprintf(flags,"qhull Qt7");
+  sprintf(flags,"qhull Qt");
 
   exitcode = qh_new_qhull (dim,n,pt_array,ismalloc,flags,outfile,errfile);
 
@@ -89,7 +86,7 @@ int *convhullnmlc(double *x_in, int *nrow_in, int* ncol_in, int *nf)
     *nf = qh num_facets;
 
     /* allocate the memory for the output */
-    idx = (int *)malloc((*nf)*dim*sizeof(int));
+    idx = Calloc((*nf)*dim,int);
 	
     qh_vertexneighbors();
 		
@@ -119,6 +116,6 @@ int *convhullnmlc(double *x_in, int *nrow_in, int* ncol_in, int *nf)
     if (curlong || totlong) {
 	  warning("convhulln: did not free %d bytes of long memory (%d pieces)",totlong, curlong);
 	}
-	free(pt_array);
+	Free(pt_array);
 	return(idx);
 }

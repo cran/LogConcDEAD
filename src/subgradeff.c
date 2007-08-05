@@ -11,7 +11,7 @@ void subgradeff(double y[], double g[])
   extern int npoints;
   extern int dim;
   extern double *xdata;
-  extern int nouter;
+  /*  extern int nouter;*/
   extern int truepoints;
   double ymin (double y[],int n);
   double min(double a, double b);

@@ -92,7 +92,7 @@ plot.LogConcDEAD <- function(x, uselog=FALSE, method="akima", itype="p", addp=TR
       }
 
       ## adding points for the non-rgl plots
-      if(addp && (itype == "i" || itype == "c" || itype == "ic")) points(y)
+      if(addp && (itype == "i" || itype == "c" || itype == "ic")) points(y,...)
       
     }
   }

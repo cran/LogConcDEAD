@@ -65,7 +65,7 @@
   beta <- out$beta
   b <- out$b
   X <- out$x
-  chull <- convhulln(X)
+  chull <- convhullnew(X)
   limits <- find.limits(x,X,chull)
   return(integrate(eval.vect,lower=limits[1],upper=limits[2],x=x,b=b,beta=beta)$value)
 }
@@ -74,7 +74,7 @@
   beta <- out$beta
   b <- out$b
   X <- out$x
-  chull <- convhulln(X)
+  chull <- convhullnew(X)
   limits <- find.limits2(y,X,chull)
   return(integrate(eval.vect2,lower=limits[1],upper=limits[2],y=y,b=b,beta=beta)$value)
 } 
@@ -98,7 +98,7 @@
   n <- nrow(out$x)
   d <- ncol(out$x)
 
-  if(is.vector(points) && length(point)==d) {
+  if(is.vector(points) && length(points)==d) {
     points <- t(as.matrix(points)) }
   ## check the dimensions of points
   if (is.matrix(points) && ncol(points)==d) {
@@ -116,11 +116,13 @@
   lambda <- t(apply(verts,1,'%*%',point)) - vertsoffset
   which <- ((apply((lambda>=0)&(lambda<=1),1,sum)==2)*(apply(lambda,1,sum)<=1)==1)
   if(sum(which)==0)  {
-    if(uselog) return(0)
-    else return(NA) }
-  else if (sum(which)==1) {
-   if(uselog)  return(b[which,]%*%point - beta[which])
-   else return(exp(b[which,]%*%point - beta[which]))
+    if(uselog) return(-Inf)
+    else return(0) }
+  else {
+    which <- order(which,decreasing=TRUE)[1]
+    if(uselog)
+      return(b[which,]%*%point - beta[which])
+    else
+      return(exp(b[which,]%*%point - beta[which]))
   }
-  else stop("error")
 }

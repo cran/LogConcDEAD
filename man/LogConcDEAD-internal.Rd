@@ -1,7 +1,7 @@
 \name{LogConcDEAD-internal}\title{Internal log-concave maximum
   likelihood estimation functions}
 
-\alias{convhulln}
+\alias{convhullnew}
 \alias{eval.est}
 \alias{eval.est2}
 \alias{eval.marg}

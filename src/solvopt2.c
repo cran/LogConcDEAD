@@ -141,7 +141,7 @@ ____________________________________________________________________________*/
       double *B;   /* space transformation matrix (allocatable)      */
       /* allocatable working arrays: */ 
       double *g,*g0,*g1,*gt,*gc,*z,*x1,*xopt,*xrec,*grec,*xx,*deltax; 
-      unsigned short *idx;
+      unsigned short *iidx;
       char *endwarn;
       /* int mlc; */
       double integraltol;
@@ -174,10 +174,10 @@ ____________________________________________________________________________*/
      grec=(double *)calloc(n,sizeof(double));
      xx=(double *)calloc(n,sizeof(double));
      deltax=(double *)calloc(n,sizeof(double));
-     idx=(unsigned short *)calloc(n,sizeof(unsigned short));
+     iidx=(unsigned short *)calloc(n,sizeof(unsigned short));
       if (B==NULL   ||g==NULL ||g0==NULL    ||g1==NULL  ||gt==NULL   ||
           gc==NULL  ||z==NULL ||x1==NULL    ||xopt==NULL||xrec==NULL ||
-          grec==NULL||xx==NULL||deltax==NULL||idx==NULL)
+          grec==NULL||xx==NULL||deltax==NULL||iidx==NULL)
       {
          printf (allocerrstr);
          options[8]=-one;
@@ -353,12 +353,12 @@ while (1)
         if (kcheck>1)
         {   numelem=0;
             for(i=0;i<n;i++)
-            {  if (fabs(g[i])>ZeroGrad) { idx[numelem]=i; numelem+=1; }
+            {  if (fabs(g[i])>ZeroGrad) { iidx[numelem]=i; numelem+=1; }
             }
             if (numelem>0)
             {  grbnd=epsnorm*(numelem*numelem);  ii=0;
                for(i=0;i<numelem;i++)
-               {  j=idx[i]; if (fabs(g1[j])<=fabs(g[j])*grbnd) ii+=1;
+               {  j=iidx[i]; if (fabs(g1[j])<=fabs(g[j])*grbnd) ii+=1;
                }
                if (ii==n || nrmz==zero)
                {  if (dispwarn) { printf(wrnmes); printf(warn20); }
@@ -499,7 +499,7 @@ while (1)
        ii=0; stopping=1;
        for(i=0;i<n;i++)
        {  if (fabs(x[i])>=lowxbound)
-          {  idx[ii]=i;  ii+=1;
+          {  iidx[ii]=i;  ii+=1;
 	  if (fabs(xopt[i]-x[i])>options[1]*fabs(x[i]))  { stopping=0;}
           }
        }
@@ -515,7 +515,7 @@ while (1)
 	 
              if (ii>0)     
              {  for(i=0;i<ii;i++)
-                {  j=idx[i];
+                {  j=iidx[i];
                    if (fabs(xrec[j]-x[j])>detxr*fabs(x[j]))
                       { stopping=1; break;
                       }
@@ -617,14 +617,14 @@ if (dispwarn) { printf(wrnmes); printf(warn09); }
          kcheck>5  && ng<one ) 
          
      {  ni=0; 
-        for(i=0;i<n;i++) { if (fabs(g[i])<=epsnorm2) { idx[ni]=i; ni+=1; } }
+        for(i=0;i<n;i++) { if (fabs(g[i])<=epsnorm2) { iidx[ni]=i; ni+=1; } }
         if (ni>=1 && ni<=n/2 && kflat<=3) 
         {  kflat+=1;
            if (dispwarn) { printf(wrnmes); printf(warn31); }
            warnno=1;  endwarn=endwarn1; 
            for(i=0;i<n;i++) x1[i]=x[i];  fm=f;
            for(i=0;i<ni;i++) 
-           { j=idx[i]; f2=fm; y=x[j];
+           { j=iidx[i]; f2=fm; y=x[j];
              if (y==zero) x1[j]=one; 
              else if (fabs(y)<one)  
              { if (y<0) x1[j]=-one; else x1[j]=one;
@@ -660,7 +660,7 @@ if (dispwarn) { printf(wrnmes); printf(warn09); }
 
 
   /* deallocate working arrays: */
-  free(idx); free(deltax); free(xx); free(grec); free(xrec); free(xopt); 
+  free(iidx); free(deltax); free(xx); free(grec); free(xrec); free(xopt); 
   free(x1);  free(z); free(gc); free(gt); free(g1); free(g0); free(g);
   free(B);
   return(f);    

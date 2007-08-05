@@ -17,7 +17,7 @@ if(ncol(X)==1)
   }
 else
   {
-  outerpoints <- unique(c(convhulln(X)))
+  outerpoints <- unique(c(convhullnew(X)))
   nouter <- length(outerpoints)
   }
 
@@ -45,7 +45,7 @@ Xymin <- cbind(X, min(y)-1)
 AllPoints <- rbind(Xy, Xymin)
 n <- nrow(X)
 d <- ncol(X)
-ConvHull <- .Call("convhulln",p=AllPoints,options="",PACKAGE="LogConcDEAD")
+ConvHull <- convhullnew(AllPoints)
 ConvHull <- ConvHull[apply(ConvHull<=n,1,sum)==d+1,,drop=FALSE]
 nrows <- nrow(ConvHull)
 beta <- NULL

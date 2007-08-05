@@ -11,7 +11,7 @@ void renormalise(double y[])
   extern int npoints;
   extern int dim;
   extern double *xdata;
-  extern int nouter;
+  /* extern int nouter; */
   extern int truepoints;
   double ymin (double y[],int n);
   double min(double a, double b);
@@ -29,15 +29,12 @@ void renormalise(double y[])
   double sum;
   int inhull;
   double absdetA;
-  int *supporting;
-  int count=0;
   double logintegral;
 
-  allpoints = (double *)malloc(sizeof(double)*(npoints)*(dim + 1));
-  A = (double *)malloc(sizeof(double)*(dim)*(dim));
-  z = (double *)malloc(sizeof(double)*(dim));
-  zprod = (double *)malloc(sizeof(double)*(dim));
-  supporting = (int *)calloc(npoints,sizeof(int));
+  allpoints = Calloc((npoints)*(dim + 1),double);
+  A = Calloc((dim)*(dim),double);
+  z = Calloc(dim,double);
+  zprod = Calloc(dim,double);
      
   yminimum = ymin(y,truepoints) - 1.0; 
   totaldim=dim+1; 
@@ -114,15 +111,12 @@ void renormalise(double y[])
       }
     }
 
-
-
-   free(allpoints);
-   free(A);
-   free(z);
-   free(zprod);
-   free(outpoints);
-   free(supporting);
- 
+   Free(allpoints);
+   Free(A);
+   Free(z);
+   Free(zprod);
+   Free(outpoints);
+  
    logintegral = log(integral);
    for (i=0; i<truepoints; i++) y[i]-=logintegral ;
   }
