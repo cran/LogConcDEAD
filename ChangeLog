@@ -1,5 +1,5 @@
 		1.0-1 Windows version corrected
 01/08/2007	1.0-3 Corrected lcd.eval, removed reference to malloc.h (obsolete)
 02/08/2007      1.0-4 Corrected some mismatched Calloc/Free/free in convhullnmlc,renormalise
-05/08/2005	1.0-5 Fixed CR line endings
-	
+05/08/2007	1.0-5 Fixed CR line endings
+18/08/2007      1.0-6 Fixed summary

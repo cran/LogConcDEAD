@@ -30,8 +30,6 @@
 #include "qhull_a.h"
 
 /*
-DEFUN_DLD (convhulln, args, ,
-/*
 Returns an index vector to the points of the enclosing convex hull.\n\
 The input matrix of size [n, dim] contains n points of dimension dim.\n\n\
 If a second optional argument is given, it must be a string containing\n\
@@ -55,7 +53,6 @@ int *convhullnmlc(double *x_in, int *nrow_in, int* ncol_in, int *nf)
   FILE *outfile = stdout;      
   FILE *errfile = stderr;      /* error messages from qhull code */
 
-  /* idx = NULL;*/
   dim = *ncol_in;
   n = *nrow_in;
   
