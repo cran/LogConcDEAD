@@ -3,3 +3,5 @@
 02/08/2007      1.0-4 Corrected some mismatched Calloc/Free/free in convhullnmlc,renormalise
 05/08/2007	1.0-5 Fixed CR line endings
 18/08/2007      1.0-6 Fixed summary
+16/11/2007      1.0-7 Disabled strict-aliasing to fix incompatibility with gcc-4.2
+19/11/2007	1.0-8 Removed empty sections in documentation, fixed license

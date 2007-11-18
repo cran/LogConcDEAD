@@ -47,8 +47,8 @@ int *convhullnmlc(double *x_in, int *nrow_in, int* ncol_in, int *nf)
   boolT ismalloc;
   char flags[250];             /* option flags for qhull, see qh_opt.htm */
   /* char *opts; */
-  int *idx;
-  double *pt_array;
+  int *idx = NULL;
+  double *pt_array = NULL;
 
   FILE *outfile = stdout;      
   FILE *errfile = stderr;      /* error messages from qhull code */

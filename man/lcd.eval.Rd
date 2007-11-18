@@ -21,14 +21,12 @@ lcd.eval(points, out, uselog=FALSE)
 }
 \value{
  The MLE (or log MLE) evaluated at the point.}
-\references{}
 \author{Madeleine Cule \email{mlc40@cam.ac.uk}
   
   Robert Gramacy
   
-Richard Samworth}
-\note{
-}
+  Richard Samworth}
+
 \seealso{ \code{\link{lcd.mle}}}
 \examples{
 set.seed(101)
