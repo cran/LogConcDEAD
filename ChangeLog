@@ -5,3 +5,4 @@
 18/08/2007      1.0-6 Fixed summary
 16/11/2007      1.0-7 Disabled strict-aliasing to fix incompatibility with gcc-4.2
 19/11/2007	1.0-8 Removed empty sections in documentation, fixed license
+20/11/2007	1.0-10 configure added for compiler-independent version
