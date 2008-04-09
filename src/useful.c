@@ -21,7 +21,7 @@ void dgetrf(int*, int*, double*, int*, int*, int*);
  */
 
 
-double absdet( double *M, int n, int useLog) 
+double absdet(double *M, int n, int useLog) 
 {
   double det, modulus;
   int i, info;
@@ -32,10 +32,8 @@ double absdet( double *M, int n, int useLog)
   /* LU decopmpose M */
   dgetrf(&n, &n, M, &n, p, &info);
   if(info != 0) {
-#ifdef DEBUG
     warning("bad chol decomp in log_determinant");
-#endif
-    return -1e300*1e300;
+    return 0;
   }   
   /* copied from R source and removing all reference to sign */
   if (useLog) {
@@ -127,7 +125,7 @@ double ymin( double y[], int n)
     int i;
     double tmp = y[0];
     for (i=1; i<n; i++) 
-      if (tmp > y[i]) tmp = y[i]; 
+     if (tmp > y[i]) tmp = y[i]; 
     return (tmp); 
   }
 

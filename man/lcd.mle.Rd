@@ -5,26 +5,28 @@
 \description{
  This function uses Shor's \eqn{r}{r}-algorithm to compute the maximum
  likelihood estimator of a log-concave density based on an
- i.i.d. sample.  The estimator is determined by its value at data points.
-}
-\usage{
-lcd.mle (X, initial=NULL, verbose=-1, alpha=5, c=1, sigmatol=10^-8,
- integraltol=10^-4, ytol=10^-4, stepscale=5.1,
-stepscale2=2, stepscale3=1.5, stepscale4=1.05, desiredsize=3.3, Jtol=0.001)
-}
+ i.i.d. sample.  The estimator is determined by its value at data
+ points.  }
+
+\usage{lcd.mle (X, weights=rep(1/nrow(X),nrow(X)),
+y=initialy(X), verbose=-1, alpha=5, c=1, sigmatol=10^-8,
+integraltol=10^-4, ytol=10^-4, stepscale=5.1, stepscale2=2,
+stepscale3=1.5, stepscale4=1.05, desiredsize=3.3, Jtol=0.001) }
+
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{X}{Data in \eqn{R^d}, in the form of an \eqn{n
       \times d}{n x d} numeric matrix}
-  \item{initial}{Starting point for the \eqn{r}-algorithm.  If \code{NULL} (the
-    default), a kernel estimate is used.}
+  \item{weights}{weights \eqn{w_i} such that the computed estimator
+  maximizes \eqn{\sum_{i=1}^n w_i f(X_i)}{w_1 f(X_1) + ... + w_n f(X_n)}}. The default is  \eqn{\frac{1}{n}}{1/n} for all \eqn{i}.   
+  \item{y}{Starting point for the \eqn{r}-algorithm.  If none given, a kernel estimate is used.}
   \item{verbose}{
     \tabular{ll}{
       -1 \tab (default) prints nothing\cr 
       0  \tab  prints warning messages\cr
       \eqn{n>0} \tab  prints summary information every \eqn{n}
       iterations}
-    }
+  }
   \item{alpha}{Scaling parameter for SolvOpt}
   \item{c}{Starting step size}
   \item{sigmatol}{Stopping criterion: relative change in
@@ -39,7 +41,7 @@ stepscale2=2, stepscale3=1.5, stepscale4=1.05, desiredsize=3.3, Jtol=0.001)
     recommended)}
   \item{Jtol}{Parameter controlling when Taylor expansion is used in
     computing the function \eqn{\sigma}{sigma}}
-}
+  }
 \details{
   The MLE of a log-concave density is of the form
   \deqn{\bar{h}_y(x) = \inf \lbrace h(x) \colon h \textrm{ concave },
@@ -70,6 +72,7 @@ stepscale2=2, stepscale3=1.5, stepscale4=1.05, desiredsize=3.3, Jtol=0.001)
 }
 \value{
   \item{x}{Data (reordered)}
+  \item{w}{Weights}
   \item{logMLE}{Vector of
     the log of the MLE at the observation points}
   \item{NumberOfEvaluations}{Number of steps, number of function
@@ -106,7 +109,9 @@ N. Z. Shor (1985)
 
 \note{The authors gratefully acknowledge the assistance of Lutz Duembgen
   at the University of Bern for his insight into the objective function
-  in \link{lcd.mle}}
+  in \link{lcd.mle}.
+
+Currently data not in general position are not supported.}
 
 \author{Madeleine Cule \email{mlc40@cam.ac.uk}
   

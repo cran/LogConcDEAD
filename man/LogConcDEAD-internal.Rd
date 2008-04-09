@@ -13,7 +13,6 @@
 \alias{initialy}
 \alias{mle.samples}
 \alias{print.LogConcDEAD}
-\alias{print.LCDweights}
 \alias{lcd.eval.point}
 \alias{summary.LogConcDEAD}
 \alias{convhullnew}

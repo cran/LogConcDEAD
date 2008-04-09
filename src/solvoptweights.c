@@ -151,7 +151,7 @@ ____________________________________________________________________________*/
 
       /* Check the dimension: */
       if (n<2) 
-	{ printf (errmes); printf (error2);
+	{ Rprintf (errmes); Rprintf (error2);
 	  options[8]=-one;
 	  return(zero);
 	} n_float=n;
@@ -176,7 +176,7 @@ ____________________________________________________________________________*/
           gc==NULL  ||z==NULL ||x1==NULL    ||xopt==NULL||xrec==NULL ||
           grec==NULL||xx==NULL||deltax==NULL||idx==NULL)
       {
-         printf (allocerrstr);
+         Rprintf (allocerrstr);
          options[8]=-one;
          return(zero);
       }
@@ -249,7 +249,7 @@ ____________________________________________________________________________*/
    integral = f+dotprod(x,weights,truepoints);
    options[9]+=one;
    if (fabs(f)>=infty)
-   {  if (dispwarn) { printf (errmes); printf (error32); printf (error6); }
+   {  if (dispwarn) { Rprintf (errmes); Rprintf (error32); Rprintf (error6); }
       options[8]=-three; goto endrun;
    }
    for (i=0;i<n;i++) xrec[i]=x[i]; frec=f;  /* record the point */
@@ -258,11 +258,11 @@ ____________________________________________________________________________*/
    grad(x,g); options[10]+=one;
    ng=zero; for (i=0;i<n;i++) ng+=g[i]*g[i]; ng=sqrt(ng);
    if (ng>=infty)
-   {  if (dispwarn) { printf(errmes); printf(error42); printf(error6); }
+   {  if (dispwarn) { Rprintf(errmes); Rprintf(error42); Rprintf(error6); }
       options[8]=-four; goto endrun;
    }   
    else if (ng<ZeroGrad)
-   {  if (dispwarn) { printf(errmes); printf(error43); printf(error6); }
+   {  if (dispwarn) { Rprintf(errmes); Rprintf(error43); Rprintf(error6); }
       options[8]=-four; goto endrun;
    }
    
@@ -313,7 +313,7 @@ while (1)
           {  kd+=1; warnno=1; endwarn=endwarn1;  
              for(i=0;i<n;i++)
              {  if (fabs(x[i]-xx[i])<epsnorm*fabs(x[i]))
-                {  if (dispwarn) { printf(wrnmes); printf(warn08); }
+                {  if (dispwarn) { Rprintf(wrnmes); Rprintf(warn08); }
                 }
              }
           }
@@ -356,7 +356,7 @@ while (1)
                {  j=idx[i]; if (fabs(g1[j])<=fabs(g[j])*grbnd) ii+=1;
                }
                if (ii==n || nrmz==zero)
-               {  if (dispwarn) { printf(wrnmes); printf(warn20); }
+               {  if (dispwarn) { Rprintf(wrnmes); Rprintf(warn20); }
                   if (fabs(fst-f)<fabs(f)*.01)  ajp-=10*n;
                   else  ajp=ajpp;
                   h=h1*dx/three; k=k-1; break;
@@ -386,12 +386,12 @@ while (1)
 	 integral = f +dotprod(x,weights,truepoints);  
          options[9]+=one;
          if (h1*f>=infty)
-         {  if (dispwarn) { printf(errmes); printf(error5); }
+         {  if (dispwarn) { Rprintf(errmes); Rprintf(error5); }
             options[8]=-seven; goto endrun;
          }
       /* No function value at a point : */         
          if (fabs(f)>=infty)     
-         {  if (dispwarn) { printf(wrnmes); printf(error32); }
+         {  if (dispwarn) { Rprintf(wrnmes); Rprintf(error32); }
             if (ksm || kc>=mxtc) { options[8]=-three;  goto endrun; }
             else 
             {  k2+=1; k1=0; hp/=dq; for(i=0;i<n;i++) x[i]=x1[i]; 
@@ -403,7 +403,7 @@ while (1)
          {  stepvanish+=1;
 	 /*if (stepvanish>=5) */
             if (stepvanish>=20) 
-            {  if (dispwarn) { printf(termwarn1); printf("step size 0\n"); printf(endwarn4); }
+            {  if (dispwarn) { Rprintf(termwarn1); Rprintf("step size 0\n"); Rprintf(endwarn4); }
                options[8]=-14.;  goto endrun;
             }
             else 
@@ -450,11 +450,11 @@ while (1)
    grad(x,g);  options[10]+=one;
    ng=zero; for(i=0;i<n;i++)  ng+=g[i]*g[i];   ng=sqrt(ng);
    if (ng>=infty)     
-   {  if (dispwarn) { printf(errmes); printf(error42); }
+   {  if (dispwarn) { Rprintf(errmes); Rprintf(error42); }
       options[8]=-four;  goto endrun;
    }
    else if (ng<ZeroGrad)
-   {  if (dispwarn) { printf(wrnmes); printf(warn1); }
+   {  if (dispwarn) { Rprintf(wrnmes); Rprintf(warn1); }
       ng=ZeroGrad; 
    }
 
@@ -476,7 +476,7 @@ while (1)
    /*-----------------------------------------------------------------
    DISPLAY THE CURRENT VALUES: */
        if (k==ld)
-       {  printf ("\nIteration # ..... Function Value ..... "
+       {  Rprintf ("\nIteration # ..... Function Value ..... "
                   "Step Value ..... Integral .... Gradient Norm"
                   "\n     %5i     %13.5g      %13.5g     %13.5g       %13.5g",k,f,dx,integral,ng);
           ld+=dispdata;
@@ -484,15 +484,14 @@ while (1)
 
    /*-----------------------------------------------------------------
    CHECK THE STOPPING CRITERIA: */
-       //   Rprintf("checking stopping\n");   
-       //    pause();
+       
     termflag=1;
     if(kcheck<=5 || (kcheck<=12 && ng>one)) { termflag=0;}
     if(kc>=mxtc || knan) { termflag=0;}
     if(fabs(integral-1) >= integraltol) termflag = 0; /* ARGUMENT : */
     if (termflag)
     
-      {//Rprintf("term flag 1\n"); pause(); 
+      {
        ii=0; stopping=1;
        for(i=0;i<n;i++)
        {  if (fabs(x[i])>=lowxbound)
@@ -507,7 +506,7 @@ while (1)
           if(fabs(f-frec)>detfr*fabs(f) &&
              fabs(f-fopt)>=options[2]*fabs(f) &&
              krerun<=3)
-	    { // Rprintf("function loop \n"); pause(); 
+	    { 
               stopping=0;
 	 
              if (ii>0)     
@@ -520,8 +519,8 @@ while (1)
              }
 
 	     if (stopping)
-	       { // Rprintf("in if stopping /n"); pause();
-if (dispwarn) { printf(wrnmes); printf(warn09); }
+	       { 
+		 if (dispwarn) { Rprintf(wrnmes); Rprintf(warn09); }
                 ng=zero; 
                 for(i=0;i<n;i++) 
                 { x[i]=xrec[i];  g[i]=grec[i]; ng+=g[i]*g[i];
@@ -550,10 +549,10 @@ if (dispwarn) { printf(wrnmes); printf(warn09); }
                    if (warnno!=0)
                    {  options[8]=-warnno-ten;
                       if (dispwarn)
-                      {  printf(termwarn1); printf(endwarn);
+                      {  Rprintf(termwarn1); Rprintf(endwarn);
 		      }
                    }   
-                   else { options[8]=k; if (dispwarn) printf(termwarn0); }
+                   else { options[8]=k; if (dispwarn) Rprintf(termwarn0); }
 		                     goto endrun;
                 }   
              }
@@ -563,7 +562,7 @@ if (dispwarn) { printf(wrnmes); printf(warn09); }
           else if (dx<powerm12*max(nx,one) && termx>=limxterm )
           {  options[8]=-14.;
              if (dispwarn) 
-	       { Rprintf("end if \n"); printf(termwarn1); printf(endwarn4);
+	       { Rprintf(termwarn1); Rprintf(endwarn4);
              }
              f=frec; for(i=0;i<n;i++) x[i]=xrec[i];
 
@@ -574,7 +573,7 @@ if (dispwarn) { printf(wrnmes); printf(warn09); }
    /* ITERATIONS LIMIT */
     if (k==iterlimit)
     {  options[8]=-nine;
-       if (dispwarn) { printf(wrnmes); printf(warn4); }
+       if (dispwarn) { Rprintf(wrnmes); Rprintf(warn4); }
        goto endrun;
     }
    /* ------------ end of the check ---------------- */
@@ -582,7 +581,7 @@ if (dispwarn) { printf(wrnmes); printf(warn09); }
      
     {  if (ng<=ZeroGrad) 
        {  nzero+=1;
-          if (dispwarn) { printf(wrnmes); printf(warn1); }
+          if (dispwarn) { Rprintf(wrnmes); Rprintf(warn1); }
           if (nzero>=3) { options[8]=-eight; goto endrun; }
           for(i=0;i<n;i++)  g0[i]*=-h/two;
           for(i=1;i<=10;i++)
@@ -591,19 +590,19 @@ if (dispwarn) { printf(wrnmes); printf(warn09); }
 	     integral=f+dotprod(x,weights,truepoints);
              options[9]+=one;
              if (fabs(f)>=infty)
-             {  if (dispwarn) { printf(errmes); printf(error32); }
+             {  if (dispwarn) { Rprintf(errmes); Rprintf(error32); }
                 options[8]=-three;  goto endrun;
              }
              grad(x,g);  options[10]+=one;
              ng=zero; for(j=0;j<n;j++) ng+=g[j]*g[j];  ng=sqrt(ng);
              if (ng>=infty)
-             {  if (dispwarn) { printf(errmes); printf(error42); }
+             {  if (dispwarn) { Rprintf(errmes); Rprintf(error42); }
                 options[8]=-four; goto endrun;
              }   
              if (ng>ZeroGrad) break;
           }
           if (ng<=ZeroGrad)
-          {  if (dispwarn) { printf(termwarn1); printf(warn1); }
+          {  if (dispwarn) { Rprintf(termwarn1); Rprintf(warn1); }
              options[8]=-eight; goto endrun;
           }
           h=h1*dx;  break; 
@@ -617,7 +616,7 @@ if (dispwarn) { printf(wrnmes); printf(warn09); }
         for(i=0;i<n;i++) { if (fabs(g[i])<=epsnorm2) { idx[ni]=i; ni+=1; } }
         if (ni>=1 && ni<=n/2 && kflat<=3) 
         {  kflat+=1;
-           if (dispwarn) { printf(wrnmes); printf(warn31); }
+           if (dispwarn) { Rprintf(wrnmes); Rprintf(warn31); }
            warnno=1;  endwarn=endwarn1; 
            for(i=0;i<n;i++) x1[i]=x[i];  fm=f;
            for(i=0;i<ni;i++) 
@@ -642,7 +641,7 @@ if (dispwarn) { printf(wrnmes); printf(warn09); }
               grad(x1,gt);  options[10]+=one;
               ngt=zero; for(i=0;i<n;i++) ngt+=gt[i]*gt[i];
               if (ngt>epsnorm2 || ngt<infty) 
-              {  if (dispwarn) printf(warn32);
+              {  if (dispwarn) Rprintf(warn32);
                  for(i=0;i<n;i++) { x[i]=x1[i]; g[i]=gt[i]; }
                  ng=ngt;  f=fm;   h=h1*dx/three;  options[2]/=five;  break;
               }  /* regular gradient */
@@ -677,19 +676,7 @@ if (dispwarn) { printf(wrnmes); printf(warn09); }
 }
 
 
-/*void null_entry(){}*/
-
-/*
-double max(double a,double b) {
-	if(a>=b) return(a);
-	else return(b);
-}
-
-double min(double a,double b) {
-	if(a<=b) return(a);
-	else return(b);
-}
-*/
+void null_entry(){}
 
 
-/*void dnull_entry(){}*/
+void dnull_entry(){}

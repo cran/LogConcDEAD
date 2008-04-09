@@ -71,6 +71,9 @@ double sigmaeffw(double y[])
       /* Remove from the list all facets which don't give a contribution */
       if (inhull==0) 
 	{ 
+
+	  for(j=0; j<totaldim; j++) {
+	    	  }
 	  /* calculate the contribution to the integral */
 	  
 	  /* Find the relevant A, ytmp */
@@ -80,17 +83,18 @@ double sigmaeffw(double y[])
 		{
 		  A[(j-1)+k*dim] = allpoints[(outpoints[i+nf*j])*totaldim + k] - allpoints[(outpoints[i])*totaldim + k];
 		}
-	    }
-	for (j=0; j<=dim; j++) {
+	     	    }
+	  for (j=0; j<=dim; j++) {
 	    ytmp[j] = allpoints[(outpoints[i+nf*j])*totaldim + dim];
-	 	  }
-  
+	  }
+	  
 	  /* Find absdetA */
 	  absdetA = absdet(A,dim,0);
-
+     
 	  /*Add this contribution to the integral */
 	  sum = JAD(ytmp,dim,Jtol);
 	  integral += absdetA*sum; 
+
 	}
     }
   

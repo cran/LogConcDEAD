@@ -16,7 +16,6 @@ void renormalise(double y[])
   double ymin (double y[],int n);
   double min(double a, double b);
   double absdet(double *a, int n, int useLog);
-  double mean(double y[], int len);
   double JAD(double *y, int dim, double eps);
   double *allpoints;
   int i, j, k;

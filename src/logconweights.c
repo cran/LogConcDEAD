@@ -7,13 +7,13 @@
 #include <R.h>
 #include <Rmath.h>
 
-extern int npoints;
-extern int dim;
-extern double *xdata;
+int npoints;
+int dim;
+double *xdata;
 double *weights;
-extern int nouter;
-extern int truepoints;
-extern double Jtol;
+int nouter;
+int truepoints;
+double Jtol;
 
 /* Function to be minimized: */
 double sigmaeffw(double *y);
@@ -29,7 +29,6 @@ void renormalise(double *y);
 
 void logconestw (double *y_in, double *xdata_in, int *d_in, int *n_in, double *weights_in, double *opt_out, double *sigmavalue_out, double *parameters, double *Jtol_in, int *nouter_in)
 {
-
   /* Initialise */
   truepoints = *n_in;
   dim = *d_in;
@@ -38,10 +37,9 @@ void logconestw (double *y_in, double *xdata_in, int *d_in, int *n_in, double *w
   npoints = truepoints + nouter;
   weights = weights_in;
   Jtol = *Jtol_in;
-
+  
   /* Use the solvoptweights */
     *sigmavalue_out=solvoptweights(truepoints,y_in,&sigmaeffw,&subgradeffw,opt_out,&dnull_entry,&null_entry,parameters);
- 
     renormalise(y_in);
     /*That's all!*/
 }
