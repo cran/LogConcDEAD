@@ -1,6 +1,6 @@
-/* this file should allow us to compute the subgradient */
-/* 02-apr-2008 added numerically stable way to compute J 
-** due to Lutz Duembgen  */
+/* this file should allow us to compute the subgradient with weights
+** 02-apr-08 added numerically stable way to compute J
+** due to Lutz Duembgen */
 
 #include <math.h>
 #include <R.h>
@@ -8,13 +8,14 @@
 
 int *convhullnmlc(double *x_in, int *nrow_in, int* ncol_in, int *nf);
 
-void subgradeff(double y[], double g[])
+void subgradeffw(double y[], double g[])
 {
   extern int npoints;
   extern int dim;
   extern double *xdata;
   extern int truepoints;
   extern double Jtol;
+  extern double *weights;
   double ymin (double y[],int n);
   double min(double a, double b);
   double absdet(double *a, int n, int log);
@@ -36,7 +37,7 @@ void subgradeff(double y[], double g[])
 
   /* initialise the subgradient vector     */
   for (j=0; j<truepoints;j++) 
-    g[j] = (-1.0/(truepoints)); 
+    g[j] = -weights[j]; 
 
   yminimum = ymin(y,truepoints) - 1.0; 
   totaldim=dim+1; 
@@ -58,26 +59,24 @@ void subgradeff(double y[], double g[])
 	}
       allpoints[totaldim*i + dim] = yminimum;
     }
-
-  totalpoints = npoints;
   
+  totalpoints = npoints;
+
   /* Find the convex hull! */
- 
+
   outpoints = convhullnmlc(allpoints, &totalpoints, &totaldim, &nf);
 
   /* For each facet of the convex hull, find if it is relevant */
- 
   for (i=0; i<nf; i++) 
     {
       inhull = 0; 
       for (j=0; j<totaldim; j++) inhull += (outpoints[i+nf*j]>=truepoints);
-   
-      if (inhull==0) /* i.e. if a face in relevant part of convhull */
+      if (inhull==0) /* i.e. if a point on the surface */
 	{
  
-	  /* calculate the contribution to the subgradient */
-	  
-	  /* First find the relevant A, ytmp*/
+	  /* calculate the contribution to the integral */
+    
+	  /* First find the relevant A, ytmp */
 	  for (j=1; j<=dim; j++) 
 	    {
 	      for (k=0; k<dim; k++)
@@ -88,12 +87,11 @@ void subgradeff(double y[], double g[])
 	  for (j=0; j<=dim; j++) {
 	    ytmp[j] = allpoints[(outpoints[i+nf*j])*totaldim + dim];
 	  }
-    
 	  /* Find the absolute value of det A */
 	  absdeta = absdet(A,dim,0); 
-
+   
 	  /* Now we'll add the relavant parts on to the subgradient */
-	  for (j=0; j<=dim;j++) { 
+   	  for (j=0; j<=dim;j++) { 
 	    Ji = JiAD(ytmp,j,dim,Jtol);
 	    g[outpoints[i+nf*j]] += absdeta*Ji;
 	  }

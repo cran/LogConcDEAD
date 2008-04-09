@@ -6,3 +6,7 @@
 16/11/2007      1.0-7 Disabled strict-aliasing to fix incompatibility with gcc-4.2
 19/11/2007	1.0-8 Removed empty sections in documentation, fixed license
 20/11/2007	1.0-10 configure added for compiler-independent version
+04/12/2007	1.0-11 configure for Windows added
+03/01/2008	1.1 Added functions to compute the "weighted" MLE and tidied up some of the documentation.
+02/04/2008 	1.1 Added a stable way to compute integrals
+07/08/2008      1.1-1 Already a few fixes for very minor code things (removing unused variables etc)

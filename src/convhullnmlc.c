@@ -23,6 +23,12 @@
 
 23. May 2005 - Raoul Grasman: ported to R
 * Changed the interface for R
+
+01. August 2007 R. B. Gramacy
+* modified for inclusion in the LogConcDEAD package 
+* with silent output
+01. August 2007 M. L. Cule
+* altered indices for use in the LogConcDEAD package
 */
 
 #include <R.h>

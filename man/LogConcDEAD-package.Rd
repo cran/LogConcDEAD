@@ -18,7 +18,7 @@ are provided.  }
 \details{
 \code{\link{lcd.mle}} computes the MLE (specified via its value at data points).
 Output is a list of class \code{"LogConcDEAD"} which is used for plotting,
-function evaluation etc. 
+function evaluation etc.
 
 \code{\link{lcd.eval}} evaluates the MLE at a particular point.
 
@@ -46,7 +46,11 @@ using the \pkg{rgl} package.
   Maintainer: Madeleine Cule \email{mlc40@cam.ac.uk}
   }
 
-\note{For one dimensional data, the active set algorithm in
+\note{The authors gratefully acknowledge the assistance of Lutz Duembgen
+  at the University of Bern for his insight into the objective function
+  in \link{lcd.mle}
+
+  For one dimensional data, the active set algorithm in
   \pkg{logcondens} is much faster.}
 
 \references{

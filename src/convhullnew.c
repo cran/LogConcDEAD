@@ -23,6 +23,10 @@
 
 23. May 2005 - Raoul Grasman: ported to R
 * Changed the interface for R
+
+01. August 2007 R. B. Gramacy
+* modified for inclusion in the LogConcDEAD package 
+* with silent output
 */
 
 #include <R.h>

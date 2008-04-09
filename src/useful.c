@@ -1,5 +1,14 @@
+/* This contains various useful functions */
+/*                                        */
+/* J* are based on ideas of Lutz Duembgen */
+/* at the University of Bern              */
+
+
+
 #include <R.h>
 #include <Rmath.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 #define dgetrf dgetrf_
 void dgetrf(int*, int*, double*, int*, int*, int*);
@@ -27,9 +36,7 @@ double absdet( double *M, int n, int useLog)
     warning("bad chol decomp in log_determinant");
 #endif
     return -1e300*1e300;
-  }  
-
- 
+  }   
   /* copied from R source and removing all reference to sign */
   if (useLog) {
     modulus = 0.0;
@@ -53,19 +60,15 @@ double absdet( double *M, int n, int useLog)
   return det;
 }
 
-
-
-
-
-
 double determinant(M, n, useLog)
-int n, useLog;
-double *M;
+     /* Computes the determinant */
+     int n, useLog;
+     double *M;
 {
   double det, modulus;
   int i, info, sign;
   int *p;
-
+  
   p = (int *) malloc(sizeof(int) * n);
   
   /* LU decopmpose M */
@@ -75,9 +78,7 @@ double *M;
     warning("bad chol decomp in log_determinant");
 #endif
     return -1e300*1e300;
-  }  
-
- 
+  }   
   /* copied from R source to get the sign right */
 
   sign = 1;
@@ -139,8 +140,6 @@ double mean(double *y, int len)
   return tmp; 
 }
 
-
-
 double max(double a,double b) {
 	if(a>=b) return(a);
 	else return(b);
@@ -159,3 +158,128 @@ double dotprod(double y[], double w[], int n) {
   }
 
   return tmp; }
+
+/* Here are the auxiliary functions for the computation of 
+   J(y[0], ..., y[d]) and its derivatives */
+
+int cmp_double (const void *X, const void *Y)
+/* A compare function for use in the sorting stage */
+{
+  if (*((double *)X) > *((double *)Y)) {
+    return 1;
+  }
+  else{
+    if (*((double *)X) < *((double *)Y)){
+      return -1;
+    }
+    else	   {
+      return 0;
+    }
+  }
+}
+
+double JAD_appr(double *y, int d) {
+  /* Uses a Taylor expansion about ymean to the third order */
+  double ymean = mean(y, (d+1));
+  int i;
+  double tmp;
+  double *z;
+  z = malloc((d+1)*sizeof(double));
+  for (i=0; i<=d; i++) {
+    z[i] = y[i] - ymean;
+  }
+   tmp = 1.0;
+  /*add the z^2 and z^3 terms*/
+  for (i=0; i<=d; i++) {
+    tmp += (z[i]*z[i]/(2*(d+1)*(d+2)) + z[i]*z[i]*z[i]/(3*(d+1)*(d+2)*(d+3)));
+   }
+  /* divide by d! */
+  for (i=1; i<=d; i++) {
+    tmp /= i;
+  }
+  tmp *= exp(ymean);
+  free(z);
+  return(tmp);
+}
+
+double JAD_ord(double *y, int d, double eps) {
+  double tmp;
+  double e1, e2;
+  /* Computes the function J in d dimensions given ordered inputs */ 
+ /* if y[d]-y[0] < eps, use taylor expansion */
+  if(y[d]-y[0] < eps) {
+    return(JAD_appr(y, d));
+  }
+  else {
+    if(d==1) {
+      tmp = (exp(y[0]) - exp(y[1]))/(y[0]-y[1]);
+      return(tmp);
+    }
+    else {
+      e1 = JAD_ord(&y[1], d-1, eps);
+      e2 = JAD_ord(&y[0], d-1, eps);
+      return((e1 - e2)/(y[d] - y[0])); 
+    }  
+  }
+}
+
+double JAD(double *y, int d, double eps) {
+  /* First sort the y, then apply JAD_ord */
+  double *z;
+  int k;
+  double tmp;
+  z=malloc((d+1)*sizeof(double));
+  for (k=0; k<=d; k++) {
+    z[k] = y[k];
+  }
+  qsort(z,d+1,sizeof(double),cmp_double);
+
+  tmp = JAD_ord(z,d,eps);
+  
+  free(z);
+  return(tmp);
+}
+
+double JiAD(double *y, int i, int d, double eps) {
+  /* Compute the ith partial derivative as
+     J(y[0], ..., y[i], y[i], ..., y[d])*/
+  double *z;
+  int k;
+  double tmp;
+  z = malloc((d+2)*sizeof(double));
+  for (k=0; k<=d; k++) {
+    z[k] = y[k];
+  }
+  z[d+1] = y[i];
+  
+  qsort(z,d+2,sizeof(double),cmp_double);
+  
+  tmp = JAD_ord(z,d+1,eps);
+  
+  free(z);
+  return(tmp);
+}
+
+double JijAD(double *y, int i, int j, int d, double eps) {
+  /* Compute the second partial derivatives as
+     J(y[0], ..., y[i], y[i], ...,y[j],y[j], ..., y[d]) */
+  double *z;
+  int k;
+  double tmp;
+  z = malloc((d+3)*sizeof(double));
+  for (k=0; k<=d; k++) {
+    z[k] = y[k];
+  }
+  z[d+1] = y[i];
+  z[d+2] = y[j];
+  
+  qsort(z,d+3,sizeof(double),cmp_double);
+  
+  tmp = JAD_ord(z,d+2,eps);
+  
+  /* If we want second derivative we need to multiply by 2 */
+  if (i == j) tmp *= 2;
+  
+  free(z);
+  return(tmp);
+}

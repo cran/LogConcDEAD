@@ -1,5 +1,5 @@
 /*28 Feb modified so that option[5] contains required closeness to 1 for the integrated estimator */
-
+/* solvoptweights computes the integral especially for the reweighted version */
 
 /* SOLVOPT version 1.1 (June, 1997)
    by Alexei Kuntsevich and Franz Kappel
@@ -15,8 +15,8 @@
 #include <stdlib.h>
 #include <math.h>  /* NEEDED FOR MATH MACROS. REMOVE, IF DEFINED ELSEWHERE */
 #include <stdio.h>
-/* #include <malloc.h> */
-#include <R.h>
+/*#include <malloc.h>*/
+#include<R.h>
 
 #include <unistd.h>
 /* #include <macros.h> */
@@ -54,23 +54,24 @@
 extern double *xdata;
 extern int npoints;
 extern int dim;
+extern double *weights;
+extern int nouter;
+extern int truepoints;
 
-
-double solvopt2(unsigned short n,
+double solvoptweights(unsigned short n,
                double x[],
                double fun(),
                void grad(),
                double options[],
                double func(),
-		void gradc(),
-               double parameters[]
-               )
+               void gradc()
+              )
 {
 
   double min(double, double);
   double max(double, double);
 
-/*solvopt  returns the optimum function value.
+/*solvoptweights  returns the optimum function value.
 
   Arguments to the function:
   n       is the space dimension,
@@ -104,34 +105,29 @@ double solvopt2(unsigned short n,
         options[11], the number of constraint function evaluations, and
         options[12], the number of constraint gradient evaluations.
         options[13], do we do a subgradient algorithm on the end?
-  parameters is a vector containing solvopt parameters:
-          [0]: stepsize (default 5.1)
-          [1-3]: more step sizes (default 2, 1.5, 1.05) 
-          [4]: j (default 3.3)
-
 
 ____________________________________________________________________________*/
  
       double default_options[13]=
           {-1.0,1.e-4,1.e-6,15000.,0.0,1.e-8,2.5,1.e-11,0.0,0.0,0.0,0.0,0.0};
-      void null_entry(); /* void apprgrdn(); */
+      void null_entry(); //void apprgrdn();
       unsigned short app;
-      unsigned short /* FsbPnt, FsbPnt1,*/ termflag, stopf;
-      unsigned short stopping, dispwarn, ksm, knan; /* Reset, obj; */
+      unsigned short /*FsbPnt, FsbPnt1, */termflag, stopf;
+      unsigned short stopping, dispwarn, /*Reset,*/ ksm,knan/*,obj*/;
       unsigned short kstore, knorms, k, kcheck, numelem;
       long  ajp,ajpp;
       unsigned short ld, mxtc, termx, limxterm, nzero, krerun;
-      unsigned short kflat, stepvanish, i,j,ni,ii, kd, kj,kc,ip;
-      unsigned short iterlimit, kg,k1,k2; /* , kless; */
+      unsigned short kflat, stepvanish, i,j,ni,ii, kd,kj,kc,ip;
+      unsigned short iterlimit, kg,k1,k2/*, kless*/;
       int dosubgrad;
       short dispdata, warnno;
       double nsteps[3]={0.0,0.0,0.0}, kk, nx;
       double gnorms[10]={0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
       double ajb,ajs, des, dq,du20,du10,du03;
-      double n_float; /* , inteps; */
+      double n_float/*, inteps*/;
       double low_bound, ZeroGrad, ddx, y;
       double lowxbound, lowfbound, detfr, detxr, grbnd;
-      double f,/*fp,fp1,fc,*/f1,f2,fm,fopt,frec,fst/*, fp_rate*/;
+      double f,/*fp,fp1,fc,*/f1,f2,fm,fopt,frec,fst /*,fp_rate*/;
       double gamma,w,wdef,h1,h,hp;
       double dx,ng,/*ngc,*/nng,ngt,nrmz,ng1,d,dd, laststep;
       double zero=0.,one=1.,two=2.,three=3.,four=4.,
@@ -141,43 +137,44 @@ ____________________________________________________________________________*/
       double *B;   /* space transformation matrix (allocatable)      */
       /* allocatable working arrays: */ 
       double *g,*g0,*g1,*gt,*gc,*z,*x1,*xopt,*xrec,*grec,*xx,*deltax; 
-      unsigned short *iidx;
+      unsigned short *idx;
       char *endwarn;
-      /* int mlc; */
       double integraltol;
       double integral;
       double mean(double *,int);
+      double dotprod(double *, double *, int);
      
+
       /* silly initialisations */
       endwarn = NULL;
       kd = 0;
 
-/* Check the dimension: */
+      /* Check the dimension: */
       if (n<2) 
-      { printf (errmes); printf (error2);
-        options[8]=-one;
-        return(zero);
-      } n_float=n;
-       
-/* Allocate the memory for working arrays: */
-
+	{ printf (errmes); printf (error2);
+	  options[8]=-one;
+	  return(zero);
+	} n_float=n;
+      
+      /* Allocate the memory for working arrays: */
+      
       B=(double *)calloc(n*n,sizeof(double));
       g=(double *)calloc(n,sizeof(double));
-     g0=(double *)calloc(n,sizeof(double));
+      g0=(double *)calloc(n,sizeof(double));
      g1=(double *)calloc(n,sizeof(double));
      gt=(double *)calloc(n,sizeof(double));
      gc=(double *)calloc(n,sizeof(double));
-      z=(double *)calloc(n,sizeof(double));
+     z=(double *)calloc(n,sizeof(double));
      x1=(double *)calloc(n,sizeof(double));
      xopt=(double *)calloc(n,sizeof(double));
      xrec=(double *)calloc(n,sizeof(double));
      grec=(double *)calloc(n,sizeof(double));
      xx=(double *)calloc(n,sizeof(double));
      deltax=(double *)calloc(n,sizeof(double));
-     iidx=(unsigned short *)calloc(n,sizeof(unsigned short));
+     idx=(unsigned short *)calloc(n,sizeof(unsigned short));
       if (B==NULL   ||g==NULL ||g0==NULL    ||g1==NULL  ||gt==NULL   ||
           gc==NULL  ||z==NULL ||x1==NULL    ||xopt==NULL||xrec==NULL ||
-          grec==NULL||xx==NULL||deltax==NULL||iidx==NULL)
+          grec==NULL||xx==NULL||deltax==NULL||idx==NULL)
       {
          printf (allocerrstr);
          options[8]=-one;
@@ -221,11 +218,11 @@ ____________________________________________________________________________*/
       else   { dispdata=floor(options[4]+0.1);  dispwarn=1; }
       ld=dispdata;
 /* Stepsize control : */
-   dq=parameters[0];               /* Step divider (at f_{i+1}>gamma*f_{i})  */
-   du20=parameters[1]; du10=parameters[2];  du03=parameters[3];         /* Step multipliers */
+   dq=5.1;               /* Step divider (at f_{i+1}>gamma*f_{i})  */
+   du20=two; du10=1.5;  du03=1.05;         /* Step multipliers */
    kstore=3;
-   /*if (app) des=6.3;*/     /* Desired number of steps per 1-D search */
-   /*else*/     des=parameters[4];     /* Same for the case of analytical grads. */
+   //if (app) des=6.3;     /* Desired number of steps per 1-D search */
+   /*else*/     des=3.3;     /* Same for the case of analytical grads. */
    mxtc=3;               /* Number of trial cycles (wall detect)   */
    termx=0; limxterm=50; /* Counter and limit for x-criterion      */
 
@@ -249,7 +246,7 @@ ____________________________________________________________________________*/
 
 /* COMPUTE THE OBJECTIVE FUNCTION (first time): */
    f=fun(x);
-   integral = f+mean(x,n);
+   integral = f+dotprod(x,weights,truepoints);
    options[9]+=one;
    if (fabs(f)>=infty)
    {  if (dispwarn) { printf (errmes); printf (error32); printf (error6); }
@@ -274,18 +271,16 @@ ____________________________________________________________________________*/
 /* INITIAL STEPSIZE : */
       d=zero; for (i=0;i<n;i++) { if (d<fabs(x[i])) d=fabs(x[i]); }
       h=h1*sqrt(options[1])*d;           /* smallest possible stepsize */
-         if (fabs(options[0])!=one)
-	   h=h1*max(fabs(options[0]),fabs(h)); /* user-supplied stepsize */
-        else 
+      /*   if (fabs(options[0])!=one)
+	   h=h1*max(fabs(options[0]),fabs(h)); *//* user-supplied stepsize */
+      /*  else */ 
         h=h1*max(one/log(ng+1.1),fabs(h));   /* calculated stepsize */
 
 /*--------------------------------------------------------------------
 RESETTING LOOP */
 
 while (1)
-{ 
-
- kcheck=0;                      /* checkpoint counter */
+{ kcheck=0;                      /* checkpoint counter */
   kg=0;                          /* stepsizes stored */
   kj=0;                          /* ravine jump counter */
   for(i=0;i<n;i++) 
@@ -353,12 +348,12 @@ while (1)
         if (kcheck>1)
         {   numelem=0;
             for(i=0;i<n;i++)
-            {  if (fabs(g[i])>ZeroGrad) { iidx[numelem]=i; numelem+=1; }
+            {  if (fabs(g[i])>ZeroGrad) { idx[numelem]=i; numelem+=1; }
             }
             if (numelem>0)
             {  grbnd=epsnorm*(numelem*numelem);  ii=0;
                for(i=0;i<numelem;i++)
-               {  j=iidx[i]; if (fabs(g1[j])<=fabs(g[j])*grbnd) ii+=1;
+               {  j=idx[i]; if (fabs(g1[j])<=fabs(g[j])*grbnd) ii+=1;
                }
                if (ii==n || nrmz==zero)
                {  if (dispwarn) { printf(wrnmes); printf(warn20); }
@@ -388,7 +383,7 @@ while (1)
       /* COMPUTE THE FUNCTION VALUE AT A POINT:  */
 
          f=fun(x);
-	 integral = f +mean(x,n);       
+	 integral = f +dotprod(x,weights,truepoints);  
          options[9]+=one;
          if (h1*f>=infty)
          {  if (dispwarn) { printf(errmes); printf(error5); }
@@ -406,8 +401,9 @@ while (1)
       /* STEP SIZE IS ZERO TO THE EXTENT OF EPSNORM */
          else if (ii==n)
          {  stepvanish+=1;
+	 /*if (stepvanish>=5) */
             if (stepvanish>=20) 
-            {  if (dispwarn) { printf(termwarn1); printf(endwarn4); }
+            {  if (dispwarn) { printf(termwarn1); printf("step size 0\n"); printf(endwarn4); }
                options[8]=-14.;  goto endrun;
             }
             else 
@@ -488,18 +484,19 @@ while (1)
 
    /*-----------------------------------------------------------------
    CHECK THE STOPPING CRITERIA: */
-     
+       //   Rprintf("checking stopping\n");   
+       //    pause();
     termflag=1;
     if(kcheck<=5 || (kcheck<=12 && ng>one)) { termflag=0;}
     if(kc>=mxtc || knan) { termflag=0;}
     if(fabs(integral-1) >= integraltol) termflag = 0; /* ARGUMENT : */
     if (termflag)
     
-      {
+      {//Rprintf("term flag 1\n"); pause(); 
        ii=0; stopping=1;
        for(i=0;i<n;i++)
        {  if (fabs(x[i])>=lowxbound)
-          {  iidx[ii]=i;  ii+=1;
+          {  idx[ii]=i;  ii+=1;
 	  if (fabs(xopt[i]-x[i])>options[1]*fabs(x[i]))  { stopping=0;}
           }
        }
@@ -510,12 +507,12 @@ while (1)
           if(fabs(f-frec)>detfr*fabs(f) &&
              fabs(f-fopt)>=options[2]*fabs(f) &&
              krerun<=3)
-	    { 
+	    { // Rprintf("function loop \n"); pause(); 
               stopping=0;
 	 
              if (ii>0)     
              {  for(i=0;i<ii;i++)
-                {  j=iidx[i];
+                {  j=idx[i];
                    if (fabs(xrec[j]-x[j])>detxr*fabs(x[j]))
                       { stopping=1; break;
                       }
@@ -523,7 +520,7 @@ while (1)
              }
 
 	     if (stopping)
-	       { 
+	       { // Rprintf("in if stopping /n"); pause();
 if (dispwarn) { printf(wrnmes); printf(warn09); }
                 ng=zero; 
                 for(i=0;i<n;i++) 
@@ -549,7 +546,7 @@ if (dispwarn) { printf(wrnmes); printf(warn09); }
                          }
                       }
                    }
-                   /* ending */
+                   // ending
                    if (warnno!=0)
                    {  options[8]=-warnno-ten;
                       if (dispwarn)
@@ -591,7 +588,7 @@ if (dispwarn) { printf(wrnmes); printf(warn09); }
           for(i=1;i<=10;i++)
           {  for(j=0;j<n;j++) x[j]+=g0[j];
              f=fun(x);
-	     integral=f+mean(x,n);
+	     integral=f+dotprod(x,weights,truepoints);
              options[9]+=one;
              if (fabs(f)>=infty)
              {  if (dispwarn) { printf(errmes); printf(error32); }
@@ -617,14 +614,14 @@ if (dispwarn) { printf(wrnmes); printf(warn09); }
          kcheck>5  && ng<one ) 
          
      {  ni=0; 
-        for(i=0;i<n;i++) { if (fabs(g[i])<=epsnorm2) { iidx[ni]=i; ni+=1; } }
+        for(i=0;i<n;i++) { if (fabs(g[i])<=epsnorm2) { idx[ni]=i; ni+=1; } }
         if (ni>=1 && ni<=n/2 && kflat<=3) 
         {  kflat+=1;
            if (dispwarn) { printf(wrnmes); printf(warn31); }
            warnno=1;  endwarn=endwarn1; 
            for(i=0;i<n;i++) x1[i]=x[i];  fm=f;
            for(i=0;i<ni;i++) 
-           { j=iidx[i]; f2=fm; y=x[j];
+           { j=idx[i]; f2=fm; y=x[j];
              if (y==zero) x1[j]=one; 
              else if (fabs(y)<one)  
              { if (y<0) x1[j]=-one; else x1[j]=one;
@@ -658,13 +655,41 @@ if (dispwarn) { printf(wrnmes); printf(warn09); }
   endrun:
 
 
+/* do a subgradient if required */
 
+/* if (options[0] !=0) 
+   {
+   for (i=1; i<options[0]; i++) 
+      {
+      subgradeffw(x,g);  
+      ng=zero; for(j=0;j<n;j++) ng+=g[j]*g[j];  ng=sqrt(ng);       
+      for (j=0; j<n; j++) 
+         {     
+	   x[j]+=h*g[j]/(i*ng);      
+         } 
+      }
+      }*/
   /* deallocate working arrays: */
-  free(iidx); free(deltax); free(xx); free(grec); free(xrec); free(xopt); 
+  free(idx); free(deltax); free(xx); free(grec); free(xrec); free(xopt); 
   free(x1);  free(z); free(gc); free(gt); free(g1); free(g0); free(g);
   free(B);
   return(f);    
 }
-void null_entry(){}
-void dnull_entry(){}
 
+
+/*void null_entry(){}*/
+
+/*
+double max(double a,double b) {
+	if(a>=b) return(a);
+	else return(b);
+}
+
+double min(double a,double b) {
+	if(a<=b) return(a);
+	else return(b);
+}
+*/
+
+
+/*void dnull_entry(){}*/

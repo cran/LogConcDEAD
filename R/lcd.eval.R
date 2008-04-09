@@ -62,6 +62,7 @@
 
 #Evaluate the marginal density at a point (currently only does X_1...)
 'eval.marg' <- function(x,out) {
+  ##if(!require("geometry",quietly=TRUE)) stop("you need to install the geometry package")
   beta <- out$beta
   b <- out$b
   X <- out$x
@@ -71,6 +72,7 @@
 }
 
 'eval.marg2' <- function(y,out) {
+  ##if(!require("geometry",quietly=TRUE)) stop("you need to install the geometry package")
   beta <- out$beta
   b <- out$b
   X <- out$x
@@ -113,8 +115,9 @@
   vertsoffset <- out$vertsoffset
   b <- out$b 
   beta <- out$beta
+  d <- ncol(out$x)
   lambda <- t(apply(verts,1,'%*%',point)) - vertsoffset
-  which <- ((apply((lambda>=0)&(lambda<=1),1,sum)==2)*(apply(lambda,1,sum)<=1)==1)
+  which <- ((apply((lambda>=0)&(lambda<=1),1,sum)==d)*(apply(lambda,1,sum)<=1)==1)
   if(sum(which)==0)  {
     if(uselog) return(-Inf)
     else return(0) }

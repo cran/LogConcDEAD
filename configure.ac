@@ -1,4 +1,4 @@
-AC_INIT([LogConcDEAD], 1.0-9) dnl package name, version
+AC_INIT([LogConcDEAD], 1.1-0) dnl package name, version
 
 dnl find what R uses for the C compiler and initialize flags
 : ${R_HOME=`R RHOME`}

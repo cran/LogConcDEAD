@@ -11,31 +11,30 @@ void renormalise(double y[])
   extern int npoints;
   extern int dim;
   extern double *xdata;
-  /* extern int nouter; */
   extern int truepoints;
+  extern double Jtol;
   double ymin (double y[],int n);
   double min(double a, double b);
   double absdet(double *a, int n, int useLog);
   double mean(double y[], int len);
+  double JAD(double *y, int dim, double eps);
   double *allpoints;
   int i, j, k;
   double yminimum;
   int *outpoints; 
   double integral = 0.0;
   int totaldim, totalpoints, nf;
-  double *zprod;
   double *A;
-  double *z;
-  double sum;
+  double *ytmp;
+  double tmp;
   int inhull;
   double absdetA;
   double logintegral;
 
   allpoints = Calloc((npoints)*(dim + 1),double);
   A = Calloc((dim)*(dim),double);
-  z = Calloc(dim,double);
-  zprod = Calloc(dim,double);
-     
+  ytmp = Calloc(dim+1,double);
+       
   yminimum = ymin(y,truepoints) - 1.0; 
   totaldim=dim+1; 
  
@@ -78,43 +77,33 @@ void renormalise(double y[])
 
 /* calculate the contribution to the integral */
   
-/* Find the relevant A, z */
+/* Find the relevant A, ytmp */
       for (j=1; j<=dim; j++) 
         {
         for (k=0; k<dim; k++) 
           {
 	  A[(j-1)+k*dim] = allpoints[(outpoints[i+nf*j])*totaldim + k] - allpoints[(outpoints[i])*totaldim + k];
 	  }
-        z[(j-1)] = allpoints[(outpoints[i+nf*j])*totaldim + dim] - allpoints[outpoints[i]*totaldim + dim];
+	}
+      for (j=0; j<=dim; j++) {
+        ytmp[j] = allpoints[(outpoints[i+nf*j])*totaldim + dim];
 	}
 
       /* Find absdetA */
       absdetA = absdet(A,dim,0);
       
-      /* Find zprod */
-      for (j=0; j<dim; j++) 
-        {
-        zprod[j] = 1.0;
-        for (k=0; k<dim; k++) 
-          if(k != j)  zprod[j] *= (z[j]-z[k]);
-        }
-
-
-      sum=0.0;
-      /* Compute the strange sum which gives us our answer */
-      for (j=0; j<dim; j++) 
-        sum += (exp(z[j]) - 1)/(z[j]*zprod[j]);  
+      /* Find JAD */
+      tmp = JAD(ytmp, dim, Jtol);
 
       /* Add this contribution to the integral */
-      integral += absdetA*exp(allpoints[totaldim*(outpoints[i])+dim])*sum; 
+      integral += absdetA*tmp; 
     
       }
     }
 
    Free(allpoints);
    Free(A);
-   Free(z);
-   Free(zprod);
+   Free(ytmp);
    Free(outpoints);
   
    logintegral = log(integral);
