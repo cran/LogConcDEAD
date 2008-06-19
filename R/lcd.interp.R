@@ -10,7 +10,7 @@
   xo <- seq(min(x), max(x), length=gridlen)
   yo <- seq(min(y), max(y), length=gridlen)
 
-  chull <- out$chull
+  chull <- out$triang
   nsimplices <- nrow(chull)
 
   g <- matrix(NA,nrow=gridlen,ncol=gridlen)

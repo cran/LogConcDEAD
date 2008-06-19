@@ -5,7 +5,7 @@
 \description{
  This plot function currently only plots 1- and 2-d data.  }
 \usage{
-\method{plot}{LogConcDEAD}(x, uselog=FALSE, method="akima", itype="p", addp=TRUE, gridlen=100,
+\method{plot}{LogConcDEAD}(x, uselog=FALSE, method="akima", itype="ic", addp=TRUE, gridlen=100,
 g=NULL, marg=NULL, g.marg=NULL, ...)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -22,7 +22,7 @@ g=NULL, marg=NULL, g.marg=NULL, ...)
     grid using \code{\link{lcd.interp}(out)} and pass the result to \code{plot}}
   \item{marg}{axis-aligned marginals can be plotted (set to 1 or 2)}
   \item{g.marg}{may be quicker to compute marginal using \code{\link{lcd.marg}}
-    or \code{\link{lcd.marg2}} and pass to \code{plot}}
+     and pass to \code{plot}}
 \item{...}{Other \code{plot} arguments}
 }
 \details{
@@ -56,10 +56,10 @@ x <- matrix(rnorm(200), ncol=2)
 out <- lcd.mle(x)
 g <- lcd.interp(out)
 par(mfrow=c(2,2))
-plot(out, g=g, itype="c", main="Density")
-plot(out, g=g, itype="c", uselog=TRUE, main="LogDensity")
-plot(out, g=g, itype="i", main="Density")
-plot(out, g=g, itype="i", uselog=TRUE, main="LogDensity")
+plot(out, g=g, itype="c")
+plot(out, g=g, itype="c", uselog=TRUE)
+plot(out, g=g, itype="i")
+plot(out, g=g, itype="i", uselog=TRUE)
 }
 
 

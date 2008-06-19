@@ -81,9 +81,12 @@ stepscale3=1.5, stepscale4=1.05, desiredsize=3.3, Jtol=0.001) }
   \item{MinSigma}{Minimum value of the objective function}
   \item{b}{see Details}
   \item{beta}{see Details}
-  \item{chull}{Vector containing final triangulation of convex hull of data}
+  \item{triang}{Vector containing final triangulation of convex hull of data}
   \item{verts}{Details of triangulation for use in \code{\link{lcd.eval}}}
   \item{vertsoffset}{Details of triangulation for use in \code{\link{lcd.eval}}}
+\item{chull}{Vector containing vertices of faces of the convex hull}
+\item{outnorm}{Outward pointing normal vectors for the faces of the convex hull}
+\item{outoffset}{A point on each face of the convex hull of the data}
 }
 \references{
 Cule, M. L., Samworth, R. J., and Stewart, M. I. (2007)

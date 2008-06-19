@@ -1,14 +1,6 @@
 \name{LogConcDEAD-internal}\title{Internal log-concave maximum
   likelihood estimation functions}
 
-\alias{eval.est}
-\alias{eval.est2}
-\alias{eval.marg}
-\alias{eval.marg2}
-\alias{eval.vect}
-\alias{eval.vect2}
-\alias{find.limits}
-\alias{find.limits2}
 \alias{initialf}
 \alias{initialy}
 \alias{mle.samples}
@@ -16,7 +8,12 @@
 \alias{lcd.eval.point}
 \alias{summary.LogConcDEAD}
 \alias{convhullnew}
-
+\alias{is.in}
+\alias{integratemarg}
+\alias{J00AD_appr}
+\alias{J00AD_ord}
+\alias{J00AD}
+\alias{eval2}
 \description{
   Internal functions for LogConcDEAD
 }

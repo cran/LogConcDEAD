@@ -17,7 +17,8 @@
     {  outerpoints <- c(which.min(X),which.max(X))
      }
   else
-    {  outerpoints <- unique(c(convhullnew(X)))
+    {  chull <- convhullnew(X)
+       outerpoints <- unique(c(chull))
      }
 
   innerpoints <- (1:nrow(X))[-outerpoints]
@@ -77,7 +78,27 @@
 
   rownames(b) <- NULL
   if(!is.null(dropme))  ConvHull <- ConvHull[-dropme,]
-  r <- list(x=X,w=weights,logMLE=y,NumberOfEvaluations=out$options[9:11],MinSigma=out$minvalue,b=b,beta=beta,chull=ConvHull,verts=verts,vertsoffset=vertsoffset)
+
+
+  if(ncol(X)==1) {
+    midpoint = mean(X)
+    chull <- c(which.min(X),which.max(X))
+    outoffset <- NULL
+    outnorm <- NULL
+  }
+
+  else {
+    outnorm <- NULL
+    outoffset <- X[chull[,1],]
+    midpoint <- apply(X,2,mean) ##find a midpoint
+    for (i in 1:nrow(chull)) {
+      tmp <- t(X[chull[i,-1],,drop=FALSE] - rep(1,ncol(X)-1)%*%X[chull[i,1],,drop=FALSE])
+      tmp <- Null(tmp)
+      tmp <- -c(sign((midpoint - outoffset[i,])%*%tmp))*tmp
+      outnorm <- rbind(outnorm,t(tmp))
+    } 
+  }
+  r <- list(x=X,w=weights,logMLE=y,NumberOfEvaluations=out$options[9:11],MinSigma=out$minvalue,b=b,beta=beta,triang=ConvHull,verts=verts,vertsoffset=vertsoffset,chull=chull,outnorm=outnorm,outoffset=outoffset)
   class(r) <- "LogConcDEAD"
   return(r)}
 

@@ -5,12 +5,12 @@
 \description{
  Function to evaluate the log-concave MLE at a point}
 \usage{
-lcd.eval(points, out, uselog=FALSE)
+lcd.eval(out, po, uselog=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{points}{Point (or matrix of points) at which MLE should be evaluated}
-  \item{out}{Object of class \code{LogConcDEAD} (output from \code{\link{lcd.mle}})}
+    \item{out}{Object of class \code{LogConcDEAD} (output from \code{\link{lcd.mle}})}
+  \item{po}{Point (or matrix of points) at which MLE should be evaluated}
   \item{uselog}{Logical for whether the estimator should be calculated
     on the log scale}
 }
@@ -33,7 +33,7 @@ set.seed(101)
 x <- matrix(rnorm(200),ncol=2)
 out <- lcd.mle(x)
 point <- c(0,0)
-lcd.eval(point,out,uselog=FALSE)
+lcd.eval(out,point,uselog=FALSE)
 }
 
 \keyword{multivariate}

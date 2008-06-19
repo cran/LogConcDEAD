@@ -476,9 +476,9 @@ while (1)
    /*-----------------------------------------------------------------
    DISPLAY THE CURRENT VALUES: */
        if (k==ld)
-       {  Rprintf ("\nIteration # ..... Function Value ..... "
-                  "Step Value ..... Integral .... Gradient Norm"
-                  "\n     %5i     %13.5g      %13.5g     %13.5g       %13.5g",k,f,dx,integral,ng);
+       {  Rprintf (
+"\nIter # ... Function Val ... Step Value ... Integral ... Grad Norm"
+ "\n%6i     %12.6g   %12.6g %12.6g  %12.5g",k,f,dx,integral,ng);
           ld+=dispdata;
        }
 

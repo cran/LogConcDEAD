@@ -12,3 +12,9 @@
 07/04/2008      1.1-1 Already a few fixes for very minor code things (removing unused variables etc)
 13/05/2008	1.1-2 Streamlining the weights and some documentation improvements (minor)
 14/06/2008      1.1-2 Improving handling of points not in general position
+05/07/2008  	1.2-0 Changing the format of the verbose part slightly
+			Added lcd.getweights
+			Added lcd.eval.marg
+			Changed the way marginals are computed (hopefully
+			for the better!)
+	

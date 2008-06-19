@@ -19,7 +19,7 @@
   return(t(sample)) }
 
 'lcd.sample' <- function(out,nsample=1) {
-  chull <- out$chull
+  chull <- out$triang
   x <- out$x
   y <- out$logMLE
   nrows <- nrow(chull)

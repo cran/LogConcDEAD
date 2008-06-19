@@ -42,10 +42,10 @@ x <- matrix(rnorm(200),ncol=2)
 out <- lcd.mle(x)
 g <- lcd.interp(out)
 par(mfrow=c(2,2))
-plot(out, g=g, itype="c", main="Density")
-plot(out, g=g, itype="c", uselog=TRUE, main="LogDensity")
-plot(out, g=g, itype="i", main="Density")
-plot(out, g=g, itype="i", uselog=TRUE, main="LogDensity")
+plot(out, g=g, itype="c")
+plot(out, g=g, itype="c", uselog=TRUE)
+plot(out, g=g, itype="i")
+plot(out, g=g, itype="i", uselog=TRUE)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
