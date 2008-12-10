@@ -210,10 +210,8 @@ plot(out,marg=2,g.marg=g2)
 
 \begin{figure}[ht!]
   \centering
-<<echo=FALSE,results=hide>>=
-png(file="LogConcDEAD-fig:2dmarg.png")
+<<label=fig:2dmarg,mecho=FALSE,results=hide, fig=TRUE, include=FALSE>>=
 <<plot:2dmarg>>
-dev.off()
 @
   \includegraphics[width=\textwidth, clip=TRUE, trim=0 110 0
   100]{LogConcDEAD-fig:2dmarg}
@@ -253,7 +251,7 @@ plot(out,g=g,type="r",uselog=TRUE)
 par3d(windowRect = c(55,66,311+256, 322+256))
 rgl.snapshot(file="rglfig.png")
 @ 
-\includegraphics[clip=TRUE, trim=0 100 0 140]{rglfig.png}
+\includegraphics[clip=TRUE, trim=0 10 0 60]{rglfig.png}
     \caption{\pkg{rgl} output for Example 2}
   \label{fig:rgl}
 \end{figure}
@@ -265,7 +263,7 @@ rgl.snapshot(file="rglfig.png")
 par3d(windowRect = c(55,66,311+256, 322+256))
 rgl.snapshot(file="rgllog.png")
 @ 
-\includegraphics[clip=TRUE, trim=0 40 0 80]{rgllog.png}
+\includegraphics[clip=TRUE, trim=0 50 0 80]{rgllog.png}
     \caption{\pkg{rgl} output for Example 2 with \code{uselog=TRUE}}
   \label{fig:rgllog}
 \end{figure}

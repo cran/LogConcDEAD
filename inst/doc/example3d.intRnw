@@ -45,11 +45,9 @@ title(main="True density")
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=\textwidth, clip=TRUE, trim=0 10 0 20]{LogConcDEAD-fig:3deg.png}
-<<results=hide, echo=FALSE>>=
-png(file="LogConcDEAD-fig:3deg.png")
+\includegraphics[width=\textwidth, clip=TRUE, trim=0 10 0 20]{LogConcDEAD-fig:3deg}
+<<label=fig:3deg, results=hide, echo=FALSE, include=FALSE, fig=TRUE>>=
 <<plot:3deg>>
-dev.off()
 @
 \caption{Marginal density estimates for 3 dimensional data (based on
   \Sexpr{n} points)}

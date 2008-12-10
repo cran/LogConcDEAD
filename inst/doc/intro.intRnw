@@ -8,11 +8,7 @@ This document is an introduction to the \proglang{R} package
 dimensions) based on \citet{CGS2008}. It aims to provide a detailed user guide based on simple,
 reproducible worked examples.  This package is available from the
 Comprehensive \proglang{R} Archive Network at
-\url{http://CRAN.R-project.org/package=LogConcDEAD}, and may be
-installed via
-<<eval=FALSE>>=
-install.packages("LogConcDEAD")
-@ 
+\url{http://CRAN.R-project.org/package=LogConcDEAD}.
 
 \pkg{LogConcDEAD} depends on \pkg{akima} \citep{akima2006} for
 plotting, \pkg{MASS} \citep{MASS2002} for some vector operations,

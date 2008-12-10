@@ -60,12 +60,10 @@ legend(x=3, y=-1, lgdtxt, lty=lgdlty)
 
 \begin{figure}[ht!]
   \centering
-<<echo=FALSE, results=hide>>=
-png(file="LogConcDEAD-fig:1d.png")
+<<label=fig:1d,echo=FALSE, results=hide, fig=TRUE, include=FALSE>>=
 <<plot:1d>>
-dev.off()
 @ 
-\includegraphics[width=0.8\textwidth, clip=TRUE, trim=0 10 0 50]{LogConcDEAD-fig:1d.png}
+\includegraphics[width=0.8\textwidth, clip=TRUE, trim=0 10 0 50]{LogConcDEAD-fig:1d}
 
   \caption{Density estimates (and true density) based on \Sexpr{n}
   i.i.d\ observations from a Gamma(2,1) distribution.}
@@ -74,12 +72,10 @@ dev.off()
 
 \begin{figure}[ht!]
   \centering
-<<echo=FALSE,results=hide>>=
-png(file="LogConcDEAD-fig:log1d.png")
+<<label=fig:log1d,echo=FALSE,results=hide, fig=TRUE, include=FALSE>>=
 <<plot:log1d>>
-dev.off()
 @ 
-\includegraphics[width=0.8\textwidth, clip=TRUE, trim=0 10 0 50]{LogConcDEAD-fig:log1d.png}
+\includegraphics[width=0.8\textwidth, clip=TRUE, trim=0 10 0 50]{LogConcDEAD-fig:log1d}
 
 \caption{Log of density estimate (and true log-density) based on
     \Sexpr{n} i.i.d\ observations from a Gamma(2,1) distribution.}

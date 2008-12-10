@@ -56,6 +56,7 @@ plot.LogConcDEAD <- function (x, uselog = FALSE, type = "ic", addp = TRUE, drawl
       } else {
         g$z <- exp(g$z)
         g$z[is.na(g$z)] <- 0
+        z <- exp(z)
         mytitle <- "Density estimate"
       }
       if (type == "p") 
@@ -72,34 +73,31 @@ plot.LogConcDEAD <- function (x, uselog = FALSE, type = "ic", addp = TRUE, drawl
       else if (type == "r") {
         if (!require("rgl", quietly = TRUE)) 
           stop("you need to install the rgl package")
-        r <- range(as.numeric(g$z[is.finite(g$z)]))
-        if (uselog) 
-          g$z <- 0.2 * (r[2] - r[1]) * g$z
-        else g$z <- 100* (r[2] - r[1]) * g$z
-        zlim <- range(g$z[!is.na(g$z)])
-        #colorlut <- rev(heat.colors(128))
-        zcolors <- mycolors[(g$z - zlim[1])*128/diff(zlim) + 1]
+         zlim <- range(g$z[!is.na(g$z)])
+
+        zcolors <- mycolors[(g$z - min(g$z,na.rm=TRUE))*128/diff(zlim) + 1]
         open3d()
         par3d(cex=0.8)
         if (!uselog) {
           surface3d(g$x, g$y, g$z, color = zcolors, back = "lines")
           decorate3d(xlim = range(y[, 1]), ylim = range(y[, 
-                                             2]), zlim = range(g$z), zlab = "Density", ...)
+                                             2]), zlim = zlim, zlab = "Density", ...)
+          zscale <- diff(range(c(g$x,g$y)))/diff(zlim)*0.8
+          par3d(scale=c(1,1,zscale))
         }
         else {
           decorate3d(xlim = range(y[, 1]), ylim = range(y[, 
-                                             2]), zlim = range(g$z[!is.na(g$z)]), zlab = "Log density", 
+                                             2]), zlim = zlim, zlab = "Log density", 
                      ...)
           rgl.surface(g$x, g$y, g$z, coords = c(1, 3, 2), 
                       color = zcolors, back = "lines")
+          zscale <- diff(range(c(g$x,g$y)))/diff(zlim)*0.8
+          par3d(scale=c(1,1,zscale))
         }
         if (addp) {
-          if (uselog) 
-            plot3d(x$x[, 1], x$x[, 2], 0.2 * (r[2] - r[1]) * 
-                   z, pch = 4, size = 2, add = TRUE, col = "black")
-          else plot3d(x$x[, 1], x$x[, 2], 100 * (r[2] - r[1]) * 
-                      exp(z), pch = 4, size = 2, add = TRUE, col = "black")
+          plot3d(x$x[, 1], x$x[, 2], z, pch = 4, size = 2, add = TRUE, col = "black")
         }
+         
       }
       else {
         stop("type should be one of r, p, i, c, or ic")
