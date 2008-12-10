@@ -1,5 +1,4 @@
-plot.LogConcDEAD <- function (x, uselog = FALSE, type = "ic", addp = TRUE, 
-    gridlen = 100, g = NULL, marg = NULL, g.marg = NULL, ...) 
+plot.LogConcDEAD <- function (x, uselog = FALSE, type = "ic", addp = TRUE, drawlabels = TRUE, gridlen = 100, g = NULL, marg = NULL, g.marg = NULL, ...) 
 {
   d <- ncol(x$x)
 
@@ -25,7 +24,7 @@ plot.LogConcDEAD <- function (x, uselog = FALSE, type = "ic", addp = TRUE,
 
       ##Check whether already calculated and, if not, calculate
       if (is.null(g.marg)) {
-        g.marg <- lcd.marg(x,marg=marg)
+        g.marg <- interpmarglcd(x,marg=marg)
       }
       
       if(uselog) {
@@ -63,10 +62,10 @@ plot.LogConcDEAD <- function (x, uselog = FALSE, type = "ic", addp = TRUE,
       else if (type == "i") 
         image(g, col = terrain.colors(128), main=mytitle,...)
       else if (type == "c") 
-        contour(g, main=mytitle,...)
+        contour(g, main=mytitle, drawlabels=drawlabels, ...)
       else if (type == "ic") {
         image(g, col = terrain.colors(128),main=mytitle, ...)
-        contour(g, add = TRUE, ...)
+        contour(g, add = TRUE, drawlabels=drawlabels, ...)
       }
       else if (type == "r") {
         if (!require("rgl", quietly = TRUE)) 

@@ -1,0 +1,106 @@
+<<echo=FALSE>>=
+if(!require(mvtnorm)) {install.packages("mvtnorm"); library(mvtnorm)}
+if(!require(LogConcDEAD)) {install.packages("LogConcDEAD"); library(LogConcDEAD)}
+set.seed(333)
+@ 
+\subsection{Example 3: 2-d binned data}
+\label{sec:egbin}
+In this section, we demonstrate the use of \code{\char34LogConcDEAD\char34} with binned data.  The
+seed here has been set to $333$ for reproducibility; you may wish to
+try these examples with other seeds.  
+
+We generate some data from a normal distribution with
+correlation using the package \pkg{mvtnorm} \citep{mvtnorm2008}.  As before, this may be installed and loaded using
+
+<<eval=FALSE>>=
+install.packages("mvtnorm")
+library(mvtnorm)
+@ 
+
+<<>>=
+sigma <- matrix(c(1,0.2,0.2,1),nrow=2)
+n <- 500
+d <- 2
+y <- rmvnorm(n,sigma=sigma)
+xall <- round(y,digits=1)
+@ 
+
+The matrix \code{xall} therefore contains \Sexpr{n} observations,
+rounded to $1$ decimal place; there are in total
+\Sexpr{nrow(unique(xall))} distinct observations.  In order to compute
+an appropriate log-likelihood, we will use the function
+\code{getweights} to extract a matrix of distinct observations and
+a vector of weights for use in \code{mlelcd}.  The result of this has
+two parts: a matrix \code{x} consisting of the distinct observations,
+and a vector \code{w} of weights.  We may also use \code{interplcd}
+as before to evaluate the estimator on a grid for plotting purposes.
+
+<<>>=
+tmpw <- getweights(xall)
+outw <- mlelcd(tmpw$x,w=tmpw$w)
+gw <- interplcd(outw, gridlen=200)
+@ 
+
+In Figure~\ref{fig:bin} we plot density and log-density estimates using a
+contour plot as before.  In contrast to the examples in Figure
+\ref{fig:2d}, we have \code{addp=TRUE} (the default), which superposes the
+observation points on the plots, and \code{drawlabels=FALSE}, which
+suppresses the contour labels.
+
+<<label=plot:bin, include=FALSE, echo=FALSE, eval=FALSE>>=
+par(mfrow=c(1,2), pty="s", cex=0.7) #2 square plots 
+plot(outw,g=gw,drawlabels=FALSE,asp=1)
+plot(outw,g=gw,uselog=TRUE,drawlabels=FALSE,asp=1)
+@ 
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=\textwidth, clip=TRUE, trim=0 120 0 100]{LogConcDEAD-fig:logbin}
+<<label=fig:logbin,fig=TRUE,include=FALSE>>=
+<<plot:bin>>
+@
+\caption{Density and log density estimate based on \Sexpr{n} points
+  from a bivariate normal distribution in two dimensions (truncated to 1 decimal place) (Example 3)}
+\label{fig:bin}
+\end{figure}
+
+%% Old version
+%In Figure~\ref{fig:bin} we plot the density estimates using a
+%contour plot as before.  In Figure~\ref{fig:binlog}, we plot the
+%log-density estimates.
+
+%<<label=plot:bin,include=FALSE,echo=FALSE>>=
+%plot(outw,g=gw)
+%@
+%<<label=plot:logbin,include=FALSE,echo=FALSE>>=
+%plot(outw,g=gw,uselog=TRUE)
+%@
+
+%\begin{figure}[ht!]
+%  \centering
+%<<label=fig:bin,fig=TRUE,include=FALSE>>=
+%<<plot:bin>>
+%@
+%\includegraphics[height=90mm,width=90mm]{examplebin-fig:bin}
+%\caption{Density estimate based on \Sexpr{n} points from a bivariate
+%  normal distribution in two dimensions (truncated to 1 decimal place)
+%  (Example 3)}
+%\label{fig:bin}
+%\end{figure}%
+
+%\begin{figure}[ht!]
+%\centering
+%<<label=fig:logbin,fig=TRUE,include=FALSE>>=
+%<<plot:logbin>>
+%@
+%\includegraphics[height=90mm,width=90mm]{examplebin-fig:logbin}
+%\caption{Log density estimate based on \Sexpr{n} points from a bivariate
+%  normal distribution in two dimensions (truncated to 1 decimal place)
+%  (Example 3)}
+%label{fig:binlog}%
+%\end{figure}
+
+
+
+
+

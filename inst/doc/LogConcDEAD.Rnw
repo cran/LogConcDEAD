@@ -1,0 +1,141 @@
+%%% This version for the package vignette
+
+\documentclass[article,nojss]{mlc_jss}
+
+\usepackage{amsmath,amsthm,bbm,amssymb}
+\usepackage{amscd}
+\usepackage{ifthen}
+\usepackage{subfigure}
+\usepackage{psfrag}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.95}
+\renewcommand{\floatpagefraction}{0.35}
+\usepackage{afterpage}
+%\VignetteIndexEntry{a guide to the LogConcDEAD package}
+%\VignetteKeywords{LogConcDEAD}
+%\VignetteDepends{LogConcDEAD, logcondens, akima, rgl, MASS}
+%\VignettePackage{LogConcDEAD}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% declarations for jss.cls %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% almost as usual
+\author{Madeleine Cule, Robert Gramacy and  Richard Samworth\\
+University of Cambridge}
+\title{\pkg{LogConcDEAD}: An \proglang{R} Package for Maximum Likelihood
+  Estimation of a Multivariate Log-concave Density}
+
+%% for pretty printing and a nice hypersummary also set:
+\Plainauthor{Madeleine Cule, Robert Gramacy, Richard
+  Samworth} %% comma-separated
+\Plaintitle{LogConcDEAD: An R Package for Maximum Likelihood Estimation of
+  a Multivariate Log-concave Density} %% without formatting
+\Shorttitle{LogConcDEAD} %% a short title (if necessary)
+
+%% an abstract and keywords
+\Abstract{In this article we introduce the \proglang{R} package
+  \pkg{LogConcDEAD} (Log-concave density estimation in arbitrary
+  dimensions).  Its main function is to compute the nonparametric
+  maximum likelihood estimator of a log-concave density.  Functions
+  for plotting, sampling from the density estimate and evaluating the
+  density estimate are provided.  All of the functions available in
+  the package are illustrated using simple, reproducible examples with
+  simulated data.}  
+\Keywords{log-concave density, multivariate
+  density estimation, visualization, nonparametric statistics}
+\Plainkeywords{log-concave density, multivariate density estimation,
+  visualization, nonparametric statistics}
+%% without formatting at least one keyword must be supplied
+%% information NOTE: Typically, this can be left commented
+%% and will be filled out by the technical editor \Volume{13}
+%% \Issue{9} \Month{September} \Year{2004} \Submitdate{2004-09-29}
+%% \Acceptdate{2004-09-29}
+
+%% The address of (at least) one author should be given in the
+%% following format:
+
+%% for those who use Sweave please include the following line (with % symbols):
+%% need no \usepackage{Sweave.sty}
+
+%% end of declarations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%My handy macros:
+
+%KL divergence
+\newcommand{\dkl}[2]{d_{KL}(#1 | #2)}
+%Hellinger distance
+\newcommand{\dhell}[2]{d_h(#1,#2)}
+
+%Various stuff for proofs
+\newcommand{\st}{\textrm{ subject to }}
+\newcommand{\rarrow}{\rightarrow}
+\newcommand{\convp}{\stackrel{p}{\rightarrow}}
+\newcommand{\convas}{\stackrel{\textit{a.s.}}{\rightarrow}}
+\newcommand{\convd}{\stackrel{d}{\rightarrow}}
+\newcommand{\real}[1]{\mathbb{R}^{#1}}
+\newcommand{\rn}{\mathbb{R}^n}
+\newcommand{\rd}{\mathbb{R}^d}
+\newcommand{\rk}{\mathbb{R}^k}
+\newcommand{\epi}{\textrm{epi }}
+\newcommand{\cl}{\textrm{cl }}
+\newcommand{\conv}{\textrm{conv }}
+\newcommand{\dom}{\textrm{dom }}
+\newcommand{\supp}{\textrm{supp }}
+
+%I prefer wide bars, hats etc and varphi
+\renewcommand{\phi}{\varphi}
+\renewcommand{\hat}{\widehat}
+\renewcommand{\tilde}{\widetilde}
+
+%various useful quantities
+\newcommand{\emp}{P_n}
+\newcommand{\est}{\hat{p}_n}
+\newcommand{\true}{p_0}
+\newcommand{\maxlike}{\max \prod_{i=1}^n p(X_i)}
+\newcommand{\hbary}{\bar{h}_y}
+\newcommand{\hty}{h^{\mathcal{T}}_y}
+\newcommand{\myintegral}{\int_{C_n} \exp\{\hbary(x)\} \, dx}
+\newcommand{\kt}{\mathcal{K}^{\mathcal{T}}}
+\newcommand{\sigt}{\sigma^{\mathcal{T}}}
+\newcommand{\new}{\textrm{new}}
+\newcommand{\va}{\mathcal{V}(\mathcal{A})}
+
+%%%  Theorem style I like
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{cor}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{eg}[theorem]{Example}
+
+%\theoremstyle{remark}
+\newtheorem{assump}[theorem]{Assumption}
+
+%some mathcals and mathbbs
+\renewcommand{\AA}{\mathcal{A}}
+\newcommand{\VV}{\mathcal{V}}
+\newcommand{\KK}{\mathcal{K}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\indicator}{\mathbbm{1}}
+
+
+%%Here is where the actual document begins:
+\begin{document}
+
+\SweaveInput{intro.intRnw}
+\SweaveInput{algorithm.intRnw}
+\SweaveInput{usage.intRnw}
+\clearpage
+\bibliography{logconcdead}
+\end{document}
+
+

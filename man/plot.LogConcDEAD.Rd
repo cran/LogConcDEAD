@@ -8,7 +8,7 @@ plots of axis-aligned marginal density estimates are available.}
 
 \usage{
 \method{plot}{LogConcDEAD}(x, uselog=FALSE, type="ic", addp=TRUE,
-  gridlen=100, g=NULL, marg=NULL, g.marg=NULL, ...)
+  drawlabels=TRUE, gridlen=100, g=NULL, marg=NULL, g.marg=NULL, ...)
 }
 
 \arguments{
@@ -17,6 +17,8 @@ plots of axis-aligned marginal density estimates are available.}
   \item{type}{Plot type: \code{"p"} perspective, \code{"c"} contour, \code{"i"} image, \code{ic}
     image and contour, \code{r} using \pkg{\link[rgl:rgl-package]{rgl}} (the best!)}
   \item{addp}{Scalar \code{logical}: should the data points be plotted? (On the surface    for \eqn{d \geq 2}{d >= 2}; as tick marks for \eqn{d=1})}
+  \item{drawlabels}{Scalar \code{logical}: should labels be added to
+  contour lines? (only relevant for \code{type}s \code{"ic"} and \code{"c"})}
   \item{gridlen}{Integer scalar indicating the number of points at which the maximum likelihood estimator is evaluated in each
     dimension}
   \item{g}{(optional) a \code{matrix} of density estimate values (the result of a call to  \code{\link{interplcd}}).  If many plots of a single dataset are

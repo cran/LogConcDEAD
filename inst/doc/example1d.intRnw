@@ -1,0 +1,86 @@
+<<echo=FALSE>>=
+if(!require(LogConcDEAD)) {install.packages("LogConcDEAD"); library(LogConcDEAD)}
+if(!require(logcondens)) {install.packages("logcondens"); library(logcondens)}
+if(!require(mvtnorm)) {install.packages("mvtnorm"); library(mvtnorm)}
+set.seed(1)
+@ 
+\subsection{Example 1: 1-d data}
+\label{sec:eg1d}
+For one-dimensional data, the alternative active set algorithm from
+\pkg{logcondens} \citep{RufibachDumbgen2006, DHR2007} may be used to
+compute the log-concave maximum likelihood estimator.  In this section
+we will compare the output of the two procedures.
+
+First we must install and load the \pkg{logcondens} package
+\citep{RufibachDumbgen2006} .
+
+<<eval=FALSE>>=
+install.packages("logcondens")
+library(logcondens)
+@ 
+
+<<echo=FALSE,label=setn>>=
+n <- 200
+@ 
+
+For this example, we will use \Sexpr{n} points from a Gamma($2,1$)
+distribution.  The seed has been set (to $1$) using the
+\code{set.seed} command, so this example can be reproduced exactly;
+you may also like to try with a different seed.
+
+<<>>=
+<<setn>>
+x <- sort(rgamma(n,shape=2))
+out1 <- activeSetLogCon(x) ## logcondens estimate
+out2 <- mlelcd(x) ## LogConcDEAD estimate
+@ 
+
+<<label=plot1d,include=FALSE,echo=FALSE, eval=FALSE>>=
+ylim <- c(0,0.4) 
+lgdtxt <- c("LogConcDEAD", "logcondens", "true")
+lgdlty <- c(1,2,3)
+plot(out2, ylim=ylim,lty=1)
+lines(x, exp(out1$phi), lty=2)
+lines(x, x*exp(-x), lty=3)
+legend(x=3, y=0.4, lgdtxt, lty=lgdlty)
+@ 
+
+<<label=log1d,include=FALSE,echo=FALSE>>=
+ylim <- c(-4,-1)
+lgdtxt <- c("LogConcDEAD", "logcondens", "true")
+lgdlty <- c(1,2,3)
+plot(out2, uselog=TRUE, lty=1)
+lines(x, out1$phi, lty=2)
+lines(x, log(x)-x, lty=3)
+legend(x=3, y=-1, lgdtxt, lty=lgdlty) 
+@ 
+
+
+\begin{figure}[ht!]
+  \centering
+\includegraphics[width=\textwidth, clip=TRUE, trim=0 20 0 50]{LogConcDEAD-fig:1d}
+<<label=fig:1d,fig=TRUE,include=FALSE>>=
+<<plot1d>>
+@
+  \caption{Density estimates (and true density) based on \Sexpr{n}
+  i.i.d\ observations from a Gamma(2,1) distribution.}
+  \label{fig:1d}
+\end{figure}
+
+\begin{figure}[ht!]
+  \centering
+\includegraphics[width=\textwidth, clip=TRUE, trim=0 20 0 50]{LogConcDEAD-fig:log1d}
+<<label=fig:log1d,fig=TRUE,include=FALSE>>=
+<<log1d>>
+@
+\caption{Log of density estimate (and true log-density) based on
+    \Sexpr{n} i.i.d\ observations from a Gamma(2,1) distribution.}
+\label{fig:log1d}
+ \end{figure}
+
+ We can see from Figure~\ref{fig:1d} that, as expected,
+ \pkg{logcondens} and \pkg{LogConcDEAD} produce the same output.
+ Figure~\ref{fig:log1d} also illustrates the structure of the log-concave
+ maximum likelihood estimator: its logarithm is piecewise linear with
+ changes of slope only at observation points.  
+
