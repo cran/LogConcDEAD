@@ -5,87 +5,120 @@
 \docType{package}
 
 \title{
-Maximum likelihood estimation of a log-concave density in arbitrary dimensions
+  Computes a log-concave (maximum likelihood) estimator for i.i.d. data in any number of dimensions
 }
 
 \description{ This package contains a function to compute the maximum
 likelihood estimator of a log-concave density in any number of
-dimensions using Shor's r-algorithm.
+dimensions using Shor's \eqn{r}-algorithm.
 
-Functions to plot (for 1- and 2-d data) and draw samples from the MLE
+Functions to plot (for 1- and 2-d data), evaluate and draw samples from the maximum likelihood estimator
 are provided.  }
 
 \details{
-\code{\link{lcd.mle}} computes the MLE (specified via its value at data points).
-Output is a list of class \code{"LogConcDEAD"} which is used for plotting,
-function evaluation etc.
+  This package contains a selection of functions for maximum likelihood
+  estimation under the constraint of log-concavity.
+  
+\code{\link{mlelcd}} computes the maximum likelihood estimator
+(specified via its value at data points).  Output is a list of class
+\code{"LogConcDEAD"} which is used as input to various auxiliary functions.
 
-\code{\link{lcd.eval}} evaluates the MLE at a particular point.
+\code{\link{dlcd}} evaluates the estimated density at a particular point.
 
-\code{\link{lcd.sample}} draws samples from the MLE.
+\code{\link{rlcd}} draws samples from the estimated density.
 
-\code{\link{lcd.interp}} interpolates the MLE on a grid, for plotting
-purposes.
+\code{\link{interplcd}} interpolates the estimated density on
+a grid for plotting purposes.
 
-\code{\link{lcd.marg}} integrates the MLE in 2-d to allow plotting of
-estimates of (currently only axis-aligned) marginals.
+\code{\link{dmarglcd}} evaluates the estimated marginal density by
+integrating the estimated density over an appropriate subspace.
 
-\code{\link{plot.LogConcDEAD}} produces plots of the MLE, optionally
-using the \pkg{rgl} package.
+\code{\link{interpmarglcd}} evaluates a marginal density estimate at
+equally spaced points along the axis for plotting purposes.  This is
+done by integrating the estimated density over an appropriate subspace.
 
+\code{\link{plot.LogConcDEAD}} produces plots of the maximum likelihood
+estimator, optionally using the \pkg{rgl} package.
 
+\code{\link[print.LogConcDEAD]{print}} and
+\code{\link[summary.LogConcDEAD]{summary}} methods are also available.
 }
 
 \author{
-  Madeleine Cule \email{mlc40@cam.ac.uk}
+  Madeleine Cule (maintainer) \email{mlc40@cam.ac.uk}
   
   Robert Gramacy \email{bobby@statslab.cam.ac.uk}
 
   Richard Samworth \email{rjs57@cam.ac.uk}
-
-  Maintainer: Madeleine Cule \email{mlc40@cam.ac.uk}
   }
 
 \note{The authors gratefully acknowledge the assistance of Lutz Duembgen
   at the University of Bern for his insight into the objective function
-  in \link{lcd.mle}
+  in \link{mlelcd}.
 
   For one dimensional data, the active set algorithm in
   \pkg{logcondens} is much faster.}
 
-\references{
-  Cule, M. L., Samworth, R. J. and Stewart, M. I. (2007)
-  \emph{Computing the maximum likelihood estimator of a log-concave
-    density}
-  In preparation
+\references{Barber, C.B., Dobkin, D.P., and Huhdanpaa, H.T. (1996)
+\emph{The Quickhull algorithm for convex hulls}
+  ACM Trans. on Mathematical Software, 22(4) p.469-483
+\url{http://www.qhull.org}
 
-  Kappel, F. and Kuntsevich, A. V. (2000)
-  \emph{An implementation of Shor's r-algorithm}
-  Computational Optimization and Applications 15(2) p. 193-205
+Cule, M. L. and D\"umbgen, L. (2008) On an auxiliary function for
+log-density estimation, University of Bern technical report. \url{http://arxiv.org/abs/0807.4719}
 
-  \url{http://www.uni-graz.at/imawww/kuntsevich/solvopt/}
+Cule, M. L., Samworth, R. J., and Stewart, M. I. (2007)
+\emph{Maximum likelihood estimation of a log-concave density},
+Submitted.\url{http://arxiv.org/abs/0804.3989}
 
-  Barber, C.B., Dobkin, D.P., and Huhdanpaa, H.T. (1996)
-  \emph{The Quickhull algorithm for convex hulls}
-  ACM Trans. on Mathematical Software, 22(4) p. 469-483
-  \url{http://www.qhull.org}
-}
+Kappel, F. and Kuntsevich, A. V. (2000)
+\emph{An implementation of Shor's r-algorithm} Computational
+Optimization and Applications 15  \cr \url{http://www.uni-graz.at/imawww/kuntsevich/solvopt/}
+
+Shor, N. Z. (1985)
+ \emph{Minimization methods for nondifferentiable functions}
+ Springer-Verlag
+ }
 
 \keyword{ nonparametric }
 \keyword{ multivariate }
 \keyword{ package }
 
 \seealso{
-  \code{\link[<logcondens>:<logcondens>-package]{logcondens}}
-  \code{\link[<rgl>:<rgl>-package]{rgl}}
+  \code{\link[logcondens:logcondens-package]{logcondens}},
+  \code{\link[rgl:rgl-package]{rgl}}
 }
 
 \examples{
+## Some simple normal data, and a few plots
 
-#example with some simple normal data
-
-set.seed(101)
 x <- matrix(rnorm(200),ncol=2)
-out <- lcd.mle(x)
-plot(out,itype="ic")
+lcd <- mlelcd(x)
+g <- interplcd(lcd)
+par(mfrow=c(2,2), ask=TRUE)
+plot(lcd, g=g, type="c")
+plot(lcd, g=g, type="c", uselog=TRUE)
+plot(lcd, g=g, type="i")
+plot(lcd, g=g, type="i", uselog=TRUE)
+
+## Some plots of marginal estimates
+par(mfrow=c(1,1))
+g.marg1 <- interpmarglcd(lcd, marg=1)
+g.marg2 <- interpmarglcd(lcd, marg=2)
+plot(lcd, marg=1, g.marg=g.marg1)
+plot(lcd, marg=2, g.marg=g.marg2) 
+
+## generate some points from the fitted density
+generated <- rlcd(100, lcd)
+genmean <- mean(generated)
+
+## evaluate the fitted density
+mypoint <- c(0, 0)
+dlcd(mypoint, lcd, uselog=FALSE)
+mypoint <- c(10, 0)
+dlcd(mypoint, lcd, uselog=FALSE)
+
+## evaluate the marginal density
+dmarglcd(0, lcd, marg=1)
+dmarglcd(1, lcd, marg=2)
 }

@@ -1,41 +1,59 @@
 \name{plot.LogConcDEAD}
 \alias{plot.LogConcDEAD}
 
-\title{Plot function for log-concave MLE}
-\description{
- This plot function currently only plots 1- and 2-d data.  }
+\title{Plot a log-concave maximum likelihood estimator} \description{
+\code{plot} method for class \code{"LogConcDEAD"}.  Plots of various
+types are available for 1- and 2-d data. For dimension greater than 1,
+plots of axis-aligned marginal density estimates are available.}
+
 \usage{
-\method{plot}{LogConcDEAD}(x, uselog=FALSE, method="akima", itype="ic", addp=TRUE, gridlen=100,
-g=NULL, marg=NULL, g.marg=NULL, ...)
+\method{plot}{LogConcDEAD}(x, uselog=FALSE, type="ic", addp=TRUE,
+  gridlen=100, g=NULL, marg=NULL, g.marg=NULL, ...)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
-  \item{x}{Object of class \code{LogConcDEAD} (e.g. as output from lcd.mle)}
-  \item{uselog}{logical indicating whether the log or true scale should
-    be plotted}
-  \item{method}{The \pkg{akima} package is used for linear interpolation}
-  \item{itype}{Plot type: \code{p} perspectice, \code{c} contour, \code{i} image, \code{ic}
-    image and contour, \code{r} using \pkg{rgl} (the best!)}
-  \item{addp}{logical: should the data points be plotted on the surface?}
-  \item{gridlen}{Number of points at which the MLE is evaluated in each direction}
-  \item{g}{If many plots are required, it may be quicker to compute the
-    grid using \code{\link{lcd.interp}(out)} and pass the result to \code{plot}}
-  \item{marg}{axis-aligned marginals can be plotted (set to 1 or 2)}
-  \item{g.marg}{may be quicker to compute marginal using \code{\link{lcd.marg}}
-     and pass to \code{plot}}
-\item{...}{Other \code{plot} arguments}
+  \item{x}{Object of class \code{"LogConcDEAD"} (typically output from \code{\link{mlelcd}})}
+  \item{uselog}{Scalar \code{logical}: should the plot be on the log scale?}
+  \item{type}{Plot type: \code{"p"} perspective, \code{"c"} contour, \code{"i"} image, \code{ic}
+    image and contour, \code{r} using \pkg{\link[rgl:rgl-package]{rgl}} (the best!)}
+  \item{addp}{Scalar \code{logical}: should the data points be plotted? (On the surface    for \eqn{d \geq 2}{d >= 2}; as tick marks for \eqn{d=1})}
+  \item{gridlen}{Integer scalar indicating the number of points at which the maximum likelihood estimator is evaluated in each
+    dimension}
+  \item{g}{(optional) a \code{matrix} of density estimate values (the result of a call to  \code{\link{interplcd}}).  If many plots of a single dataset are
+  required, it may be quicker to compute the grid using
+  \code{\link{interplcd}(x)} and pass the result to \code{plot}}
+  \item{marg}{If non-\code{NULL}, this scalar integer determines which marginal should be
+  plotted (should be between \eqn{1} and \eqn{d})}
+  \item{g.marg}{If \code{g} is non-\code{NULL}, can contain a
+  \code{vector} of marginal density estimate values (the output of \code{\link{interpmarglcd}}).  If many plots of a single dataset
+  are required, it may be quicker to compute the marginal values to
+  compute marginal values using \code{\link{interpmarglcd}}
+     and pass the result to \code{plot}}
+\item{...}{Other arguments to be passed to the generic
+  \code{\link[base]{plot}} method}
 }
 \details{
-  This function makes use of the \pkg{akima} package.
+  The density estimate is evaluated on a grid of points using the
+  \code{\link{interplcd}} function. If several plots are required, this
+  may be computed separately and passed to \code{plot} using the
+  \code{g} argument.
+  
+  For two dimensional data, the default plot type is \code{"ic"},
+  corresponding to \code{\link{image}} and \code{\link{contour}} plots.
+  These may be obtained separately using plot type \code{"i"} or \code{"c"}
+  respectively.  Where available, the use of plot type \code{"r"} is
+  recommended.  This uses the \pkg{\link[rgl:rgl-package]{rgl}} package
+  to produce a 3-d plot that may be rotated by the user.  The option
+  \code{"p"} produces perspective plots.
+  
+  For data of dimension at least 2, axis-aligned marginals may be
+  plotted by setting the \code{marg} argument.  This integrates the
+  estimated density over the remaining dimensions. If several plots are
+  required, the estimate may be computed using the function
+  \code{\link{interpmarglcd}} and passed using the argument
+  \code{g.marg}.
 
-  For one-dimensional data, the log MLE is piecewise linear with knots
-  at observation points.
-
-  The same is (roughly speaking) true in higher dimensions.  The MLE is
-evaluated on a grid
-  using the \code{interp} function from \pkg{akima}.
-
-  To come: plotting of marginals for higher-dimensional data.
+  For examples, see \code{\link{mlelcd}}.
 }
 
 
@@ -45,25 +63,14 @@ evaluated on a grid
 
   Richard Samworth}
 
-\seealso{\code{\link[akima]{interp}}}
+\seealso{\code{\link{mlelcd}}, \code{\link[akima]{interp}},
+\code{\link{interplcd}}, \code{\link{interpmarglcd}} }
 
-\examples{
-
-## some simple normal data
-
-set.seed(101)
-x <- matrix(rnorm(200), ncol=2)
-out <- lcd.mle(x)
-g <- lcd.interp(out)
-par(mfrow=c(2,2))
-plot(out, g=g, itype="c")
-plot(out, g=g, itype="c", uselog=TRUE)
-plot(out, g=g, itype="i")
-plot(out, g=g, itype="i", uselog=TRUE)
-}
 
 
 \keyword{ dplot }
 \keyword{ hplot }
 \keyword{ nonparametric }
 \keyword{ multivariate }
+\keyword{ iplot }
+\keyword{ dynamic }

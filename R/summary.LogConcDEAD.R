@@ -14,8 +14,8 @@ else if (niter==-13) errormessage <- "Result may be inaccurate in view of a poin
 else if (niter==-14) errormessage <- "Result may be inaccurate in view of a function value"
 
 if(niter>0) cat("\n Log MLE at observations: \n", (object$logMLE),
-    "\n\n Number of Iterations: ",object$NumberOfEvaluations[1],
-    "\n\n Number of Function Evaluations: ",object$NumberOfEvaluations[2],
+    "\n\n Number of Iterations: ", object$NumberOfEvaluations[1],
+    "\n\n Number of Function Evaluations: ", object$NumberOfEvaluations[2],
     fill=10)
 else cat("SolvOpt error: ",errormessage, "\n")
 }

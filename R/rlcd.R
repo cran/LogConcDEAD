@@ -5,23 +5,24 @@
   for (i in 1:nsample) {
     x <- NULL
     while(is.null(x)) {
-    w <- sort(runif(dim))
-    w <- c(w[1],diff(w))
-    fw <- exp(z[simp[i],]%*%w+y1[simp[i]])
-    maxz <- exp(y1[simp[i]] + max(c(0,z[simp[i],])))
-    u <- runif(1)
-    if(u<fw/maxz) x <-(A[[simp[i]]])%*%w + alpha[simp[i],]
-   # else print("no luck\n")
-
-  }
-    sample <- cbind(sample,x)
+      w <- sort(runif(dim))
+      w <- c(w[1],diff(w))
+      fw <- exp(z[simp[i],]%*%w+y1[simp[i]])
+      maxz <- exp(y1[simp[i]] + max(c(0,z[simp[i],])))
+      u <- runif(1)
+      if(u<fw/maxz) x <-(A[[simp[i]]])%*%w + alpha[simp[i],]
+      # else print("no luck\n")
     }
-  return(t(sample)) }
+    sample <- cbind(sample,x)
+  }
+  return(t(sample))
+}
 
-'lcd.sample' <- function(out,nsample=1) {
-  chull <- out$triang
-  x <- out$x
-  y <- out$logMLE
+## For consistency with R naming convention
+'rlcd' <- function(n=1, lcd) {
+  chull <- lcd$triang
+  x <- lcd$x
+  y <- lcd$logMLE
   nrows <- nrow(chull)
   d <- ncol(x)
   A <- vector(mode="list",length=nrows)
@@ -40,6 +41,12 @@
     prob[j] <- abs(det(A[[j]]))*exp(y1[j])*sum((exp(z[j,])-1)/(z[j,]*zProd))
   }
   prob <- prob/sum(prob)
-mle.samples(prob,z,A,alpha,y1,dim=d,nsample)
+  mle.samples(prob,z,A,alpha,y1,dim=d,nsample=n)
+}
 
+
+## Retain lcd.sample for consistency with old version
+'lcd.sample' <- function(lcd, nsample=1) {
+  warning("lcd.sample is deprecated.  Use rlcd instead")
+  return( rlcd( nsample, lcd ) )
 }
