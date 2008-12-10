@@ -214,7 +214,10 @@
   \vspace{\footerskip}
 
   \if@nojss
-%% mlc40: modified to remove affiliation in this version!
+    \begin{samepage}
+    \textbf{\large \@Footername: \nopagebreak}\\[.3\baselineskip] \nopagebreak
+    \@Address \nopagebreak
+    \end{samepage}
   \else
     \begin{samepage}
     \textbf{\large \@Footername: \nopagebreak}\\[.3\baselineskip] \nopagebreak

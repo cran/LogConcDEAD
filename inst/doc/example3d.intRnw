@@ -1,15 +1,9 @@
-<<echo=FALSE>>=
-if(!require(LogConcDEAD)) {install.packages("LogConcDEAD"); library(LogConcDEAD)}
-if(!require(mvtnorm)) {install.packages("mvtnorm"); library(mvtnorm)}
-set.seed(4444)
-@ 
 \subsection{Example 4: Higher-dimensional data}
 \label{sec:highd}
-<<echo=FALSE,label=setn3>>=
-n <- 500
-d <- 3
-@ 
 
+<<label=setn4, include=FALSE, echo=FALSE>>=
+n <- 500
+@ 
 In our final example we illustrate the use of the log-concave density
 estimate for higher-dimensional data.  For this example the seed has
 been set to $4444$.  The log-concave maximum likelihood estimator is
@@ -18,7 +12,9 @@ the 2-dimensional examples in Sections \ref{sec:eg2d} and
 \ref{sec:egbin}.  This estimate will be based on \Sexpr{n} points.
 
 <<>>=
-<<setn3>>
+set.seed(4444)
+d <- 3
+<<setn4>>
 x <- matrix(rgamma(n*d,shape=2),ncol=d)
 out3 <- mlelcd(x)
 @
@@ -32,8 +28,12 @@ mypoints <- c(0,2,4)
 dmarglcd(mypoints, out3, marg=1)
 @ 
 
-<<label=plot:3deg,include=FALSE,echo=FALSE, eval=FALSE>>=
-par(mfrow=c(2,2))
+One-dimensional marginal distributions may be plotted
+easily, by setting the \code{marg} parameter to the appropriate margin
+as shown in Figure~\ref{fig:3d} using the following:
+
+<<label=plot:3deg, eval=FALSE>>=
+par(mfrow=c(2,2),cex=0.8)
 plot(out3, marg=1)
 plot(out3, marg=2)
 plot(out3, marg=3)
@@ -43,15 +43,13 @@ xlab="X", ylab="true marginal density")
 title(main="True density")
 @ 
 
-One-dimensional marginal distributions may be plotted
-easily, by setting the \code{marg} parameter to the appropriate margin
-as shown in Figure~\ref{fig:3d}.  
-
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=\textwidth, clip=TRUE, trim=0 10 0 20]{LogConcDEAD-fig:3deg}
-<<label=fig:3deg,fig=TRUE, include=FALSE>>=
+\includegraphics[width=\textwidth, clip=TRUE, trim=0 10 0 20]{LogConcDEAD-fig:3deg.png}
+<<results=hide, echo=FALSE>>=
+png(file="LogConcDEAD-fig:3deg.png")
 <<plot:3deg>>
+dev.off()
 @
 \caption{Marginal density estimates for 3 dimensional data (based on
   \Sexpr{n} points)}

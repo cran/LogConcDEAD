@@ -26,3 +26,8 @@
 	              with lcd.eval
 		      Significant improvements and modifications to documentation
 15/12/2008	 1.3-1 Added vignettes, corrected arguments of plot (adding 'drawlabels' in the correct place, corrected a use of deprecated function
+01/01/2009       1.3-2 Updated vignette to be latest version of JSS paper,
+	              including using png graphics
+	              Changed the colors to use heatmap colors rather than
+	              the slightly daft terrain (thanks to Achim Zeileis
+	              for this suggestion and the references)

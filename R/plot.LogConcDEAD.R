@@ -41,12 +41,14 @@ plot.LogConcDEAD <- function (x, uselog = FALSE, type = "ic", addp = TRUE, drawl
     if (d > 2) {
       stop("It is not possible to plot for d>2. Marginal estimates may be plotted by setting the parameter marg")
     }
-      y <- x$x
+    ##A rather ugly solution: hardwiring the color map from the package "colorspace"; may be produced using the command heat_hcl(128) from that package
+    mycolors <- c("#E2E6BD","#E2E794","#E2E78C","#E2E686","#E2E581","#E2E47D","#E3E279","#E3E176","#E3E072","#E3DF6F","#E4DE6C","#E4DD69","#E4DC67","#E4DA64","#E5D961","#E5D85F","#E5D75C","#E5D65A","#E5D458","#E6D355","#E6D253","#E6D151","#E6CF4F","#E7CE4C","#E7CD4A","#E7CC48","#E7CB46","#E7C944","#E8C842","#E8C741","#E8C63F","#E8C43D","#E8C33B","#E8C23A","#E8C038","#E9BF37","#E9BE35","#E9BD34","#E9BB32","#E9BA31","#E9B930","#E9B82F","#E9B62E","#E9B52D","#E9B42C","#EAB22B","#EAB12A","#EAB02A","#EAAF29","#EAAD29","#EAAC28","#EAAB28","#EAA928","#EAA828","#EAA728","#EAA628","#EAA428","#E9A328","#E9A229","#E9A029","#E99F2A","#E99E2A","#E99C2B","#E99B2C","#E99A2C","#E9982D","#E9972E","#E9962F","#E89430","#E89331","#E89231","#E89132","#E88F33","#E88E34","#E78D35","#E78B37","#E78A38","#E78939","#E7873A","#E6863B","#E6853C","#E6833D","#E6823E","#E5803F","#E57F40","#E57E41","#E47C42","#E47B43","#E47A45","#E47846","#E37747","#E37648","#E37449","#E2734A","#E2714B","#E1704C","#E16F4D","#E16D4E","#E06C4F","#E06A50","#E06951","#DF6852","#DF6653","#DE6554","#DE6355","#DE6256","#DD6057","#DD5F58","#DC5E59","#DC5C5A","#DB5B5B","#DB595C","#DA585D","#DA565E","#D9555F","#D95360","#D85161","#D85061","#D74E62","#D74D63","#D64B64","#D64A65","#D54866","#D54667","#D44567","#D44368","#D34169","#D33F6A")
+    y <- x$x
       z <- x$logMLE
       if (is.null(g)) {
         if (!require("akima", quietly = TRUE)) 
           stop("You need to install the akima package")
-        g <- lcd.interp(x, gridlen = gridlen)
+        g <- interplcd(x, gridlen = gridlen)
       }
       
       if(uselog) {
@@ -60,11 +62,11 @@ plot.LogConcDEAD <- function (x, uselog = FALSE, type = "ic", addp = TRUE, drawl
         persp(g, zlab = mytitle, xlab = "X_1", 
                 ylab = "X_2", ...)
       else if (type == "i") 
-        image(g, col = terrain.colors(128), main=mytitle,...)
+        image(g, col = mycolors, main=mytitle,...)
       else if (type == "c") 
         contour(g, main=mytitle, drawlabels=drawlabels, ...)
       else if (type == "ic") {
-        image(g, col = terrain.colors(128),main=mytitle, ...)
+        image(g, col = mycolors, main=mytitle, ...)
         contour(g, add = TRUE, drawlabels=drawlabels, ...)
       }
       else if (type == "r") {
@@ -75,12 +77,12 @@ plot.LogConcDEAD <- function (x, uselog = FALSE, type = "ic", addp = TRUE, drawl
           g$z <- 0.2 * (r[2] - r[1]) * g$z
         else g$z <- 100* (r[2] - r[1]) * g$z
         zlim <- range(g$z[!is.na(g$z)])
-        zlen <- zlim[2] - zlim[1] + 1
-        colorlut <- terrain.colors(zlen)
-        col <- colorlut[g$z - zlim[1] + 1]
+        #colorlut <- rev(heat.colors(128))
+        zcolors <- mycolors[(g$z - zlim[1])*128/diff(zlim) + 1]
         open3d()
+        par3d(cex=0.8)
         if (!uselog) {
-          surface3d(g$x, g$y, g$z, color = col, back = "lines")
+          surface3d(g$x, g$y, g$z, color = zcolors, back = "lines")
           decorate3d(xlim = range(y[, 1]), ylim = range(y[, 
                                              2]), zlim = range(g$z), zlab = "Density", ...)
         }
@@ -89,7 +91,7 @@ plot.LogConcDEAD <- function (x, uselog = FALSE, type = "ic", addp = TRUE, drawl
                                              2]), zlim = range(g$z[!is.na(g$z)]), zlab = "Log density", 
                      ...)
           rgl.surface(g$x, g$y, g$z, coords = c(1, 3, 2), 
-                      color = col, back = "lines")
+                      color = zcolors, back = "lines")
         }
         if (addp) {
           if (uselog) 

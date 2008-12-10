@@ -1,21 +1,11 @@
-%%% This version for the package vignette
+\documentclass[article, shortnames, nojss]{jss}
 
-\documentclass[article,nojss]{mlc_jss}
-
-\usepackage{amsmath,amsthm,bbm,amssymb}
-\usepackage{amscd}
-\usepackage{ifthen}
-\usepackage{subfigure}
-\usepackage{psfrag}
+\usepackage{amsmath,amsthm,bbm,amssymb, amscd, ifthen, subfigure, psfrag}
 \renewcommand{\textfraction}{0.05}
 \renewcommand{\topfraction}{0.95}
 \renewcommand{\bottomfraction}{0.95}
 \renewcommand{\floatpagefraction}{0.35}
 \usepackage{afterpage}
-%\VignetteIndexEntry{a guide to the LogConcDEAD package}
-%\VignetteKeywords{LogConcDEAD}
-%\VignetteDepends{LogConcDEAD, logcondens, akima, rgl, MASS}
-%\VignettePackage{LogConcDEAD}
 
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
@@ -24,29 +14,33 @@
 %% declarations for jss.cls %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%\VignetteIndexEntry{a guide to the LogConcDEAD package}                                          
+%\VignetteKeywords{LogConcDEAD}                                                                   
+%\VignetteDepends{LogConcDEAD, logcondens, akima, rgl, MASS}                                      
+%\VignettePackage{LogConcDEAD} 
+
 %% almost as usual
 \author{Madeleine Cule, Robert Gramacy and  Richard Samworth\\
 University of Cambridge}
 \title{\pkg{LogConcDEAD}: An \proglang{R} Package for Maximum Likelihood
-  Estimation of a Multivariate Log-concave Density}
+  Estimation of a Multivariate Log-Concave Density}
 
 %% for pretty printing and a nice hypersummary also set:
 \Plainauthor{Madeleine Cule, Robert Gramacy, Richard
   Samworth} %% comma-separated
 \Plaintitle{LogConcDEAD: An R Package for Maximum Likelihood Estimation of
-  a Multivariate Log-concave Density} %% without formatting
-\Shorttitle{LogConcDEAD} %% a short title (if necessary)
+  a Multivariate Log-Concave Density} %% without formatting
+\Shorttitle{\pkg{LogConcDEAD}: Multivariate Log-Concave Density Estimation} %% a short title (if necessary)
 
 %% an abstract and keywords
-\Abstract{In this article we introduce the \proglang{R} package
+\Abstract{In this document we introduce the \proglang{R} package
   \pkg{LogConcDEAD} (Log-concave density estimation in arbitrary
   dimensions).  Its main function is to compute the nonparametric
   maximum likelihood estimator of a log-concave density.  Functions
   for plotting, sampling from the density estimate and evaluating the
   density estimate are provided.  All of the functions available in
   the package are illustrated using simple, reproducible examples with
-  simulated data.}  
-\Keywords{log-concave density, multivariate
+  simulated data.}  \Keywords{log-concave density, multivariate
   density estimation, visualization, nonparametric statistics}
 \Plainkeywords{log-concave density, multivariate density estimation,
   visualization, nonparametric statistics}
@@ -58,7 +52,15 @@ University of Cambridge}
 
 %% The address of (at least) one author should be given in the
 %% following format:
-
+\Address{
+  Madeleine Cule, Robert Gramacy, Richard Samworth\\
+  Statistical Laboratory\\
+  Centre for Mathematical Sciences\\
+  Wilberforce Road\\
+  Cambridge CB3 0WG\\
+  E-mail: \email{\{mlc40,bobby,rjs57\}@statslab.cam.ac.uk}\\
+  URL: \url{http://www.statslab.cam.ac.uk/~{mlc40,bobby,rjs57}}
+}
 %% for those who use Sweave please include the following line (with % symbols):
 %% need no \usepackage{Sweave.sty}
 
@@ -127,6 +129,14 @@ University of Cambridge}
 \newcommand{\FF}{\mathcal{F}}
 \newcommand{\indicator}{\mathbbm{1}}
 
+
+<<echo=FALSE>>=
+options(prompt = "R> ")
+if(!require(LogConcDEAD)) {install.packages("LogConcDEAD"); library("LogConcDEAD")}
+if(!require(logcondens)) {install.packages("logcondens"); library("logcondens")}
+if(!require(mvtnorm)) {install.packages("mvtnorm"); library("mvtnorm")}
+options(width=72)
+@ 
 
 %%Here is where the actual document begins:
 \begin{document}

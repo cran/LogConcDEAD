@@ -1,9 +1,5 @@
 %%In this section I will describe the algorithm used, including the use of quickhull
 %%load the package
-<<echo=FALSE>>=
-set.seed(1)
-library(LogConcDEAD)
-@
 
 \section{Algorithm}
 \label{sec:alg}
@@ -54,7 +50,7 @@ through the \pkg{geometry} package \citep{GramacyGrasman2008}.  Due to
 the presence of some removable singularities in the expressions for
 $\sigma(y^t)$ and $\partial \sigma(y^t)$, it is computationally more
 stable to use a Taylor approximation to the true values for certain
-values of $y^t$ \citep{CuleDumbgen2008}.  The values for which a
+values of $y^t$ \citep{CuleDuembgen2008}.  The values for which a
 Taylor expansion (rather than direct evaluation) is used may be
 controlled by the argument \code{Jtol} to the \pkg{LogConcDEAD}
 function \code{mlelcd}.  By default this is $10^{-3}$; altering this
@@ -73,17 +69,18 @@ well as of this implementation of the $r$-algorithm, see
 The implementation of the $r$-algorithm used in the main function
 \code{mlelcd} terminates after the $(t+1)$th iteration if each of 
 the following conditions holds:
-\begin{enumerate}
-\item \[\lvert y^{t+1}_i - y^t_i \rvert \leq \delta \lvert y^t_i
-  \rvert \textrm{ for } i = 1, \ldots, n \]
-\item \[\lvert \sigma(y^{t+1}) - \sigma(y^t) \rvert \leq \epsilon
-  \lvert \sigma(y^t) \rvert\]
-\item \[ \left\vert \int_{C_n} \exp\{\bar{h}_{y^t}(x)\}\, dx - 1 \right\vert \leq \eta\]
-\end{enumerate}
+\begin{align}
+\lvert y^{t+1}_i - y^t_i \rvert &\leq \delta \lvert y^t_i
+  \rvert \textrm{ for } i = 1, \ldots, n \label{ytol}\\
+\lvert \sigma(y^{t+1}) - \sigma(y^t) \rvert &\leq \epsilon
+  \lvert \sigma(y^t) \rvert \label{sigmatol} \\
+\left\vert \int_{C_n} \exp\{\bar{h}_{y^t}(x)\}\, dx - 1 \right\vert&
+\leq \eta \label{inttol}
+\end{align}
 for some small tolerances $\delta$, $\epsilon$ and $\eta$.  
 
-The first two of these are the criteria suggested by
-\citet{KappelKuntsevich2000}; the final one is based on the
+\eqref{ytol} and \eqref{sigmatol} are the criteria suggested by
+\citet{KappelKuntsevich2000}; \eqref{inttol} is based on the
 observation that the maximum likelihood estimator is
 density \citep{CSS2008}.  By default, these values are $\delta =
 10^{-4}$, $\epsilon = 10^{-8}$ and $\eta = 10^{-4}$, but they may be

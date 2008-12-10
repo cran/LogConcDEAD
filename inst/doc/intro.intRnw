@@ -1,11 +1,3 @@
-%%load the libraries and set the seed
-<<echo=FALSE>>=
-if(!require(LogConcDEAD)) {install.packages("LogConcDEAD"); library(LogConcDEAD)}
-if(!require(logcondens)) {install.packages("logcondens"); library(logcondens)}
-if(!require(mvtnorm)) {install.packages("mvtnorm"); library(mvtnorm)}
-set.seed(1)
-@ 
-
 \section{Introduction}
 \label{sec:intro}
 
@@ -13,47 +5,27 @@ set.seed(1)
 \label{sec:about}
 This document is an introduction to the \proglang{R} package
 \pkg{LogConcDEAD} (log-concave density estimation in arbitrary
-dimensions). It aims to provide a detailed user guide based on simple,
-reproducible worked examples.  The package can be downloaded from 
-\url{www.cran.r-project.org}, or one of its mirrors, or installed 
-automatically within \proglang{R} by using the command
-
+dimensions) based on \citet{CGS2008}. It aims to provide a detailed user guide based on simple,
+reproducible worked examples.  This package is available from the
+Comprehensive \proglang{R} Archive Network at
+\url{http://CRAN.R-project.org/package=LogConcDEAD}, and may be
+installed via
 <<eval=FALSE>>=
 install.packages("LogConcDEAD")
-@ 
-at the \proglang{R} prompt.  Once installed, the package must be 
-loaded using the command 
-<<eval=FALSE>>=
-library(LogConcDEAD)
 @ 
 
 \pkg{LogConcDEAD} depends on \pkg{akima} \citep{akima2006} for
 plotting, \pkg{MASS} \citep{MASS2002} for some vector operations,
 and \pkg{geometry} \citep{GramacyGrasman2008} for convex hull computation.
 The package \pkg{rgl} \citep{AdlerMurdoch2007} is recommended for
-producing graphics.  If not already available, these packages may be
-installed in a similar way; they do not need to be loaded explicitly.
+producing graphics.
 
-<<eval=FALSE>>=
-install.packages("akima")
-install.packages("rgl")
-install.packages("MASS")
-install.packages("geometry")
-@ 
-
-Detailed help can be obtained by typing
-<<eval=FALSE>>=
-?LogConcDEAD
-@ 
-at the \proglang{R} prompt, and help on individual functions can be
-obtained similarly.
-
-This document was created using \pkg{Sweave} \citep{Sweave} and
-\LaTeX{} using \proglang{R} \citep{R}.  This means that all of the
-code has been checked by \proglang{R}, and can be reproduced exactly
-by setting an appropriate seed (as given at the beginning of each
-example), or tested on different examples by using a different seed.
-Code to generates plots is displayed below the corresponding figures.
+This document was created using \code{Sweave} \citep{Sweave} and
+\LaTeX{} \citep{Lamport1994} using \proglang{R} \citep{R}.  This means
+that all of the code has been checked by \proglang{R}, and can be
+reproduced exactly by setting an appropriate seed (as given at the
+beginning of each example), or tested on different examples by using a
+different seed.  
 
 \subsection{Log-concave density estimation}
 \label{sec:probintro}
@@ -90,7 +62,7 @@ Shape-constrained maximum likelihood dates back to
 \citet{Grenander1956}, who treated monotone densities in the context
 of mortality data.  Recently there has been considerable interest in
 alternative shape constraints, including convexity, $k$-monotonicity
-and log-concavity \citep{GJW2001, DumbgenRufibach2008,
+and log-concavity \citep{GJW2001, DuembgenRufibach2008,
   BalabdaouiWellner2007}.  However, these works have all focused on the 
 case of univariate data.
 
@@ -113,7 +85,7 @@ the simple and attractive properties of the class of Gaussian
 densities.
 
 One-dimensional log-concave density estimation via maximum likelihood
-is discussed in \citet{DumbgenRufibach2008}; computational aspects are
+is discussed in \citet{DuembgenRufibach2008}; computational aspects are
 treated in \citet{Rufibach2007}.  It is in the multivariate case,
 however, where kernel density estimation is more difficult and
 parametric models less obvious, where a log-concave model may be most
@@ -179,7 +151,7 @@ and
 \[\hat{f}_n = \argmax_{f \in \FF} \sum_{i=1}^n w_i \log f(X_i).\]
 
 This generalization may also be used for a multivariate version of a
-log-concave EM algorithm (\citet{ChangWalther2008}, also discussed in \citet{CSS2008}).
+log-concave EM algorithm (\citealp{ChangWalther2008}, also discussed in \citealp{CSS2008}).
 
 \subsection{Outline of the remainder of this document}
 \label{sec:outline}

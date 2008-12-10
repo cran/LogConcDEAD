@@ -1,26 +1,24 @@
-<<echo=FALSE>>=
-if(!require(mvtnorm)) {install.packages("mvtnorm"); library(mvtnorm)}
-if(!require(LogConcDEAD)) {install.packages("LogConcDEAD"); library(LogConcDEAD)}
-set.seed(333)
-@ 
 \subsection{Example 3: 2-d binned data}
 \label{sec:egbin}
-In this section, we demonstrate the use of \code{\char34LogConcDEAD\char34} with binned data.  The
+<<label=setn3, include=FALSE, echo=FALSE>>=
+n <- 500
+@ 
+In this section, we demonstrate the use of \pkg{LogConcDEAD} with binned data.  The
 seed here has been set to $333$ for reproducibility; you may wish to
 try these examples with other seeds.  
 
 We generate some data from a normal distribution with
 correlation using the package \pkg{mvtnorm} \citep{mvtnorm2008}.  As before, this may be installed and loaded using
-
 <<eval=FALSE>>=
 install.packages("mvtnorm")
-library(mvtnorm)
+library("mvtnorm")
 @ 
 
 <<>>=
+set.seed(333)
 sigma <- matrix(c(1,0.2,0.2,1),nrow=2)
-n <- 500
 d <- 2
+<<setn3>>
 y <- rmvnorm(n,sigma=sigma)
 xall <- round(y,digits=1)
 @ 
@@ -45,19 +43,21 @@ In Figure~\ref{fig:bin} we plot density and log-density estimates using a
 contour plot as before.  In contrast to the examples in Figure
 \ref{fig:2d}, we have \code{addp=TRUE} (the default), which superposes the
 observation points on the plots, and \code{drawlabels=FALSE}, which
-suppresses the contour labels.
+suppresses the contour labels. The code to do this is
 
-<<label=plot:bin, include=FALSE, echo=FALSE, eval=FALSE>>=
+<<label=plot:bin, eval=FALSE>>=
 par(mfrow=c(1,2), pty="s", cex=0.7) #2 square plots 
-plot(outw,g=gw,drawlabels=FALSE,asp=1)
-plot(outw,g=gw,uselog=TRUE,drawlabels=FALSE,asp=1)
+plot(outw,g=gw,asp=1,drawlabels=FALSE)
+plot(outw,g=gw,uselog=TRUE,asp=1,drawlabels=FALSE)
 @ 
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=\textwidth, clip=TRUE, trim=0 120 0 100]{LogConcDEAD-fig:logbin}
-<<label=fig:logbin,fig=TRUE,include=FALSE>>=
+\includegraphics[width=\textwidth, clip=TRUE, trim=0 120 0 100]{LogConcDEAD-fig:bin.png}
+<<results=hide, echo=FALSE>>=
+png(file="LogConcDEAD-fig:bin.png")
 <<plot:bin>>
+dev.off()
 @
 \caption{Density and log density estimate based on \Sexpr{n} points
   from a bivariate normal distribution in two dimensions (truncated to 1 decimal place) (Example 3)}

@@ -1,26 +1,17 @@
-<<echo=FALSE>>=
-if(!require(LogConcDEAD)) {install.packages("LogConcDEAD"); library(LogConcDEAD)}
-if(!require(logcondens)) {install.packages("logcondens"); library(logcondens)}
-if(!require(mvtnorm)) {install.packages("mvtnorm"); library(mvtnorm)}
-set.seed(1)
-@ 
 \subsection{Example 2: 2-d normal data}
 \label{sec:eg2d}
 
-<<echo=FALSE>>=
-set.seed(22)
-@ 
-<<echo=FALSE,label=R:set2d>>=
+<<label=setn2, include=FALSE, echo=FALSE>>=
 n <- 500
-d <- 2
 @ 
-
 For this section, we will generate \Sexpr{n} points from a bivariate
 normal distribution with independent components.  Again, we have set
 the seed (to 22) for reproducibility.
 
 <<>>=
-<<R:set2d>>
+set.seed(22)
+d <- 2
+<<setn2>>
 x <- matrix(rnorm(n*d),ncol=d)
 @ 
 
@@ -171,32 +162,34 @@ the results of the interpolation separately, using the function
 grid points may be specified using the parameter \code{gridlen}.  By
 default, \code{gridlen}=100, which is suitable for most plots.  
 
-If $d>1$, we can plot one-dimensional marginals by setting the
-\code{marg} parameter.  Note that the marginal densities of a
-log-concave density are log-concave (discussed in \citet{CSS2008}, as
-a consequence of the theory of \citet{Prekopa1973}).
-
+Where relevant, the colors were obtained by a call to \code{heat_hcl}
+in the package \pkg{colorspace} \citep{colorspace}, following the
+recommendation of \citet{HMZ2008}. Thanks to Achim Zeileis for this
+helpful suggestion.
 
 <<>>=
 g <- interplcd(out, gridlen=200)
 g1 <- interpmarglcd(out, marg=1)
 g2 <- interpmarglcd(out, marg=2)
 @ 
-
-<<label=plot:2d,include=FALSE,echo=FALSE, eval=FALSE>>=
+The plots in Figure~\ref{fig:2d} show a contour plot of the estimator
+and a contour plot of its logarithm for \Sexpr{n} points in 2
+dimensions.  Note that the contours of log-concave densities enclose
+convex regions. This figure is produced using
+<<label=plot:2d, eval=FALSE>>=
 par(mfrow=c(1,2), pty="s", cex=0.7) #square plots
 plot(out,g=g,addp=FALSE,asp=1)
 plot(out,g=g,uselog=TRUE,addp=FALSE,asp=1)
-#plot(out,marg=1,g.marg=g1)
-#plot(out,marg=2,g.marg=g2)
 @ 
+
 \begin{figure}[ht!]
   \centering
-\includegraphics[width=\textwidth, clip=TRUE, trim = 0 120 0 100]{LogConcDEAD-fig:2d}
-
-<<label=fig:2d,fig=TRUE, include=FALSE>>=
+<<echo=FALSE, results=hide>>=
+png(file="LogConcDEAD-fig:2d.png")
 <<plot:2d>>
+dev.off()
 @
+\includegraphics[width=\textwidth, clip=TRUE, trim = 0 120 0 100]{LogConcDEAD-fig:2d}
   \caption{Plots based on \Sexpr{n} points from a standard bivariate
   normal distribution}
   \label{fig:2d}
@@ -204,30 +197,30 @@ plot(out,g=g,uselog=TRUE,addp=FALSE,asp=1)
 \end{figure}
 
 
-
-<<label=plot:2dmarg,include=FALSE,echo=FALSE, eval=FALSE>>=
+If $d>1$, we can plot one-dimensional marginals by setting the
+\code{marg} parameter.  Note that the marginal densities of a
+log-concave density are log-concave (discussed in \citet{CSS2008}, as
+a consequence of the theory of \citet{Prekopa1973}).  This is
+illustrated by Figure~\ref{fig:2dmarg} using the following code:
+<<label=plot:2dmarg, eval=FALSE>>=
 par(mfrow=c(1,2), pty="s", cex=0.7) #normal proportions 
 plot(out,marg=1,g.marg=g1)
 plot(out,marg=2,g.marg=g2)
 @ 
+
 \begin{figure}[ht!]
   \centering
-  \includegraphics[width=\textwidth, clip=TRUE, trim=0 120 0
-  100]{LogConcDEAD-fig:2dmarg}
-<<label=fig:2dmarg,fig=TRUE, include=FALSE>>=
+<<echo=FALSE,results=hide>>=
+png(file="LogConcDEAD-fig:2dmarg.png")
 <<plot:2dmarg>>
+dev.off()
 @
+  \includegraphics[width=\textwidth, clip=TRUE, trim=0 110 0
+  100]{LogConcDEAD-fig:2dmarg}
 \caption{Plots of estimated marginal densities based on \Sexpr{n} points from a standard bivariate
   normal distribution}
   \label{fig:2dmarg}
 \end{figure}
-
-The plots in Figure~\ref{fig:2d} show a contour plot of the estimator
-and a contour plot of its logarithm for \Sexpr{n} points in 2
-dimensions.  Note that the contours of log-concave densities enclose
-convex regions.  Figure
-\ref{fig:2dmarg} shows two estimates of the marginal densities for
-the same sample.
 
 The plot type is controlled by the argument \code{type}, which may
 take the values \code{\char34p\char34} (a perspective plot),
@@ -238,31 +231,42 @@ take the values \code{\char34p\char34} (a perspective plot),
 
 The \pkg{rgl} package allows user interaction with the plot (e.g. the
 plot can be rotated using the mouse and viewed from different angles).
-Although we are unable to demonstrate this feature on paper, Figure
-\ref{fig:rgl} shows the type of output produced by \pkg{rgl}. \footnote{The code to produce this plot is not actually run in producing this vignette}
+Although we are unable to demonstrate this feature on paper, Figure~\ref{fig:rgl} shows the type of output produced by \pkg{rgl}, using
+the following code:  
 
+<<label=plot:rgl, eval=FALSE>>=
+plot(out,g=g,type="r")
+@ 
 Figure~\ref{fig:rgllog} shows the output produced by setting
 \code{uselog = TRUE} to plot on the log
 scale.  Here we can clearly see the structure of the log-concave
-density estimate.
+density estimate. This is produced using the command
 
-\begin{figure}[ht!]
-  \centering
- \includegraphics[clip=TRUE, trim=0 0 0 10]{rglfig}
-<<include=FALSE, eval=FALSE>>=
-plot(out,g=g,type="r")
-@ 
-    \caption{\pkg{rgl} output for Example 2}
-  \label{fig:rgl}
- \end{figure}
-
-\begin{figure}[ht!]
-  \centering
-  \includegraphics[clip=TRUE, trim=0 0 0 0]{rgllog}
-<<include=FALSE, eval=FALSE>>=
+<<label=plot:rgllog, eval=FALSE>>=
 plot(out,g=g,type="r",uselog=TRUE)
 @ 
-\caption{\pkg{rgl} output for Example 2, with \code{uselog=TRUE}}
+
+\begin{figure}[ht!]
+  \centering
+<<echo=FALSE, results=hide, eval=FALSE>>=
+<<plot:rgl>>
+par3d(windowRect = c(55,66,311+256, 322+256))
+rgl.snapshot(file="rglfig.png")
+@ 
+\includegraphics[clip=TRUE, trim=0 100 0 140]{rglfig.png}
+    \caption{\pkg{rgl} output for Example 2}
+  \label{fig:rgl}
+\end{figure}
+
+\begin{figure}[ht!]
+  \centering
+<<echo=FALSE, results=hide, eval=FALSE>>=
+<<plot:rgllog>>
+par3d(windowRect = c(55,66,311+256, 322+256))
+rgl.snapshot(file="rgllog.png")
+@ 
+\includegraphics[clip=TRUE, trim=0 40 0 80]{rgllog.png}
+    \caption{\pkg{rgl} output for Example 2 with \code{uselog=TRUE}}
   \label{fig:rgllog}
 \end{figure}
 
@@ -330,4 +334,5 @@ to approximate $f_\alpha$ as follows:
 myval <- sort(dlcd(mysamp,out))
 alpha <- c(.25,.5,.75)
 myval[(1-alpha)*nsamp]
+
 @ 

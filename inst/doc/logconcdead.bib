@@ -10,8 +10,57 @@
 %%
 %%
 
+@Manual{colorspace,
+  title = {\pkg{colorspace}: Color Space Manipulation},
+  author = {Ross Ihaka and Paul Murrell and Kurt Hornik and Achim Zeileis},
+  year = {2008},
+  note = {R package version 1.0-0},
+  url = {http://CRAN.R-project.org/package=colorspace},
+}
+
+@Article{HMZ2008,
+  title = {Escaping {RGB}land: Selecting Colors for Statistical Graphics},
+  author = {Achim Zeileis and Kurt Hornik and Paul Murrell},
+  journal = {Computational Statistics \& Data Analysis},
+  year = {2008},
+  note = {Forthcoming},
+}
 
 
+@InProceedings{Sweave,
+  author    = {Friedrich Leisch},
+  title        = {Dynamic Generation of Statistical Reports Using
+             Literate Data Analysis},
+  booktitle    = {COMPSTAT 2002 -- Proceedings in Computational
+           Statistics},
+  pages        = {575--580},
+  year        = {2002},
+  editor    = {W. H\"ardle and B. R\"onz},
+  address    = {Heidelberg},
+  publisher    = {Physica-Verlag}
+}
+
+@Book{Lamport1994,
+  author    = {Leslie Lamport},
+  title        = {{\LaTeX}: A Document Preparation System},
+  edition    = {2nd},
+  year        = {1994},
+  publisher    = {Addison-Wesley},
+  address    = {Reading, Massachusetts}
+}
+
+@Article{LogConcDEAD,
+  title        = {\pkg{LogConcDEAD}: An \proglang{R} Package for
+             Maximum Likelihood Estimation of a Multivariate
+           Log-Concave Density},
+  author    = {Madeleine Cule and Robert Gramacy and
+             Richard Samworth},
+  journal    = {Journal of Statistical Software},
+  year        = {2009},
+  volume    = {29},
+  number    = {2},
+  url        = {http://www.jstatsoft.org/v29/i02/},
+}
 
 
 @unpublished{CSS2008,
@@ -29,23 +78,23 @@
     title = {\pkg{rgl}: 3D Visualization Device System (\pkg{OpenGL})},
     author = {Daniel Adler and Duncan Murdoch},
     year = {2007},
-    note = {\proglang{R} package version 0.75},
-    url = {http://rgl.neoscientists.org},
+    note = {\proglang{R}~package version~0.75},
+    url = {http://CRAN.R-project.org/package=rgl},
   }
 
   @Manual{Grasman2005,
     title = {geometry: Mesh generation and surface tesselation},
     author = {Raoul Grasman},
     year = {2005},
-    note = {\proglang{R} package version 0.1},
+    note = {\proglang{R}~package version~0.1},
     url = {http://users.fmg.uva.nl/rgrasman/Rqhull.html},
   }
  @Manual{GramacyGrasman2008,
     title = {\pkg{geometry}: Mesh Generation and Surface Tesselation},
     author = {Raoul Grasman and R. B. Gramacy},
     year = {2008},
-    note = {\proglang{R} package version 0.1},
-    url = {http://users.fmg.uva.nl/rgrasman/Rqhull.html},
+    note = {\proglang{R}~package version~0.1},
+    url = {http://CRAN.R-project.org/package=geometry},
   }
 
 
@@ -72,23 +121,10 @@
 @unpublished{BRW2008,
 	Author = {Balabdaoui, F. and Rufibach, K. and Wellner, J. A.},
 	Note = {Preprint},
-	Title = {Maximum Likelihood Estimation of a Logconcave Density and Its Distribution Function},
-	Url = {arXiv:0708.3400v2},
+	Title = {Limit distribution theory for maximum likelihood estimation of a log-concave density},
+	Url = {http://arxiv.org/abs/0708.3400},
 	Year = 2008,
-	Bdsk-Url-1 = {arXiv:0708.3400v2}}
-
-@InProceedings{Sweave,
-  author = 	 {F. Leisch},
-  title = 	 {Sweave: Dynamic Generation of Statistical Reports using Literate Data Analysis},
-  booktitle = {Compstat 2002 -- Proceedings in Computational Statistics},
-  pages = 	 {575-580},
-  year = 	 {2002},
-  editor = 	 {W. H\"ardle and B. R\"onz},
-  address = 	 {Heidelberg, Germany},
-  publisher = {Physika Verlag},
-  OPTnote = 	 {},
-  OPTannote = 	 {}
-}
+	Bdsk-Url-1 = {http://arxiv.org/abs/0708.3400}}
 
 @unpublished{BagnoliBergstrom1989,
 	Author = {Bagnoli, M. and Bergstrom, T.},
@@ -122,9 +158,11 @@
 
 @book{MASS2002,
         Author = {Venables, W. N. and Ripley, B. D.},
-        Publisher = {Springer},
+        Publisher = {Springer-Verlag},
         Title = {Modern Applied Statistics with S},
-        Year = 2002}
+        Year = 2002,
+        Address ={New York},
+}
 
 @incollection{Bozdogan1994,
 	Address = {New York},
@@ -168,10 +206,12 @@
 
 @article{ChangWalther2008,
 	Author = {Chang, G. and Walther, G.},
-	Journal = {Computational Statistics and Data Analysis},
+	Journal = {Computational Statistics \& Data Analysis},
 	Note = {To appear},
 	Title = {Clustering with Mixtures of Log-concave Distributions},
-	Year = {2008}}
+	Year = {2008},
+        doi = {10.1016/j.csda.2007.01.008}
+}
 
 @article{Chiu1992,
 	Author = {Chiu, S.-T.},
@@ -181,11 +221,23 @@
 	Volume = {79},
 	Year = {1992}}
 
+@Article{CGS2008,
+  title = {\pkg{LogConcDEAD}: An \proglang{R} Package for Maximum Likelihood Estimation of a Multivariate Log-Concave Density},
+  author = {Madeleine Cule and Robert Gramacy and Richard Samworth},
+  journal = {Journal of Statistical Software},
+  year = {2009},
+  volume = {29},
+  number = {2},
+  url = {http://www.jstatsoft.org/v29/i02/},
+}
+
 @manual{CGS2007,
 	Author = {Madeleine Cule, Robert Gramacy and Richard Samworth},
-	Note = {\proglang{R} package version 1.1-0},
-	Title = {LogConcDEAD: Maximum likelihood estimation of a log-concave density},
-	Year = {2008}}
+	Note = {\proglang{R}~package version~1.2-1},
+	Title = {\pkg{LogConcDEAD}: Maximum likelihood estimation of a log-concave density},
+	Year = {2008},
+        url = {http://CRAN.R-project.org/package=LogConcDEAD }
+}
 
 @article{Deheuvels1977,
 	Author = {Deheuvels, P.},
@@ -213,7 +265,7 @@
 @book{DGL1996,
 	Address = {New York},
 	Author = {Devroye, L. and Gy\"orfi, L. and Lugosi, G.},
-	Publisher = {Springer},
+	Publisher = {Springer-Verlag},
 	Title = {A Probabilistic Theory of Pattern Recognition},
 	Year = {1996}}
 
@@ -227,7 +279,7 @@
 
 @manual{Duong2007,
 	Author = {Tarn Duong},
-	Note = {\proglang{R} package version 1.4.11},
+	Note = {\proglang{R}~package version~1.4.11},
 	Title = {ks: Kernel smoothing},
 	Url = {http://web.maths.unsw.edu.au/~tduong},
 	Year = {2007},
@@ -282,7 +334,7 @@
 
 @article{GJW2001,
 	Author = {Groeneboom, P. and Jongbloed, G. and Wellner, J. A.},
-	Journal = {Annals of Statistics},
+	Journal = {The Annals of Statistics},
 	Pages = {1653--1698},
 	Title = {Estimation of a Convex Function: Characterizations and Asymptotic Theory},
 	Volume = {29},
@@ -293,9 +345,9 @@
 	Journal = {J.\ Computational and Graphical Statist.},
 	Note = {To appear},
 	Title = {The Support Reduction Algorithm for Computing Nonparametric Function Estimates in Mixture Models},
-	Url = {arXiv:math.ST/0405511},
+	Url = {http://arxiv.org/abs/math.ST/0405511},
 	Year = {2008},
-	Bdsk-Url-1 = {arXiv:math.ST/0405511}}
+	Bdsk-Url-1 = {http://arxiv.org/abs/math.ST/0405511}}
 
 @book{Hand1981,
 	Address = {New York},
@@ -404,7 +456,7 @@
 
 @article{Rufibach2007,
 	Author = {Rufibach, K.},
-	Journal = {J.\ Statist.\ Computation and Simulation},
+	Journal = {Journal of Statistical Computation and Simulation},
 	Pages = {561--574},
 	Title = {Computing Maximum Likelihood Estimators of a Log-concave Density Function},
 	Volume = {77},
@@ -476,35 +528,35 @@
 	Title = {Kernel Smoothing},
 	Year = {1995}}
 
-@article{DumbgenRufibach2008,
+@article{DuembgenRufibach2008,
 	Author = {D\"umbgen, L. and Rufibach, K. },
-	Journal = {Bernoulli, to appear},
+	Journal = {Bernoulli},
 	Title = {Maximum Likelihood Estimation of a Log-concave Density: Basic Properties and Uniform Consistency},
-	Note = {Available at \url{http://isi.cbs.nl/bernoulli/future.htm}}, 
+	Note = {To appear}, 
 	Year = {2008},}
+%Available at \url{http://isi.cbs.nl/bernoulli/future.htm}, 
 	
 @techreport{DHR2007,
 	Author = {D\"umbgen, L. and  H\"usler, A. and Rufibach, K.},
-	Note = {Preprint},
         Institution = {Universit\"at Bern},
 	Title = {Active Set and EM Algorithms for Log-concave Densities Based on Complete and Censored Data},
-	Url = {arXiv:0709.0334v2},
+	Url = {http://arxiv.org/abs/0709.0334},
 	Year = {2007},
-	Bdsk-Url-1 = {arXiv:0709.0334v2}}
+	Bdsk-Url-1 = {http://arxiv.org/abs/0709.0334}}
 
 @article{Prekopa1973,
 	Author = {Pr\'ekopa, A.},
 	Journal = {Acta Scientarium Mathematicarum},
 	Pages = {335--343},
-	Title = {On logarithmically concave measures and functions},
+	Title = {On Logarithmically Concave Measures and Functions},
 	Volume = {34},
 	Year = 1973}
 
-@manual{RufibachDumbgen2006,
+@manual{RufibachDuembgen2006,
 	Author = {Kaspar Rufibach and Lutz D\"umbgen},
-	Note = {\proglang{R} package version 1.2},
+	Note = {\proglang{R}~package version~1.3-2},
 	Title = {\pkg{logcondens}: Estimate a Log-Concave Probability Density from iid Observations},
-	Url = {http://www.stanford.edu/~kasparr, http://www.stat.unibe.ch/~duembgen},
+	Url = {http://CRAN.R-project.org/package=logcondens},
 	Year = {2006},
 	Bdsk-Url-1 = {http://www.stanford.edu/~kasparr,%20http://www.stat.unibe.ch/~duembgen}}
 
@@ -513,7 +565,7 @@
 	Author = {{\proglang{R} Development Core Team}},
 	Note = {{ISBN} 3-900051-07-0},
 	Organization = {\proglang{R} Foundation for Statistical Computing},
-	Title = {R: A Language and Environment for Statistical Computing},
+	Title = {\proglang{R}: A Language and Environment for Statistical Computing},
 	Url = {http://www.R-project.org},
 	Year = {2008},
 	Bdsk-Url-1 = {http://www.R-project.org}}
@@ -541,22 +593,22 @@
  address = {Philadelphia, PA, USA},
  }
 
-@TechReport{CuleDumbgen2008,
+@TechReport{CuleDuembgen2008,
   author = 	 {M. L. Cule and L. D\"umbgen},
-  title = 	 {Some Technical Aspects of Log-concave Densities},
-  note = 	 {Unpublished manuscript},
-  institution =  {Universit\"at Bern},
+  title = 	 {On an Auxiliary Function for Log-Density Estimation},
+    institution =  {Universit\"at Bern},
     year = 	 {2008},
-  }
+  url = {http://arxiv.org/abs/0807.4719},
+}
 
 
 
  @Manual{mclust2008,
-    title = {mclust: Model-Based Clustering / Normal Mixture Modeling},
+    title = {\pkg{mclust}: Model-Based Clustering / Normal Mixture Modeling},
     author = {Chris Fraley and Adrian Raftery},
     year = {2008},
-    note = {\pkg{R} package version 3.1-3},
-    url = {http://www.stat.washington.edu/fraley/mclust},
+    note = {\proglang{R}~package version~3.1-3},
+    url = {http://CRAN.R-project.org/package=mclust},
   }
 
 
@@ -565,14 +617,16 @@
     title = {\pkg{mvtnorm}: Multivariate Normal and t Distributions},
     author = {Alan Genz and Frank Bretz and Torsten Hothorn and Tetsuhisa Miwa and Xuefei Mi and Friedrich Leisch and Fabian Scheipl},
     year = {2008},
-    note = {\proglang{R} package version 0.9-0},
+    note = {\proglang{R}~package version~0.9-3},
+    url = {http://CRAN.R-project.org/package=mvtnorm},
   }
  
  @Manual{akima2006,
     title = {\pkg{akima}: Interpolation of Irregularly Spaced Data},
     author = {H. Akima and  Albrecht Gebhardt and Thomas Petzoldt and Martin Maechler},
     year = {2006},
-    note = {\proglang{R} package version 0.5-1},
+    note = {\proglang{R}~package version~0.5-1},
+    url = {http://CRAN.R-project.org/package=akima},   
 }
 
 @PhdThesis{Balabdaoui2004,
@@ -590,14 +644,6 @@
 }
 
 
-@Manual{mvtnorm,
-    title = {mvtnorm: Multivariate Normal and T Distribution},
-    author = {Alan Genz and Frank Bretz and \proglang{R} port by Torsten Hothorn},
-    year = {2008},
-    note = {\proglang{R} package version 0.8-2},
-  }
-
-
 @article{Fisher1922,
 	Author = {R. A.  Fisher},
 	Journal = {Philisophical transations of the Royal Society of London Series A},
@@ -609,7 +655,7 @@
 	Date-Added = {2007-12-08 16:23:04 +0000},
 	Date-Modified = {2007-12-11 17:49:34 +0000},
 	Institution = {University of Washington},
-	Journal = {Annals of Statistics},
+	Journal = {The Annals of Statistics},
 	Title = {Estimation of a $k$-monotone Density: Limiting Distribution Theory and the Spline Connection},
 	Year = {2007},
         Volume = {35},

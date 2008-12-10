@@ -55,6 +55,11 @@ plots of axis-aligned marginal density estimates are available.}
   \code{\link{interpmarglcd}} and passed using the argument
   \code{g.marg}.
 
+  Where relevant, the colors were obtained from the function
+  \code{\link[colorspace]{heat_hcl}} in the package
+  \pkg{\link[colorspace:colorspace-package]{colorspace}}. Thanks to
+  Achim Zeileis for this suggestion.
+
   For examples, see \code{\link{mlelcd}}.
 }
 
@@ -66,7 +71,7 @@ plots of axis-aligned marginal density estimates are available.}
   Richard Samworth}
 
 \seealso{\code{\link{mlelcd}}, \code{\link[akima]{interp}},
-\code{\link{interplcd}}, \code{\link{interpmarglcd}} }
+\code{\link{interplcd}}, \code{\link{interpmarglcd}}, \code{\link[colorspace]{heat_hcl}} }
 
 
 
