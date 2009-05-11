@@ -40,8 +40,8 @@ done by integrating the estimated density over an appropriate subspace.
 \code{\link{plot.LogConcDEAD}} produces plots of the maximum likelihood
 estimator, optionally using the \pkg{rgl} package.
 
-\code{\link[print.LogConcDEAD]{print}} and
-\code{\link[summary.LogConcDEAD]{summary}} methods are also available.
+\code{\link[=print.LogConcDEAD]{print}} and
+\code{\link[=summary.LogConcDEAD]{summary}} methods are also available.
 }
 
 \author{
@@ -57,7 +57,7 @@ estimator, optionally using the \pkg{rgl} package.
   in \link{mlelcd}.
 
   For one dimensional data, the active set algorithm in
-  \pkg{logcondens} is much faster.}
+  \code{\link[logcondens:logcondens-package]{logcondens}} is much faster.}
 
 \references{Barber, C.B., Dobkin, D.P., and Huhdanpaa, H.T. (1996)
 \emph{The Quickhull algorithm for convex hulls}

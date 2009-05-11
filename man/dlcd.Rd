@@ -8,8 +8,8 @@
 \description{ This function evaluates the density function of a
 log-concave maximum likelihood estimator at a point or points.}
 
-\usage{dlcd(x,lcd, uselog=FALSE) 
-lcd.eval(lcd, po, uselog=FALSE) }
+\usage{dlcd(x,lcd, uselog=FALSE, eps=10^-10) 
+lcd.eval(lcd, po, uselog=FALSE, eps=10^-10) }
 
 \arguments{ 
 \item{x, po}{ Point (or \code{matrix} of points) at which the maximum
@@ -17,7 +17,8 @@ lcd.eval(lcd, po, uselog=FALSE) }
 \item{lcd}{Object of class \code{"LogConcDEAD"} (typically output from
   \code{\link{mlelcd}})} 
 \item{uselog}{Scalar \code{logical}: should the estimator should be calculated on the
-  log scale?} 
+  log scale?}
+\item{eps}{Tolerance for numerical stability}
 }
 
 \details{

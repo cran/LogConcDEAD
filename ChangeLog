@@ -36,3 +36,13 @@
 	              for this suggestion and the references)
 29/01/2009	1.3-3 Corrected a slight error with rgl axis labels, and 
 			fixed the vignette
+11/05/2009	1.4-0	Added A, alpha, detA to the output from mlelcd and
+	cleaned up rlcd; fixed some plot things; added bunique,
+	betaunique and removed dependence on 'akima' package.
+
+	Corrected qhull options NOT to joggle input, as this is clearly
+	ridiculous. Also removed an option that checks the triangulation
+	at every stage, instead just doing it at the end.
+	Removed dependence on 'geometry' package
+	rlcd now uses a more sensible and faster methods of generating
+	points on a simplex

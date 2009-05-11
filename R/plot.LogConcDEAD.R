@@ -1,4 +1,8 @@
-plot.LogConcDEAD <- function (x, uselog = FALSE, type = "ic", addp = TRUE, drawlabels = TRUE, gridlen = 100, g = NULL, marg = NULL, g.marg = NULL, ...) 
+plot.LogConcDEAD <- function (x, uselog = FALSE, type = "ic", addp =
+                              TRUE,
+                              drawlabels = TRUE,
+                              gridlen = 100,
+                              g, marg, g.marg, main, xlab, ylab,...) 
 {
   d <- ncol(x$x)
 
@@ -7,31 +11,33 @@ plot.LogConcDEAD <- function (x, uselog = FALSE, type = "ic", addp = TRUE, drawl
     y <- x$x[, 1]
     o <- order(y)
     type <- "l"
-    if (uselog) { 
-      plot(y[o], x$logMLE[o], type = type, ylab = "Log density estimate", 
-           xlab = "X", ...)
+    if( missing( xlab ) ) xlab <- "X"
+    if (uselog) {
+      if( missing( ylab ) ) ylab <- "log density estimate"
+      plot(y[o], x$logMLE[o], type = type, ylab = ylab, xlab = xlab, ...)
     } else {
-      plot(y[o], exp(x$logMLE[o]), ylab = "Density estimate", 
-              xlab = "X", type = type, ...)
+      if( missing( ylab ) ) ylab <- "density estimate"
+      plot(y[o], exp(x$logMLE[o]), ylab = ylab,  xlab = xlab, type = type, ...)
     }
   }
 
   ## marginals
-  else if (!is.null(marg)) {
+  else if ( !missing(marg) ) {
 
     ##If we have a valid marginal
     if (is.element(marg, 1:d)) {
 
       ##Check whether already calculated and, if not, calculate
-      if (is.null(g.marg)) {
-        g.marg <- interpmarglcd(x,marg=marg)
-      }
-      
+      if( missing( g.marg) ) g.marg <- interpmarglcd(x,marg=marg)
+      if( missing( main ) ) main <- paste( "Marginal for X_",marg, sep="" )
+      if( missing( xlab ) ) xlab <- paste("X", marg )
       if(uselog) {
-        plot(g.marg$xo, log(g.marg$marg), type = "l", xlab = paste("X",marg),ylab = "log estimated marginal density", main=paste("Marginal for X",marg),...) }
+        if( missing( ylab ) ) ylab <- "log estimated marginal density"
+        plot(g.marg$xo, log(g.marg$marg), type = "l", xlab = xlab, ylab = ylab, main=main,...) }
       else {
-        plot(g.marg$xo, g.marg$marg, type = "l", xlab = paste("X",marg), 
-                 ylab = "estimated marginal density", main=paste("Marginal for X",marg),...)
+        if( missing( ylab ) ) ylab <- "estimated marginal density"
+        plot(g.marg$xo, g.marg$marg, type = "l", xlab = xlab, 
+             ylab = ylab, main=main,...)
       }
     }    
     else stop(cat("Marginal should be one of 1, ...",d,"\n"))
@@ -45,29 +51,25 @@ plot.LogConcDEAD <- function (x, uselog = FALSE, type = "ic", addp = TRUE, drawl
     mycolors <- c("#E2E6BD","#E2E794","#E2E78C","#E2E686","#E2E581","#E2E47D","#E3E279","#E3E176","#E3E072","#E3DF6F","#E4DE6C","#E4DD69","#E4DC67","#E4DA64","#E5D961","#E5D85F","#E5D75C","#E5D65A","#E5D458","#E6D355","#E6D253","#E6D151","#E6CF4F","#E7CE4C","#E7CD4A","#E7CC48","#E7CB46","#E7C944","#E8C842","#E8C741","#E8C63F","#E8C43D","#E8C33B","#E8C23A","#E8C038","#E9BF37","#E9BE35","#E9BD34","#E9BB32","#E9BA31","#E9B930","#E9B82F","#E9B62E","#E9B52D","#E9B42C","#EAB22B","#EAB12A","#EAB02A","#EAAF29","#EAAD29","#EAAC28","#EAAB28","#EAA928","#EAA828","#EAA728","#EAA628","#EAA428","#E9A328","#E9A229","#E9A029","#E99F2A","#E99E2A","#E99C2B","#E99B2C","#E99A2C","#E9982D","#E9972E","#E9962F","#E89430","#E89331","#E89231","#E89132","#E88F33","#E88E34","#E78D35","#E78B37","#E78A38","#E78939","#E7873A","#E6863B","#E6853C","#E6833D","#E6823E","#E5803F","#E57F40","#E57E41","#E47C42","#E47B43","#E47A45","#E47846","#E37747","#E37648","#E37449","#E2734A","#E2714B","#E1704C","#E16F4D","#E16D4E","#E06C4F","#E06A50","#E06951","#DF6852","#DF6653","#DE6554","#DE6355","#DE6256","#DD6057","#DD5F58","#DC5E59","#DC5C5A","#DB5B5B","#DB595C","#DA585D","#DA565E","#D9555F","#D95360","#D85161","#D85061","#D74E62","#D74D63","#D64B64","#D64A65","#D54866","#D54667","#D44567","#D44368","#D34169","#D33F6A")
     y <- x$x
       z <- x$logMLE
-      if (is.null(g)) {
-        if (!require("akima", quietly = TRUE)) 
-          stop("You need to install the akima package")
-        g <- interplcd(x, gridlen = gridlen)
-      }
+      if ( missing( g) ) g <- interplcd(x, gridlen = gridlen)
       
       if(uselog) {
-         mytitle <- "Log density estimate"
+         if( missing( main ) ) main <- "Log density estimate"
       } else {
         g$z <- exp(g$z)
         g$z[is.na(g$z)] <- 0
         z <- exp(z)
-        mytitle <- "Density estimate"
+        if( missing( main ) ) main <- "Density estimate"
       }
       if (type == "p") 
-        persp(g, zlab = mytitle, xlab = "X_1", 
+        persp(g, zlab = main, xlab = "X_1", 
                 ylab = "X_2", ...)
       else if (type == "i") 
-        image(g, col = mycolors, main=mytitle,...)
+        image(g, col = mycolors, main=main,...)
       else if (type == "c") 
-        contour(g, main=mytitle, drawlabels=drawlabels, ...)
+        contour(g, main=main, drawlabels=drawlabels, ...)
       else if (type == "ic") {
-        image(g, col = mycolors, main=mytitle, ...)
+        image(g, col = mycolors, main=main, ...)
         contour(g, add = TRUE, drawlabels=drawlabels, ...)
       }
       else if (type == "r") {

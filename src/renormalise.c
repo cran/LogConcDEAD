@@ -4,7 +4,7 @@
 #include <R.h>
 #include <Rmath.h>
 
-int *convhullnmlc(double *x_in, int *nrow_in, int* ncol_in, int *nf);
+int *convhullnmlc(double *x_in, int *nrow_in, int* ncol_in, int *nf, char *opts);
 
 void renormalise(double y[]) 
   {
@@ -13,6 +13,7 @@ void renormalise(double y[])
   extern double *xdata;
   extern int truepoints;
   extern double Jtol;
+  extern char* chopts;
   double ymin (double y[],int n);
   double min(double a, double b);
   double absdet(double *a, int n, int useLog);
@@ -37,7 +38,6 @@ void renormalise(double y[])
   yminimum = ymin(y,truepoints) - 1.0; 
   totaldim=dim+1; 
  
-  /* [0,truepoints) true values; [truepoints,npoints) for convex hull */
   for (i=0; i<truepoints; i++) 
     {
     for (j=0; j<dim; j++) 
@@ -59,7 +59,7 @@ void renormalise(double y[])
     
     totalpoints = npoints;
 
-    outpoints = convhullnmlc(allpoints, &totalpoints, &totaldim, &nf);
+    outpoints = convhullnmlc(allpoints, &totalpoints, &totaldim, &nf, chopts);
    
  /* NOTE: use convhullnmlc.c so that the index does not need to be shifted by 1 */
 

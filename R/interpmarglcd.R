@@ -22,14 +22,14 @@
   if(nrow(new)==d) {
     tmp <- new[,-keep,drop=FALSE]
     y <- new%*%b - beta
-    ans <- ans + J00AD(y,d-1)%*%abs(det(tmp[-1,,drop=FALSE]-rep(1,d-1)%*%tmp[1,,drop=FALSE]))
+    ans <- ans + JAD(y)%*%abs(det(tmp[-1,,drop=FALSE]-rep(1,d-1)%*%tmp[1,,drop=FALSE]))
   }
   else if(nrow(new)>d) {
     tmp <- new[,-keep,drop=FALSE]
     trig <- matrix(delaunayn(tmp),ncol=d)
     for (i in 1:nrow(trig)) {
       y <- new[trig[i,],]%*%b - beta
-      ans <- ans + J00AD(y,d-1)%*%abs(det(tmp[trig[i,-1],,drop=FALSE]-rep(1,d-1)%*%tmp[trig[i,1],,drop=FALSE]))
+      ans <- ans + JAD(y)%*%abs(det(tmp[trig[i,-1],,drop=FALSE]-rep(1,d-1)%*%tmp[trig[i,1],,drop=FALSE]))
     }
   }
   return(ans)
@@ -92,41 +92,3 @@
   return( dmarglcd( point, lcd, marg ) )
 }
 
-##Some R code kindly provided by Lutz Duembgen to compute the integrals
-'J00AD_appr' <- function(y,d){
-  ## Approximate
-  ## J(y)  =  exp(mean(y)) * J(y - mean(y))
-  ## via Taylor expansion to third order of J(y - mean(y)).
-  ybar <- mean(y)
-  z <- y - ybar
-  f0 <- prod(1:d)
-  f2 <- f0*(d+1)*(d+2)
-  f3 <- f2*(d+3)
-  z2 <- sum(z^2)/2
-  z3 <- sum(z^3)/3
-  return(exp(ybar)*(1/f0 + z2/f2 + z3/f3))
-}
-
-'J00AD_ord' <- function(y,d,eps=0.001){
-  ## Recursive implementation J(y) for ordered vector y of length d+1.
-  ## If y[d+1] - y[1] < eps, a certain Taylor approximation is used.
-  if(y[d+1] - y[1] < eps){
-    return(J00AD_appr(y,d))		
-  }
-  else{
-    if(d == 1){
-      return((exp(y[1]) - exp(y[2]))/(y[1] - y[2]))
-    }
-    else{
-      e1 <- J00AD_ord(y[1:d]    ,d-1, eps)
-      e2 <- J00AD_ord(y[2:(d+1)],d-1, eps)
-      return((e1 - e2)/(y[1] - y[d+1]))
-    }
-  }
-}
-
-'J00AD' <- function(y,d,eps=0.001){
-  ## Computes the function J(y) for a vector y of length d+1.
-  y <- sort(y)
-  return(J00AD_ord(y,d,eps))
-}

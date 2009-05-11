@@ -1,9 +1,8 @@
 #Function to do the 2d interpolation (on the log scale)
 
 'interplcd' <-
-  function(lcd, gridlen=100, span=0.5, ...)
+  function(lcd, gridlen=100 )
 {
-  if(!require("akima",quietly=TRUE)) stop("you need to install the akima package")
   x <- lcd$x[,1]
   y <- lcd$x[,2]
   z <- lcd$logMLE
@@ -14,20 +13,17 @@
   chull <- lcd$triang
   nsimplices <- nrow(chull)
 
-  g <- matrix(NA,nrow=gridlen,ncol=gridlen)
-
-  for (i in 1:nsimplices)
-  {
-    verts <- chull[i,]
-    if( sum( !is.finite( z[verts] ) ) == 0 ) {
-      g <-
-  pmax(interp(x=c(x[verts],mean(x[verts])),y=c(y[verts],mean(y[verts])),z=c(z[verts],mean(z[verts])),xo=xo,yo=yo)$z,g,na.rm=TRUE)
-    }
-  }
+  grid <- as.matrix( expand.grid( xo, yo ) )
+  isout <- apply( lcd$outnorm %*% ( t( grid ) - lcd$midpoint ) -
+                 lcd$outdist, 2, max ) > 0
+  g <- apply( lcd$bunique %*% t( grid )  - lcd$betaunique, 2, min ) +
+  ifelse( isout, -Inf, 0 )
+  g <- matrix( g, nrow=gridlen, ncol=gridlen )
+  
   return(list(x=xo,y=yo,z=g))
 }
 
-'lcd.interp' <- function( lcd, gridlen=100, span=0.5, ... ) {
+'lcd.interp' <- function( lcd, gridlen=100 ) {
   warning("lcd.interp is deprecated.  Use interplcd instead")
-  return( interplcd( lcd, gridlen, span, ... ) )
+  return( interplcd( lcd, gridlen ) )
 }

@@ -2,13 +2,13 @@
 \alias{plot.LogConcDEAD}
 
 \title{Plot a log-concave maximum likelihood estimator} \description{
-\code{plot} method for class \code{"LogConcDEAD"}.  Plots of various
+\code{\link[graphics:plot]{plot}} method for class \code{"LogConcDEAD"}.  Plots of various
 types are available for 1- and 2-d data. For dimension greater than 1,
 plots of axis-aligned marginal density estimates are available.}
 
 \usage{
 \method{plot}{LogConcDEAD}(x, uselog=FALSE, type="ic", addp=TRUE,
-  drawlabels=TRUE, gridlen=100, g=NULL, marg=NULL, g.marg=NULL, ...)
+  drawlabels=TRUE, gridlen=100, g, marg, g.marg, main, xlab, ylab, ...)
 }
 
 \arguments{
@@ -30,9 +30,12 @@ plots of axis-aligned marginal density estimates are available.}
   \code{vector} of marginal density estimate values (the output of \code{\link{interpmarglcd}}).  If many plots of a single dataset
   are required, it may be quicker to compute the marginal values to
   compute marginal values using \code{\link{interpmarglcd}}
-     and pass the result to \code{plot}}
+  and pass the result to \code{plot}}
+\item{main}{Title}
+\item{xlab}{x-axis label}
+\item{ylab}{y-axis label}
 \item{...}{Other arguments to be passed to the generic
-  \code{\link[base]{plot}} method}
+  \code{\link[graphics:plot]{plot}} method}
 }
 \details{
   The density estimate is evaluated on a grid of points using the
@@ -57,7 +60,7 @@ plots of axis-aligned marginal density estimates are available.}
 
   Where relevant, the colors were obtained from the function
   \code{\link[colorspace]{heat_hcl}} in the package
-  \pkg{\link[colorspace:colorspace-package]{colorspace}}. Thanks to
+  \pkg{colorspace}. Thanks to
   Achim Zeileis for this suggestion.
 
   For examples, see \code{\link{mlelcd}}.
@@ -70,8 +73,7 @@ plots of axis-aligned marginal density estimates are available.}
 
   Richard Samworth}
 
-\seealso{\code{\link{mlelcd}}, \code{\link[akima]{interp}},
-\code{\link{interplcd}}, \code{\link{interpmarglcd}}, \code{\link[colorspace]{heat_hcl}} }
+\seealso{\code{\link{mlelcd}}, \code{\link{interplcd}}, \code{\link{interpmarglcd}}, \code{\link[colorspace]{heat_hcl}} }
 
 
 

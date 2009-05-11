@@ -27,6 +27,9 @@
 01. August 2007 R. B. Gramacy
 * modified for inclusion in the LogConcDEAD package 
 * with silent output
+
+20. August 2009 M. L. Cule
+* Modified slightly for use in LogConcDEAD package -- changed the options
 */
 
 #include <R.h>
@@ -90,7 +93,7 @@ SEXP convhullnew(const SEXP p, const SEXP options)
 	ismalloc = False;   /* True if qhull should free points in qh_freeqhull() or reallocation */
 
 	/* hmm  lot's of options for qhull here */
-	sprintf(flags,"qhull QJ Tcv %s",opts);
+	sprintf(flags,"qhull %s", opts);
 	/* outfile = NULL; this produces nonsensical output ... needs to be fixed to get convexhulln quiet */
 	exitcode = qh_new_qhull (dim,n,pt_array,ismalloc,flags,outfile,errfile);
 	/* If you want some debugging information replace the NULL

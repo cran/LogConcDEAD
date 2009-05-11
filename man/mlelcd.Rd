@@ -10,7 +10,7 @@
  i.i.d. sample.  The estimator is uniquely determined by its value at the data
  points. The output is an object of class \code{"LogConcDEAD"} which
   contains all the information needed to plot the estimator using the
-  \code{\link[plot.LogConcDEAD]{plot}} method, or to evaluate it using
+  \code{\link[=plot.LogConcDEAD]{plot}} method, or to evaluate it using
   the function \code{\link{dlcd}}.
  }
 
@@ -18,12 +18,12 @@
 mlelcd(x, w=rep(1/nrow(x),nrow(x)), y=initialy(x),
   verbose=-1, alpha=5, c=1, sigmatol=10^-8, integraltol=10^-4,
   ytol=10^-4, stepscale=5.1, stepscale2=2, stepscale3=1.5,
-  stepscale4=1.05, desiredsize=3.3, Jtol=0.001)
+  stepscale4=1.05, desiredsize=3.3, Jtol=0.001, chtol=10^-6)
 
 lcd.mle(x, w=rep(1/nrow(x),nrow(x)), y=initialy(x),
   verbose=-1, alpha=5, c=1, sigmatol=10^-8, integraltol=10^-4,
   ytol=10^-4, stepscale=5.1, stepscale2=2, stepscale3=1.5,
-  stepscale4=1.05, desiredsize=3.3, Jtol=0.001) }
+  stepscale4=1.05, desiredsize=3.3, Jtol=0.001, chtol=10^-6) }
 
 \arguments{
   \item{x}{Data in \eqn{R^d}, in the form of an \eqn{n
@@ -58,6 +58,7 @@ lcd.mle(x, w=rep(1/nrow(x),nrow(x)), y=initialy(x),
   desiredsize}{Scalar parameters for \pkg{SolvOpt}.  Changing these is not recommended.}
   \item{Jtol}{Parameter controlling when Taylor expansion is used in
     computing the function \eqn{\sigma}{sigma}}
+  \item{chtol}{Parameter controlling convex hull computations}
 }
 
 \details{
@@ -153,7 +154,7 @@ Shor, N. Z. (1985)
 
 \note{
   For one-dimensional data, the active set algorithm of
-  \code{\link[logcondens-package]{logcondens}} is faster, and may be
+  \code{\link[logcondens:logcondens-package]{logcondens}} is faster, and may be
   preferred.
 
   The authors gratefully acknowledge the assistance of Lutz Duembgen
@@ -203,7 +204,7 @@ dmarglcd(0, lcd, marg=1)
 dmarglcd(1, lcd, marg=2)
 }
 \seealso{
-  \code{\link[geometry:geometry-package]{geometry}},
+  \code{\link[geometry:convhulln]{convhulln}},
   \code{\link[logcondens:logcondens-package]{logcondens}},
 \code{\link{interplcd}}, \code{\link{plot.LogConcDEAD}},
 \code{\link{interpmarglcd}}, \code{\link{rlcd}}, \code{\link{dlcd}}, \code{\link{dmarglcd}}

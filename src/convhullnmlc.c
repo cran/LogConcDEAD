@@ -43,16 +43,16 @@ extra options for the underlying qhull command.
 */
 
 
-/* going to try something different, namely returning the pointer to the array. */
+/* 20 August 2009 Added some amount of "merging" */
 
-int *convhullnmlc(double *x_in, int *nrow_in, int* ncol_in, int *nf)
+int *convhullnmlc(double *x_in, int *nrow_in, int* ncol_in, int *nf,
+		  char *opts)
 {
   int curlong, totlong, i, j;
   unsigned int dim, n;
   int exitcode; 
   boolT ismalloc;
   char flags[250];             /* option flags for qhull, see qh_opt.htm */
-  /* char *opts; */
   int *idx = NULL;
   double *pt_array = NULL;
 
@@ -77,9 +77,9 @@ int *convhullnmlc(double *x_in, int *nrow_in, int* ncol_in, int *nf)
 
    /* hmm lots of options for qhull here */
 
-  sprintf(flags,"qhull QJt");
-
-  exitcode = qh_new_qhull (dim,n,pt_array,ismalloc,flags,outfile,errfile);
+  sprintf( flags, "qhull %s", opts );
+  exitcode = qh_new_qhull( dim, n, pt_array, ismalloc, flags, outfile,
+			   errfile );
 
   if (!exitcode)  /* 0 if no error from qhull */
     {  

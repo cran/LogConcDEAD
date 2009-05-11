@@ -15,8 +15,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\VignetteIndexEntry{a guide to the LogConcDEAD package}                                          
-%\VignetteKeywords{LogConcDEAD}                                                                   
-%\VignetteDepends{LogConcDEAD, logcondens, akima, rgl, MASS}                                      
+%\VignetteKeywords{LogConcDEAD}                                                 
+%\VignetteDepends{LogConcDEAD, logcondens, rgl, MASS, mvtnorm}                  
 %\VignettePackage{LogConcDEAD} 
 
 %% almost as usual
@@ -129,12 +129,11 @@ University of Cambridge}
 \newcommand{\FF}{\mathcal{F}}
 \newcommand{\indicator}{\mathbbm{1}}
 
-
-<<echo=FALSE>>=
-options(prompt = "R> ")
-if(!require(LogConcDEAD)) {install.packages("LogConcDEAD"); library("LogConcDEAD")}
-if(!require(logcondens)) {install.packages("logcondens"); library("logcondens")}
-if(!require(mvtnorm)) {install.packages("mvtnorm"); library("mvtnorm")}
+<<>>=
+options(prompt="R> ")
+require( "LogConcDEAD" )
+require( "logcondens" )
+require( "mvtnorm" )
 options(width=72)
 @ 
 

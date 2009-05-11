@@ -14,6 +14,7 @@ double *weights;
 int nouter;
 int truepoints;
 double Jtol;
+char *chopts;
 
 /* Function to be minimized: */
 double sigmaeffw(double *y);
@@ -25,9 +26,19 @@ void null_entry();
 
 double solvoptweights(int npoints, double *y_in, double sigma_ralg2(),void subgrad_ralg2(),double *opt_out, double fun() ,void fun2(), double *parameters );
 
-void renormalise(double *y);
+void renormalise( double *y );
 
-void logconestw (double *y_in, double *xdata_in, int *d_in, int *n_in, double *weights_in, double *opt_out, double *sigmavalue_out, double *parameters, double *Jtol_in, int *nouter_in)
+void logconestw ( double *y_in, 
+		  double *xdata_in, 
+		  int *d_in, 
+		  int *n_in, 
+		  double *weights_in, 
+		  double *opt_out, 
+		  double *sigmavalue_out, 
+		  double *parameters, 
+		  double *Jtol_in,
+		  char **chopts_in,
+		  int *nouter_in)
 {
   /* Initialise */
   truepoints = *n_in;
@@ -37,9 +48,10 @@ void logconestw (double *y_in, double *xdata_in, int *d_in, int *n_in, double *w
   npoints = truepoints + nouter;
   weights = weights_in;
   Jtol = *Jtol_in;
-  
+  chopts = *chopts_in;
+
   /* Use the solvoptweights */
-    *sigmavalue_out=solvoptweights(truepoints,y_in,&sigmaeffw,&subgradeffw,opt_out,&dnull_entry,&null_entry,parameters);
-    renormalise(y_in);
-    /*That's all!*/
+  *sigmavalue_out=solvoptweights(truepoints,y_in,&sigmaeffw,&subgradeffw,opt_out,&dnull_entry,&null_entry,parameters);
+  renormalise(y_in);
+  /*That's all!*/
 }

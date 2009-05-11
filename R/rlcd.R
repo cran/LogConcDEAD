@@ -1,52 +1,54 @@
-'mle.samples' <- function(prob,z,A,alpha,y1,dim,nsample=1) {
-  sample <- NULL
-  nrows <- length(prob)
-  simp <- sample(1:nrows,nsample,prob=prob,replace=TRUE)
-  for (i in 1:nsample) {
-    x <- NULL
-    while(is.null(x)) {
-      w <- sort(runif(dim))
-      w <- c(w[1],diff(w))
-      fw <- exp(z[simp[i],]%*%w+y1[simp[i]])
-      maxz <- exp(y1[simp[i]] + max(c(0,z[simp[i],])))
-      u <- runif(1)
-      if(u<fw/maxz) x <-(A[[simp[i]]])%*%w + alpha[simp[i],]
-      # else print("no luck\n")
-    }
-    sample <- cbind(sample,x)
-  }
-  return(t(sample))
-}
-
-## For consistency with R naming convention
-'rlcd' <- function(n=1, lcd) {
-  chull <- lcd$triang
-  x <- lcd$x
-  y <- lcd$logMLE
-  nrows <- nrow(chull)
-  d <- ncol(x)
-  A <- vector(mode="list",length=nrows)
-  alpha <- matrix(0,nrow=nrows,ncol=d)
-  y1 <- vector(length=nrows)
-  prob <- vector(length=nrows)
-  z <- matrix(0,nrow=nrows,ncol=d)
-  for (j in 1:nrows) {
-    vertices <- x[chull[j,],]
-    A[[j]] <- t(vertices[-1,] - rep(1,d) %o% vertices[1,])
-    z[j,] <- y[chull[j,-1]]-y[chull[j,1]]
-    alpha[j,] <- vertices[1,]
-    y1[j] <- y[chull[j,1]]
-    zProd <- rep(0,d)
-    for(r in 1:d) zProd[r] <- prod(z[j,r]-z[j,-r])
-    prob[j] <- abs(det(A[[j]]))*exp(y1[j])*sum((exp(z[j,])-1)/(z[j,]*zProd))
-  }
-  prob <- prob/sum(prob)
-  mle.samples(prob,z,A,alpha,y1,dim=d,nsample=n)
-}
-
-
 ## Retain lcd.sample for consistency with old version
 'lcd.sample' <- function(lcd, nsample=1) {
   warning("lcd.sample is deprecated.  Use rlcd instead")
   return( rlcd( nsample, lcd ) )
 }
+
+## For consistency with R naming convention
+'rlcd' <- function(n=1, lcd) {
+  triang <- lcd$triang
+  x <- lcd$x
+  logMLE <- lcd$logMLE
+  nrows <- nrow(triang)
+  d <- ncol(x)
+  prob <- rep( 0, nrows )
+  for (j in 1:nrows) {
+    prob[j] <- lcd$detA[j]*JAD( lcd$logMLE[ triang[ j, ] ] )
+  }
+  prob <- prob/sum(prob)
+  
+  samples <- matrix( 0, nrow=n, ncol=d )
+  
+  ## pick a simplex for each sample
+  simp <- sample( 1:nrows, n, prob = prob, replace = TRUE )
+  for ( i in 1:n ) {
+    while( sum( samples[ i, ] == 0 ) ) {
+       ## generate point on unit simplex
+      w <- rexp( d+1 )
+      w <- w/sum( w )
+      y <- logMLE[ triang[ simp[ i ], ] ]
+      ##evaluate at the corresponding point
+      fw <- exp( y %*% w )
+      maxfx <- max( exp( y ) )
+      u <- runif( 1 )
+      if ( u < fw/maxfx ) {
+        samples[ i, ] <- w%*%x[ triang[ simp[ i ], ] , ]
+      }
+    }
+   }
+  return( samples )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

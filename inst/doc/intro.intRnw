@@ -10,11 +10,10 @@ reproducible worked examples.  This package is available from the
 Comprehensive \proglang{R} Archive Network at
 \url{http://CRAN.R-project.org/package=LogConcDEAD}.
 
-\pkg{LogConcDEAD} depends on \pkg{akima} \citep{akima2006} for
-plotting, \pkg{MASS} \citep{MASS2002} for some vector operations,
-and \pkg{geometry} \citep{GramacyGrasman2008} for convex hull computation.
-The package \pkg{rgl} \citep{AdlerMurdoch2007} is recommended for
-producing graphics.
+\pkg{LogConcDEAD} depends on \pkg{MASS} \citep{MASS2002} for some
+vector operations and \pkg{geometry} \citep{GramacyGrasman2008} for
+convex hull computation.  The package \pkg{rgl}
+\citep{AdlerMurdoch2007} is recommended for producing graphics.
 
 This document was created using \code{Sweave} \citep{Sweave} and
 \LaTeX{} \citep{Lamport1994} using \proglang{R} \citep{R}.  This means

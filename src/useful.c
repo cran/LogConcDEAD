@@ -3,8 +3,6 @@
 /* J* are based on ideas of Lutz Duembgen */
 /* at the University of Bern              */
 
-
-
 #include <R.h>
 #include <Rmath.h>
 #include <stdlib.h>
@@ -20,7 +18,7 @@ void dgetrf(int*, int*, double*, int*, int*, int*);
  * replacing it with its LU decomposition
  */
 
-
+/* Compute the determinant */
 double absdet(double *M, int n, int useLog) 
 {
   double det, modulus;
@@ -126,8 +124,16 @@ double ymin( double y[], int n)
     double tmp = y[0];
     for (i=1; i<n; i++) 
      if (tmp > y[i]) tmp = y[i]; 
-    return (tmp); 
+    return tmp; 
   }
+
+double ymax( double y[], int n ) {
+  int i;
+  double tmp = y[0];
+  for( i=1; i<n; i++ )
+    if( tmp < y[i] ) tmp = y[i];
+  return tmp;
+}
 
 double mean(double *y, int len) 
 {
@@ -154,8 +160,8 @@ double dotprod(double y[], double w[], int n) {
   for (i=0; i<n; i++) {
     tmp+= y[i]*w[i]; 
   }
-
-  return tmp; }
+  return tmp;
+}
 
 /* Here are the auxiliary functions for the computation of 
    J(y[0], ..., y[d]) and its derivatives */
@@ -226,7 +232,7 @@ double JAD(double *y, int d, double eps) {
   double *z;
   int k;
   double tmp;
-  z=malloc((d+1)*sizeof(double));
+  z=Calloc( d+1, double);
   for (k=0; k<=d; k++) {
     z[k] = y[k];
   }
@@ -234,7 +240,7 @@ double JAD(double *y, int d, double eps) {
 
   tmp = JAD_ord(z,d,eps);
   
-  free(z);
+  Free(z);
   return(tmp);
 }
 
