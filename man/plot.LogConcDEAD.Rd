@@ -67,7 +67,7 @@ plots of axis-aligned marginal density estimates are available.}
 }
 
 
-\author{Madeleine Cule \email{mlc40@cam.ac.uk}
+\author{Madeleine Cule
 
   Robert B. Gramacy
 

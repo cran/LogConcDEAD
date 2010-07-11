@@ -292,8 +292,7 @@ achieved given an object of class \code{\char34LogConcDEAD\char34} as follows:
 nsamp <- 1000
 mysamp <- rlcd(nsamp,out)
 @
-Details of the function \code{rlcd}, which uses a straightforward
-rejection sampling scheme, are given in \citet{CSS2008}.  
+Details of the function \code{rlcd} are given in \citet{CSS2008} and \citet{GopalCasella2010}.  
 
 Once we have a random sample, plug-in estimation of various
 functionals is straightforward.

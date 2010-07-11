@@ -129,16 +129,17 @@ University of Cambridge}
 \newcommand{\FF}{\mathcal{F}}
 \newcommand{\indicator}{\mathbbm{1}}
 
-<<>>=
+
+%%Here is where the actual document begins:
+\begin{document}
+
+<<eval=TRUE,echo=FALSE,include=FALSE>>=
 options(prompt="R> ")
 require( "LogConcDEAD" )
 require( "logcondens" )
 require( "mvtnorm" )
 options(width=72)
 @ 
-
-%%Here is where the actual document begins:
-\begin{document}
 
 \SweaveInput{intro.intRnw}
 \SweaveInput{algorithm.intRnw}

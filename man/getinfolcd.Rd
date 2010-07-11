@@ -69,7 +69,7 @@ getinfolcd(x, y, w = rep(1/length(y), length(y)), chtol = 10^-6, MinSigma = NA, 
   number of faces of the convex hull.}
 }
 
-\author{Madeleine Cule \email{mlc40@cam.ac.uk}
+\author{Madeleine Cule
   
   Robert B. Gramacy
 

@@ -4,26 +4,29 @@
 
 \title{Sample from a log-concave maximum likelihood estimate}
 
-\description{Draws independent samples a log-concave maximum likelihood
+\description{Draws samples from a log-concave maximum likelihood
   estimate. The estimate should be specified in the form of an object of
   class \code{"LogConcDEAD"}, the result of a call to
   \code{\link{mlelcd}}.
 }
 
 \usage{
-rlcd(n, lcd)
+rlcd(n=1, lcd, method=c("Independent","MH"))
 lcd.sample(lcd, nsample=1) }
 
 \arguments{
 \item{n, nsample}{A scalar integer indicating the number of samples required} 
 \item{lcd}{Object of class \code{"LogConcDEAD"} (typically output from
   \code{\link{mlelcd}})}
+\item{method}{Indicator of the method used to draw samples, either via independent rejection sampling
+  (default choice) or via Metropolis-Hastings} 
 }
 
 \details{
-  This function uses a simple rejection sampling scheme to draw
-  independent random samples from a log-concave maximum likelihood
-  estimator. 
+  This function by default uses a simple rejection sampling scheme to 
+  draw independent random samples from a log-concave maximum likelihood
+  estimator. One can also use the Metropolis-Hastings option to draw (dependent)
+  samples with a higher acceptance rate.
 
   For examples, see \code{\link{mlelcd}}.
   
@@ -34,19 +37,26 @@ lcd.sample(lcd, nsample=1) }
   in \eqn{R^d}{R^d} drawn from the distribution with density defined by \code{lcd}.
 }
 
-\author{Madeleine Cule \email{mlc40@cam.ac.uk}
+\author{Yining Chen \email{yc319@statslab.cam.ac.uk}
+
+  Madeleine Cule
 
   Robert Gramacy
 
   Richard Samworth}
 
-\note{Details of the rejection sampling scheme can be found in
-  \cite{Cule, Samworth and Stewart (2008)}
+\note{Details of the rejection sampling can be found in Appendix B.3 of
+  \cite{Cule, Samworth and Stewart (2010)}. Details of the Metropolis-Hastings 
+  scheme can be found in \cite{Gopal and Casella (2010)}
   }
 
-  \references{  Cule, M. L., Samworth, R. J. and Stewart, M. I. (2007)
-  \emph{Maximum likelihood estimation of a log-concave density}
-  Submitted, available from arXiv at \url{http://arxiv.org/abs/0804.3989}
+\references{  Cule, M. L., Samworth, R. J. and Stewart, M. I. (2010)
+  \emph{Maximum likelihood estimation of a multi-dimensional log-concave density}.
+  J. Roy. Statist. Soc., Ser. B. (with discussion), to appear.
+
+  Gopal, V. and Casella, G. (2010) \emph{Discussion of Maximum likelihood 
+  estimation of a log-concave density by Cule, Samworth and Stewart}. 
+  J. Roy. Statist. Soc., Ser. B., to appear.
 }
 
 \seealso{ \code{\link{mlelcd}}}

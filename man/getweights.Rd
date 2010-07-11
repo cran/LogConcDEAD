@@ -40,7 +40,7 @@ with previous versions.  }
   \item{w}{A real-valued \code{vector} of weights as described above}
 }
 
-\author{Madeleine Cule \email{mlc40@cam.ac.uk}
+\author{Madeleine Cule
   
   Robert Gramacy
 

@@ -37,7 +37,7 @@ lcd.interp(lcd, gridlen=100 )  }
   likelihood estimator at points on the grid}
 }
 
-\author{Madeleine Cule \email{mlc40@cam.ac.uk}
+\author{Madeleine Cule
 
   Robert Gramacy
 

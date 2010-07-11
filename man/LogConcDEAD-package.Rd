@@ -45,11 +45,13 @@ estimator, optionally using the \pkg{rgl} package.
 }
 
 \author{
-  Madeleine Cule (maintainer) \email{mlc40@cam.ac.uk}
+  Madeleine Cule \email{mlc40@cam.ac.uk}
   
   Robert Gramacy \email{bobby@statslab.cam.ac.uk}
 
   Richard Samworth \email{rjs57@cam.ac.uk}
+
+  Yining Chen (maintainer) \email{yc319@statslab.cam.ac.uk}
   }
 
 \note{The authors gratefully acknowledge the assistance of Lutz Duembgen
@@ -70,6 +72,10 @@ log-density estimation, University of Bern technical report. \url{http://arxiv.o
 Cule, M. L., Samworth, R. J., and Stewart, M. I. (2007)
 \emph{Maximum likelihood estimation of a log-concave density},
 Submitted.\url{http://arxiv.org/abs/0804.3989}
+
+Gopal, V. and Casella, G. (2010) 
+\emph{Discussion of Maximum likelihood estimation of a log-concave density by Cule, Samworth and Stewart}. 
+J. Roy. Statist. Soc., Ser. B., to appear.
 
 Kappel, F. and Kuntsevich, A. V. (2000)
 \emph{An implementation of Shor's r-algorithm} Computational

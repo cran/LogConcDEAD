@@ -33,7 +33,7 @@
   printed.}
 
 \author{
-  Madeleine Cule \email{mlc40@cam.ac.uk}
+  Madeleine Cule
   
   Robert B. Gramacy
   

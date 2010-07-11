@@ -164,7 +164,7 @@ Shor, N. Z. (1985)
   Further references, including definitions and background material, may be found in \cite{Cule, Samworth and Stewart (2008)}.
 }
 
-\author{Madeleine Cule \email{mlc40@cam.ac.uk}
+\author{Madeleine Cule 
   
   Robert B. Gramacy
 
@@ -190,8 +190,12 @@ plot(lcd, marg=1, g.marg=g.marg1)
 plot(lcd, marg=2, g.marg=g.marg2) 
 
 ## generate some points from the fitted density
-generated <- rlcd(100, lcd)
-genmean <- mean(generated)
+## via independent rejection sampling
+generated1 <- rlcd(100, lcd)
+genmean1 <- mean(generated1)
+## via Metropolis-Hastings algorithm
+generated2 <- rlcd(100, lcd, "MH")
+genmean2 <- mean(generated2)
 
 ## evaluate the fitted density
 mypoint <- c(0, 0)

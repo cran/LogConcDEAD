@@ -33,7 +33,7 @@ For examples, see \code{\link{mlelcd}}.
   \tiny\texttt{marg}}}{f_n,marg} at the points \code{x}.
 }
 
-\author{Madeleine Cule \email{mlc40@cam.ac.uk}
+\author{Madeleine Cule
 
   Robert Gramacy
 

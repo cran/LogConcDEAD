@@ -51,7 +51,7 @@ previous versions.  }
   maximum likelihood estimate) values, as evaluated at the points \code{x}.}
 
 \author{
-  Madeleine Cule \email{mlc40@cam.ac.uk}
+  Madeleine Cule
   
   Robert Gramacy
   

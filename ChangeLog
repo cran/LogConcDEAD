@@ -48,3 +48,6 @@
 	points on a simplex
 11/01/2010      1.4-1 Corrected autoconfiguration scripts (thanks to Brian
                        Ripley for this correction)
+09/07/2010      1.4-2 Implemented the Metropolis-Hasting option in rlcd (
+                       thanks to Vikneswaran Gopal and George Casella for
+                       this suggestion)

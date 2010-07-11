@@ -42,7 +42,7 @@ lcd.marg (lcd, marg=1, gridlen=100) }
 }
 
 \seealso{\code{\link{dmarglcd}}, \code{\link{mlelcd}}}
-\author{Madeleine Cule \email{mlc40@cam.ac.uk}
+\author{Madeleine Cule
 
   Robert Gramacy
 
