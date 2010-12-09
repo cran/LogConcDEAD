@@ -35,7 +35,7 @@
   dropme <- rep( FALSE, nbbetaunique )
   for( j in 1:nbbetaunique ) {
     A <-  t( x[ smoothch[ j, -1],] ) - x[ smoothch[j,1],]
-    detA <- det( A )
+    detA <- abs(det( A ))
     if( detA > 10^-8 ) {
       alpha <- x[ smoothch[ j, 1 ], ]
       z <- y[ smoothch[ j, -1 ] ] - y[ smoothch[ j, 1 ] ]

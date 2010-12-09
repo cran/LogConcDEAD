@@ -26,7 +26,7 @@
   }
   else if(nrow(new)>d) {
     tmp <- new[,-keep,drop=FALSE]
-    trig <- matrix(delaunayn(tmp),ncol=d)
+    trig <- matrix(delaunaynew(tmp),ncol=d)
     for (i in 1:nrow(trig)) {
       y <- new[trig[i,],]%*%b - beta
       ans <- ans + JAD(y)%*%abs(det(tmp[trig[i,-1],,drop=FALSE]-rep(1,d-1)%*%tmp[trig[i,1],,drop=FALSE]))

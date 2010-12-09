@@ -4,6 +4,7 @@
 \alias{initialf}
 \alias{initialy}
 \alias{convhullnew}
+\alias{delaunaynew}
 \alias{integratemarg}
 \alias{JAD}
 \alias{JAD.approx}
