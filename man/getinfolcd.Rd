@@ -73,7 +73,10 @@ getinfolcd(x, y, w = rep(1/length(y), length(y)), chtol = 10^-6, MinSigma = NA, 
   
   Robert B. Gramacy
 
-  Richard Samworth}
+  Richard Samworth
+
+  Yining Chen
+}
 
 
 \seealso{

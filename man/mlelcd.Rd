@@ -139,9 +139,9 @@ Barber, C.B., Dobkin, D.P., and Huhdanpaa, H.T. (1996)
 Cule, M. L. and D\"umbgen, L. (2008) On an auxiliary function for
 log-density estimation, University of Bern technical report. \url{http://arxiv.org/abs/0807.4719}
 
-Cule, M. L., Samworth, R. J., and Stewart, M. I. (2007)
+Cule, M. L., Samworth, R. J., and Stewart, M. I. (2010)
 \emph{Maximum likelihood estimation of a log-concave density},
-Submitted.\url{http://arxiv.org/abs/0804.3989}
+  Journal of the Royal Statistical Society, Series B, 72(5) p.545-607.
 
 Kappel, F. and Kuntsevich, A. V. (2000)
 \emph{An implementation of Shor's r-algorithm} Computational
@@ -206,12 +206,16 @@ dlcd(mypoint, lcd, uselog=FALSE)
 ## evaluate the marginal density
 dmarglcd(0, lcd, marg=1)
 dmarglcd(1, lcd, marg=2)
+
+## evaluate the covariance matrix of the fitted density
+covariance <- cov.LogConcDEAD(lcd)
 }
 \seealso{
   \code{\link[geometry:convhulln]{convhulln}},
   \code{\link[logcondens:logcondens-package]{logcondens}},
-\code{\link{interplcd}}, \code{\link{plot.LogConcDEAD}},
-\code{\link{interpmarglcd}}, \code{\link{rlcd}}, \code{\link{dlcd}}, \code{\link{dmarglcd}}
+  \code{\link{interplcd}}, \code{\link{plot.LogConcDEAD}},
+  \code{\link{interpmarglcd}}, \code{\link{rlcd}}, \code{\link{dlcd}},
+  \code{\link{dmarglcd}},\code{\link{cov.LogConcDEAD}}
 }
 \keyword{ nonparametric }
 \keyword{ multivariate }
