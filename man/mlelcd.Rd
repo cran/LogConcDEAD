@@ -209,7 +209,21 @@ dmarglcd(1, lcd, marg=2)
 
 ## evaluate the covariance matrix of the fitted density
 covariance <- cov.LogConcDEAD(lcd)
+
+## find the hat matrix for the smoothed log-concave that
+## matches empirical mean and covariance
+A <- hatA(lcd)
+
+## evaluate the fitted smoothed log-concave density
+mypoint <- c(0, 0)
+dslcd(mypoint, lcd, A)
+mypoint <- c(10, 0)
+dslcd(mypoint, lcd, A)
+
+## generate some points from the fitted smoothed log-concave density
+generated <- rslcd(100, lcd, A)
 }
+
 \seealso{
   \code{\link[geometry:convhulln]{convhulln}},
   \code{\link[logcondens:logcondens-package]{logcondens}},

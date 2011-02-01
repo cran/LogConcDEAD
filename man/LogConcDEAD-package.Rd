@@ -23,9 +23,15 @@ are provided.  }
 (specified via its value at data points).  Output is a list of class
 \code{"LogConcDEAD"} which is used as input to various auxiliary functions.
 
+\code{\link{hatA}} calculates the difference between the sample covariance and the fitted covariance.
+
 \code{\link{dlcd}} evaluates the estimated density at a particular point.
 
+\code{\link{dslcd}} evaluates the smoothed version of estimated density at a particular point.
+
 \code{\link{rlcd}} draws samples from the estimated density.
+
+\code{\link{rslcd}} draws samples from the smoothed version of estimated density.
 
 \code{\link{interplcd}} interpolates the estimated density on
 a grid for plotting purposes.
@@ -61,34 +67,45 @@ estimator, optionally using the \pkg{rgl} package.
   For one dimensional data, the active set algorithm in
   \code{\link[logcondens:logcondens-package]{logcondens}} is much faster.}
 
-\references{Barber, C.B., Dobkin, D.P., and Huhdanpaa, H.T. (1996)
-\emph{The Quickhull algorithm for convex hulls}
-  ACM Trans. on Mathematical Software, 22(4) p.469-483
-\url{http://www.qhull.org}
+\references{
+Barber, C.B., Dobkin, D.P., and Huhdanpaa, H.T. (1996)
+ \emph{The Quickhull algorithm for convex hulls} 
+ ACM Trans. on Mathematical Software, 22(4) p.469-483
+ \url{http://www.qhull.org}
 
-Cule, M. L. and D\"umbgen, L. (2008) On an auxiliary function for
-log-density estimation, University of Bern technical report. \url{http://arxiv.org/abs/0807.4719}
+Chen, Y. and Samworth, R. J. (2011), 
+ \emph{Smoothed log-concave maximum likelihood estimation with applications} 
+ Submitted. \url{http://arxiv.org/abs/1102.1191}
 
-Cule, M. L., Samworth, R. J., and Stewart, M. I. (2007)
-\emph{Maximum likelihood estimation of a log-concave density},
-Submitted.\url{http://arxiv.org/abs/0804.3989}
+Cule, M. L. and D\"umbgen, L. (2008)]
+ \emph{On an auxiliary function for log-density estimation}, 
+ University of Bern technical report. \url{http://arxiv.org/abs/0807.4719}
+
+Cule, M. L., Samworth, R. J., and Stewart, M. I. (2010)
+ \emph{Maximum likelihood estimation of a multi-dimensional log-concave density} 
+ J. Roy. Statist. Soc., Ser. B. (with discussion), 72, 545-600.
 
 Gopal, V. and Casella, G. (2010) 
-\emph{Discussion of Maximum likelihood estimation of a log-concave density by Cule, Samworth and Stewart}. 
-J. Roy. Statist. Soc., Ser. B., to appear.
+ \emph{Discussion of Maximum likelihood estimation of a log-concave density by Cule, Samworth and Stewart}  
+ J. Roy. Statist. Soc., Ser. B., 72, 580-582.
+
+Grundmann, A. and Moeller, M. (1978)
+ \emph{Invariant Integration Formulas for the N-Simplex by Combinatorial Methods} 
+ SIAM Journal on Numerical Analysis, Volume 15, Number 2, 282-290.
 
 Kappel, F. and Kuntsevich, A. V. (2000)
-\emph{An implementation of Shor's r-algorithm} Computational
-Optimization and Applications 15  \cr \url{http://www.uni-graz.at/imawww/kuntsevich/solvopt/}
+ \emph{An implementation of Shor's r-algorithm} Computational 
+ Optimization and Applications 15  \cr \url{http://www.uni-graz.at/imawww/kuntsevich/solvopt/}
 
 Shor, N. Z. (1985)
  \emph{Minimization methods for nondifferentiable functions}
  Springer-Verlag
- }
+}
 
 \keyword{ nonparametric }
 \keyword{ multivariate }
 \keyword{ package }
+\keyword{ smoothing }
 
 \seealso{
   \code{\link[logcondens:logcondens-package]{logcondens}},

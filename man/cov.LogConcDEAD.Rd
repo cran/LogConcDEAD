@@ -16,7 +16,7 @@ log-concave maximum likelihood estimator.}
 \details{
   This function evaluates the covariance matrix of a given log-concave maximum likelihood
   estimator using the second order partial derivatives of the auxiliary function studied 
-  in Cule, M. L. and D\"umbgen, L. (2008).
+  in \cite{Cule, M. L. and D\"umbgen, L. (2008)}.
 
   For examples, see \code{\link{mlelcd}}.
 }

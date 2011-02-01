@@ -16,8 +16,10 @@
 \details{
   This function evaluates the the matrix \eqn{\hat{A}} of the smoothed log-concave maximum 
   likelihood estimator, which is positive definite, and equals the difference between the 
-  sample covariance matrix and the covariance matrix of the corresponding log-concave maximum
+  sample covariance matrix and the covariance matrix of the fitted log-concave maximum
   likelihood density estimator.
+
+  For examples, see \code{\link{mlelcd}}
 }
 
 \value{ A \code{matrix} equals \eqn{\hat{A}} of the smoothed log-concave maximum 
@@ -33,6 +35,17 @@
   Richard Samworth
 }
 
+\note{Details of the computational aspects can be found in \cite{Chen and Samworth (2011)}.}
+
+\references{
+ Chen, Y. and Samworth, R. J. (2011), 
+ \emph{Smoothed log-concave maximum likelihood estimation with applications} 
+ Submitted. \url{http://arxiv.org/abs/1102.1191}
+}
+
+
 \seealso{ \code{\link{cov.LogConcDEAD}}}
 \keyword{ nonparametric }
 \keyword{ multivariate }
+\keyword{ smoothing }
+

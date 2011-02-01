@@ -1,44 +1,45 @@
-\name{rlcd}
-\alias{lcd.sample}
-\alias{rlcd}
+\name{rslcd}
+\alias{rslcd}
 
-\title{Sample from a log-concave maximum likelihood estimate}
+\title{Sample from a smoothed log-concave maximum likelihood estimate}
 
-\description{Draws samples from a log-concave maximum likelihood
+\description{Draws samples from a smoothed log-concave maximum likelihood
   estimate. The estimate should be specified in the form of an object of
-  class \code{"LogConcDEAD"}, the result of a call to
-  \code{\link{mlelcd}}.
+  class \code{"LogConcDEAD"}, the result of a call to \code{\link{mlelcd}},
+  and a positive definite matrix.
 }
 
 \usage{
-rlcd(n=1, lcd, method=c("Independent","MH"))
-lcd.sample(lcd, nsample=1) }
+rslcd(n=1, lcd, A=hatA(lcd), method=c("Independent","MH"))
+}
 
 \arguments{
-\item{n, nsample}{A scalar integer indicating the number of samples required} 
+\item{n}{A scalar integer indicating the number of samples required} 
 \item{lcd}{Object of class \code{"LogConcDEAD"} (typically output from
   \code{\link{mlelcd}})}
+\item{A}{A positive definite \code{matrix} that determines the degree of smoothing, typically 
+  taken as the output of \code{hatA(lcd)}}
 \item{method}{Indicator of the method used to draw samples, either via independent rejection sampling
   (default choice) or via Metropolis-Hastings} 
 }
 
 \details{
   This function by default uses a simple rejection sampling scheme to 
-  draw independent random samples from a log-concave maximum likelihood
+  draw independent random samples from a smoothed log-concave maximum likelihood
   estimator. One can also use the Metropolis-Hastings option to draw (dependent)
   samples with a higher acceptance rate.
 
   For examples, see \code{\link{mlelcd}}.
   
-\code{lcd.sample} is deprecated, but retained for compatibility with previous versions of this package.
 }
+
 \value{
-  A numeric \code{matrix} with \code{nsample} rows, each row corresponding to a point
-  in \eqn{R^d}{R^d} drawn from the distribution with density defined by \code{lcd}.
+  A numeric \code{matrix} with \code{n} rows, each row corresponding to a point
+  in \eqn{R^d}{R^d} drawn from the distribution with density defined by \code{lcd} and \code{A}.
 }
 
 \author{
-  Yining Chen \email{yc319@statslab.cam.ac.uk}
+  Yining Chen \email{Y.Chen@statslab.cam.ac.uk}
 
   Madeleine Cule
 
@@ -46,12 +47,11 @@ lcd.sample(lcd, nsample=1) }
 
   Richard Samworth}
 
-\note{Details of the rejection sampling can be found in Appendix B.3 of
-  \cite{Cule, Samworth and Stewart (2010)}. Details of the Metropolis-Hastings 
-  scheme can be found in \cite{Gopal and Casella (2010)}
-  }
-
 \references{
+Chen, Y. and Samworth, R. J. (2011), 
+ \emph{Smoothed log-concave maximum likelihood estimation with applications} 
+ Submitted. \url{http://arxiv.org/abs/1102.1191}
+
 Cule, M. L., Samworth, R. J., and Stewart, M. I. (2010)
  \emph{Maximum likelihood estimation of a multi-dimensional log-concave density} 
  J. Roy. Statist. Soc., Ser. B. (with discussion), 72, 545-600.
@@ -62,9 +62,10 @@ Gopal, V. and Casella, G. (2010)
 
 }
 
-\seealso{ \code{\link{mlelcd}}}
+\seealso{ \code{\link{mlelcd}}, \code{\link{rlcd}}, \code{\link{hatA}}}
 
 \keyword{multivariate}
 \keyword{nonparametric}
+\keyword{smoothing}
 \keyword{datagen}
 \keyword{distribution}

@@ -9,6 +9,10 @@
 \alias{JAD}
 \alias{JAD.approx}
 \alias{JAD.ord}
+\alias{dslcd_1D}
+\alias{dslcd_2D}
+\alias{dslcd_com}
+\alias{simplex_unit_05_2_nd_pt}
 \description{
   Internal functions for \pkg{LogConcDEAD}
 }
