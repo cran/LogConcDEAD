@@ -60,3 +60,5 @@
                         Added function hatA for the smoothed log-concave estimator		
 01/02/2011      1.5-1	Added function dslcd to evaluate the smoothed log-concave estimates
 			Added function rslcd to draw samples from the smoothed log-concave estimator
+01/04/2011      1.5-2	Vignette portable problem corrected (thanks to Brian Ripley for this correction)
+

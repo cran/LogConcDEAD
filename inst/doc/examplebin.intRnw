@@ -53,9 +53,9 @@ plot(outw,g=gw,uselog=TRUE,asp=1,drawlabels=FALSE)
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=\textwidth, clip=TRUE, trim=0 120 0 100]{LogConcDEAD-fig:bin.png}
+\includegraphics[width=\textwidth, clip=TRUE, trim=0 120 0 100]{LogConcDEAD-fig_bin.png}
 <<results=hide, echo=FALSE>>=
-png(file="LogConcDEAD-fig:bin.png")
+png(file="LogConcDEAD-fig_bin.png")
 <<plot:bin>>
 dev.off()
 @
@@ -63,42 +63,6 @@ dev.off()
   from a bivariate normal distribution in two dimensions (truncated to 1 decimal place) (Example 3)}
 \label{fig:bin}
 \end{figure}
-
-%% Old version
-%In Figure~\ref{fig:bin} we plot the density estimates using a
-%contour plot as before.  In Figure~\ref{fig:binlog}, we plot the
-%log-density estimates.
-
-%<<label=plot:bin,include=FALSE,echo=FALSE>>=
-%plot(outw,g=gw)
-%@
-%<<label=plot:logbin,include=FALSE,echo=FALSE>>=
-%plot(outw,g=gw,uselog=TRUE)
-%@
-
-%\begin{figure}[ht!]
-%  \centering
-%<<label=fig:bin,fig=TRUE,include=FALSE>>=
-%<<plot:bin>>
-%@
-%\includegraphics[height=90mm,width=90mm]{examplebin-fig:bin}
-%\caption{Density estimate based on \Sexpr{n} points from a bivariate
-%  normal distribution in two dimensions (truncated to 1 decimal place)
-%  (Example 3)}
-%\label{fig:bin}
-%\end{figure}%
-
-%\begin{figure}[ht!]
-%\centering
-%<<label=fig:logbin,fig=TRUE,include=FALSE>>=
-%<<plot:logbin>>
-%@
-%\includegraphics[height=90mm,width=90mm]{examplebin-fig:logbin}
-%\caption{Log density estimate based on \Sexpr{n} points from a bivariate
-%  normal distribution in two dimensions (truncated to 1 decimal place)
-%  (Example 3)}
-%label{fig:binlog}%
-%\end{figure}
 
 
 

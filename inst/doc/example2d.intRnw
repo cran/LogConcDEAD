@@ -185,11 +185,11 @@ plot(out,g=g,uselog=TRUE,addp=FALSE,asp=1)
 \begin{figure}[ht!]
   \centering
 <<echo=FALSE, results=hide>>=
-png(file="LogConcDEAD-fig:2d.png")
+png(file="LogConcDEAD-fig_2d.png")
 <<plot:2d>>
 dev.off()
 @
-\includegraphics[width=\textwidth, clip=TRUE, trim = 0 120 0 100]{LogConcDEAD-fig:2d}
+\includegraphics[width=\textwidth, clip=TRUE, trim = 0 120 0 100]{LogConcDEAD-fig_2d}
   \caption{Plots based on \Sexpr{n} points from a standard bivariate
   normal distribution}
   \label{fig:2d}
@@ -210,11 +210,11 @@ plot(out,marg=2,g.marg=g2)
 
 \begin{figure}[ht!]
   \centering
-<<label=fig:2dmarg,mecho=FALSE,results=hide, fig=TRUE, include=FALSE>>=
+<<label=fig_2dmarg,mecho=FALSE,results=hide, fig=TRUE, include=FALSE>>=
 <<plot:2dmarg>>
 @
   \includegraphics[width=\textwidth, clip=TRUE, trim=0 110 0
-  100]{LogConcDEAD-fig:2dmarg}
+  100]{LogConcDEAD-fig_2dmarg}
 \caption{Plots of estimated marginal densities based on \Sexpr{n} points from a standard bivariate
   normal distribution}
   \label{fig:2dmarg}
