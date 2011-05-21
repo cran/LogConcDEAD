@@ -1,5 +1,5 @@
 ### If we just have the values of the log-concave maximum likelihood estimator,
-### this function
+### this function gives more information
 
 'getinfolcd' <- function(
                          x, ## data

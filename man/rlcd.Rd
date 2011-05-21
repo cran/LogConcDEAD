@@ -1,5 +1,4 @@
 \name{rlcd}
-\alias{lcd.sample}
 \alias{rlcd}
 
 \title{Sample from a log-concave maximum likelihood estimate}
@@ -12,10 +11,10 @@
 
 \usage{
 rlcd(n=1, lcd, method=c("Independent","MH"))
-lcd.sample(lcd, nsample=1) }
+}
 
 \arguments{
-\item{n, nsample}{A scalar integer indicating the number of samples required} 
+\item{n}{A scalar integer indicating the number of samples required} 
 \item{lcd}{Object of class \code{"LogConcDEAD"} (typically output from
   \code{\link{mlelcd}})}
 \item{method}{Indicator of the method used to draw samples, either via independent rejection sampling
@@ -29,9 +28,8 @@ lcd.sample(lcd, nsample=1) }
   samples with a higher acceptance rate.
 
   For examples, see \code{\link{mlelcd}}.
-  
-\code{lcd.sample} is deprecated, but retained for compatibility with previous versions of this package.
 }
+
 \value{
   A numeric \code{matrix} with \code{nsample} rows, each row corresponding to a point
   in \eqn{R^d}{R^d} drawn from the distribution with density defined by \code{lcd}.

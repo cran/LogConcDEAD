@@ -1,6 +1,5 @@
 \name{mlelcd}
 \alias{mlelcd}
-\alias{lcd.mle}
 
 \title{Compute the maximum likelihood estimator of a log-concave density}
 
@@ -19,11 +18,7 @@ mlelcd(x, w=rep(1/nrow(x),nrow(x)), y=initialy(x),
   verbose=-1, alpha=5, c=1, sigmatol=10^-8, integraltol=10^-4,
   ytol=10^-4, stepscale=5.1, stepscale2=2, stepscale3=1.5,
   stepscale4=1.05, desiredsize=3.3, Jtol=0.001, chtol=10^-6)
-
-lcd.mle(x, w=rep(1/nrow(x),nrow(x)), y=initialy(x),
-  verbose=-1, alpha=5, c=1, sigmatol=10^-8, integraltol=10^-4,
-  ytol=10^-4, stepscale=5.1, stepscale2=2, stepscale3=1.5,
-  stepscale4=1.05, desiredsize=3.3, Jtol=0.001, chtol=10^-6) }
+ }
 
 \arguments{
   \item{x}{Data in \eqn{R^d}, in the form of an \eqn{n
@@ -37,7 +32,7 @@ lcd.mle(x, w=rep(1/nrow(x),nrow(x)), y=initialy(x),
     If none given, a kernel estimate is used.}
   \item{verbose}{
     \itemize{
-      \item -1: (default) prints nothing\ 
+      \item -1: (default) prints nothing
       \item 0: prints warning messages
       \item \eqn{n>0}: prints summary information every \eqn{n}
       iterations
@@ -99,9 +94,7 @@ package is copied here as it is not currently possible to use compiled
 code from another package.  For points not in general position, this
 requires a Taylor expansion of \eqn{\sigma}{sigma}, discussed in
 \cite{Cule and D\"umbgen (2008)}.
-
-  \code{lcd.mle} is deprecated, but retained for compatibility with
-previous versions.  }
+}
 
 \value{
   An object of class \code{"LogConcDEAD"}, with the following

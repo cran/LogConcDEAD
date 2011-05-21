@@ -12,7 +12,8 @@
     n <- nrow(Xin)
     d <- ncol(Xin)
     h <- apply(Xin,2,sd)*n^(-1/(d+4))
-    log(apply(Xin,1,initialf,n=n,Xin=Xin,h=h))}
+    log(apply(Xin,1,initialf,n=n,Xin=Xin,h=h))
+}
 
 ## Various functions for computing integral over unit simplex of
 ## exp( y[1]w[1] + y[2]w[2] + ... + y[d+1]( 1 - w[1] + ... + w[d] )
@@ -42,4 +43,14 @@
   ans <- 1 + sum( z^2 ) / (2 * ( d + 1 ) * ( d + 2 ) )  + sum( z ^ 3 ) / ( 3 * ( d + 1 ) * ( d + 2 ) * ( d + 3 ) )
   ans <- ans / factorial( d ) * exp( mean( y ) )
   return( ans )
+}
+
+## Return the loglikelihood given proportions in mixture
+'logliklcdmix' <- function( y, props ) {
+  if( length( props ) == 1 ) {
+    return( sum( y ) )
+  }
+  else {
+    return( sum( log( apply( apply( exp( y ), 1, "*", props ), 2, sum)  ) ) )
+  }
 }

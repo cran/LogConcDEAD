@@ -80,14 +80,6 @@
 
   y[ lcdsort ] <- out$yvalue
   r <- getinfolcd( x, y, w, chtol, out$minvalue, out$options[9:11])
-  return( r )}
+  return( r )
+}
 
-## retained for compatibility with previous versions
-'lcd.mle' <- function(x, w=rep(1/nrow(x),nrow(x)), y=initialy(x), verbose=-1,
-         alpha=5, c=1, sigmatol=10^-8, integraltol=10^-4, ytol=10^-4,
-         stepscale=5.1, stepscale2=2, stepscale3=1.5, stepscale4=1.05,
-         desiredsize=3.3, Jtol=0.001, chtol = 10^-6) {
-  warning("lcd.mle is deprecated.  Use mlelcd instead")
-  return( mlelcd( x, w, y, verbose, alpha, c, sigmatol, integraltol,
-                 ytol, stepscale, stepscale2, stepscale3, stepscale4,
-                 desiredsize, Jtol ) ) }

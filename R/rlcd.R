@@ -1,10 +1,4 @@
-## Retain lcd.sample for consistency with old version
-'lcd.sample' <- function(lcd, nsample=1) {
-  warning("lcd.sample is deprecated.  Use rlcd instead")
-  return( rlcd( nsample, lcd ) )
-}
-
-## For consistency with R naming convention
+## Generate samples from mle log-concave density
 'rlcd' <- function (n = 1, lcd, method = c("Independent","MH")) {
   method <- match.arg(method)
   triang <- lcd$triang

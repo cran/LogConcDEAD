@@ -9,6 +9,7 @@
 \alias{JAD}
 \alias{JAD.approx}
 \alias{JAD.ord}
+\alias{logliklcdmix}
 \alias{dslcd_1D}
 \alias{dslcd_2D}
 \alias{dslcd_com}
