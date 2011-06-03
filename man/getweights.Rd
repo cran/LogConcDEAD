@@ -1,6 +1,6 @@
 \name{getweights}
 \alias{getweights}
-\alias{lcd.getweights}
+
 
 \title{Find appropriate weights for likelihood calculations}
 
@@ -9,8 +9,7 @@ binned) data and returns a \code{matrix} containing the distinct
 observations, and a \code{vector} of weights \eqn{w} as described below.
 }
 
-\usage{getweights(x)
-lcd.getweights(x) }
+\usage{getweights(x)}
 
 \arguments{
 \item{x}{a data \code{matrix}}
@@ -31,8 +30,7 @@ lcd.getweights(x) }
   \deqn{\sum_{j=1}^m w_j \log f(X_j),}{w_1 log f(X_1), ..., w_m log f(X_m),}
   where the sum is over distinct observations.
 
-  \code{lcd.getweights} is deprecated, but retained for compatibility
-with previous versions.  }
+}
 
 \value{ 
   \item{xout}{A \code{matrix} containing the distinct rows of the input

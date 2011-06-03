@@ -1,14 +1,13 @@
 \name{interpmarglcd}
 \alias{interpmarglcd}
-\alias{lcd.marg}
+
 
 \title{Finds marginals of multivariate logconcave maximum likelihood estimators by integrating}
 \description{
   Integrates the maximum likelihood estimator of multivariate data over an appropriate subspace to
   produce axis-aligned marginals for use in \code{\link{plot.LogConcDEAD}}.}
 
-\usage{interpmarglcd(lcd, marg=1, gridlen=100)
-lcd.marg (lcd, marg=1, gridlen=100) }
+\usage{interpmarglcd(lcd, marg=1, gridlen=100)}
 
 \arguments{
   \item{lcd}{Output from \code{\link{mlelcd}} (of class \code{"LogConcDEAD")}}
@@ -31,8 +30,7 @@ lcd.marg (lcd, marg=1, gridlen=100) }
 
     For examples, see \code{\link{mlelcd}}.
     
-\code{lcd.marg} is deprecated, but retained for compatibility with
-   previous versions.  }
+}
 
 \value{
   \item{xo}{Vector of values at which the marginal density is estimate

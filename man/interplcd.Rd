@@ -1,5 +1,4 @@
 \name{interplcd}
-\alias{lcd.interp}
 \alias{interplcd}
 
 
@@ -10,8 +9,7 @@
 log-concave maximum likelihood estimator on a grid for 2-d data, for use
 in \code{\link{plot.LogConcDEAD}}.}
 
-\usage{interplcd(lcd, gridlen=100 )
-lcd.interp(lcd, gridlen=100 )  }
+\usage{interplcd(lcd, gridlen=100 )}
 
 \arguments{
   \item{lcd}{Object of class \code{"LogConcDEAD"} (typically output from \code{\link{mlelcd}})}
@@ -27,8 +25,7 @@ lcd.interp(lcd, gridlen=100 )  }
 
     For examples, please see \code{\link{mlelcd}}.
     
-    \code{lcd.interp} is deprecated, but retained for compatibility with
-    previous versions.  }
+}
 
   \value{
   \item{x}{Vector of \eqn{x}-values of the grid}

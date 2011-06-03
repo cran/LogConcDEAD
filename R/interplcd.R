@@ -22,8 +22,3 @@
   
   return(list(x=xo,y=yo,z=g))
 }
-
-'lcd.interp' <- function( lcd, gridlen=100 ) {
-  warning("lcd.interp is deprecated.  Use interplcd instead")
-  return( interplcd( lcd, gridlen ) )
-}

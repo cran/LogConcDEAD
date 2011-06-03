@@ -81,14 +81,3 @@
   }
   return(ansvec)
 }
-
-## for compatibility with previous versions
-'lcd.marg' <- function( lcd, marg=1, gridlen=100 ) {
-  warning("lcd.marg is deprecated.  Use interpmarglcd instead")
-  return( interpmarglcd( lcd, marg, gridlen ) )
-}
-
-'lcd.marg.eval' <- function( lcd, point=0, marg=1 ) {
-  return( dmarglcd( point, lcd, marg ) )
-}
-

@@ -23,10 +23,4 @@
   else stop("error: x must be a vector, or a numeric matrix with ",d," columns")
 }
 
-###Retained for compatibility
-'lcd.eval' <- function(lcd, po, uselog=FALSE, eps=10^-10) {
-  warning("lcd.eval is deprecated.  Use dlcd instead")
-  return(dlcd( po, lcd, uselog, eps ) )
-}
- 
 

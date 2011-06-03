@@ -62,4 +62,6 @@
 			Added function rslcd to draw samples from the smoothed log-concave estimator
 01/04/2011      1.5-2	Vignette portable problem corrected (thanks to Brian Ripley for this correction)
 21/05/2011      1.5-3	Added function EMlcdmix for clustering using EM algorithm
-
+03/06/2011      1.5-4	Corrected and added function interactive2D which creates a GUI for classification
+			using smoothed log-concave in two dimensions
+			Removed deprecated functions from the previous versions

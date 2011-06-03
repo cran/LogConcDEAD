@@ -9,8 +9,3 @@
   w <- w/sum(w)
   return(list(x=xunique,w=w))
 }
-
-'lcd.getweights' <- function(x) {
-  warning("lcd.getweights is deprecated.  Use getweights instead.")
-  return(getweights(x))
-}

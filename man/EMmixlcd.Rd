@@ -108,3 +108,4 @@ McLachlan, G. J. and Krishnan, T. (1997)
 \keyword{ nonparametric }
 \keyword{ multivariate }
 \keyword{ EM }
+\keyword{ classification }

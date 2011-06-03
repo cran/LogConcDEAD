@@ -1,6 +1,5 @@
 \name{dlcd}
 \alias{dlcd}
-\alias{lcd.eval}
 
 \title{Evaluation of a log-concave maximum likelihood estimator at a
   point}
@@ -8,11 +7,10 @@
 \description{ This function evaluates the density function of a
 log-concave maximum likelihood estimator at a point or points.}
 
-\usage{dlcd(x,lcd, uselog=FALSE, eps=10^-10) 
-lcd.eval(lcd, po, uselog=FALSE, eps=10^-10) }
+\usage{dlcd(x,lcd, uselog=FALSE, eps=10^-10)}
 
 \arguments{ 
-\item{x, po}{ Point (or \code{matrix} of points) at which the maximum
+\item{x}{ Point (or \code{matrix} of points) at which the maximum
   likelihood estimator should be evaluated}
 \item{lcd}{Object of class \code{"LogConcDEAD"} (typically output from
   \code{\link{mlelcd}})} 
@@ -43,9 +41,7 @@ lcd.eval(lcd, po, uselog=FALSE, eps=10^-10) }
   in C_n}, set \eqn{f(x) = 0}).
 
 For examples, see \code{\link{mlelcd}}.
-
-\code{lcd.eval} is deprecated, but retained for compatibility with
-previous versions.  }
+}
 
 \value{ A \code{vector} of  maximum likelihood estimate (or log
   maximum likelihood estimate) values, as evaluated at the points \code{x}.}
