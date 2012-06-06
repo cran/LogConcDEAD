@@ -2,14 +2,6 @@
 %% http://bibdesk.sourceforge.net/
 
 
-%% Created for Madeleine Cule at 2008-05-11 19:10:07 +0100 
-
-
-%%
-%%  JSS version with title style titles, \code, etc
-%%
-%%
-
 @Manual{colorspace,
   title = {\pkg{colorspace}: Color Space Manipulation},
   author = {Ross Ihaka and Paul Murrell and Kurt Hornik and Achim Zeileis},
@@ -18,12 +10,13 @@
   url = {http://CRAN.R-project.org/package=colorspace},
 }
 
-@Article{HMZ2008,
+@Article{HMZ2009,
   title = {Escaping {RGB}land: Selecting Colors for Statistical Graphics},
   author = {Achim Zeileis and Kurt Hornik and Paul Murrell},
   journal = {Computational Statistics \& Data Analysis},
-  year = {2008},
-  note = {Forthcoming},
+  year = {2009},
+  Pages = {3259--3270},
+  Volume = {53}
 }
 
 @Article{GopalCasella2010,
@@ -32,7 +25,8 @@
   author = {Vikneswaran Gopal and George Casella},
   journal = {J.\ Roy.\ Statist.\ Soc., Ser.\ B},
   year = {2010},
-  note = {Forthcoming},
+  Pages = {580--582},
+  Volume = {72}
 }
 
 @InProceedings{Sweave,
@@ -71,14 +65,13 @@
 }
 
 
-@unpublished{CSS2008,
+@article{CSS2010,
 	Author = {Cule, M. L. and Samworth, R. J. and Stewart, M. I.},
-	Date-Added = {2008-05-11 19:09:17 +0100},
-	Date-Modified = {2008-05-11 19:10:00 +0100},
-	Note = {Submitted},
-	Title = {Maximum Likelihood Estimation of a Multidimensional Log-concave Density},
-	Year = {2008},
-        URL = {http://arxiv.org/abs/0804.3989}
+	Title = {Maximum Likelihood Estimation of a Multidimensional Log-concave Density (with discussions)},
+	journal = {J.\ Roy.\ Statist.\ Soc., Ser.\ B},
+	Year = {2010},
+	Pages = {545--607},
+	Volume = {72}
 }
 
 
@@ -88,23 +81,23 @@
     year = {2007},
     note = {\proglang{R}~package version~0.75},
     url = {http://CRAN.R-project.org/package=rgl},
-  }
+}
 
-  @Manual{Grasman2005,
+@Manual{Grasman2005,
     title = {geometry: Mesh generation and surface tesselation},
     author = {Raoul Grasman},
     year = {2005},
     note = {\proglang{R}~package version~0.1},
     url = {http://users.fmg.uva.nl/rgrasman/Rqhull.html},
-  }
- @Manual{GramacyGrasman2008,
+}
+
+@Manual{GramacyGrasman2008,
     title = {\pkg{geometry}: Mesh Generation and Surface Tesselation},
     author = {Raoul Grasman and R. B. Gramacy},
     year = {2008},
     note = {\proglang{R}~package version~0.1},
     url = {http://CRAN.R-project.org/package=geometry},
-  }
-
+}
 
 
 @article{An1998,
@@ -126,20 +119,23 @@
 	Bdsk-Url-1 = {www.ics.uci.edu/~mlearn/MLRepository.html},
 	Bdsk-Url-2 = {http://www.ics.uci.edu/~mlearn/MLRepository.html}}
 
-@unpublished{BRW2008,
+@article{BRW2009,
 	Author = {Balabdaoui, F. and Rufibach, K. and Wellner, J. A.},
-	Note = {Preprint},
 	Title = {Limit distribution theory for maximum likelihood estimation of a log-concave density},
-	Url = {http://arxiv.org/abs/0708.3400},
-	Year = 2008,
-	Bdsk-Url-1 = {http://arxiv.org/abs/0708.3400}}
+	Volume = {37},
+	Year = {2009},
+	Journal = {Ann. Statist.},
+	Pages = {1299--1331}
+}
 
-@unpublished{BagnoliBergstrom1989,
+@article{BagnoliBergstrom2005,
 	Author = {Bagnoli, M. and Bergstrom, T.},
-	Institution = {University of Michigan},
-	Note = {Unpublished manuscript},
 	Title = {Log-concave Probability and Its Applications},
-	Year = {1989}}
+	Year = {2005},
+	Journal = {Econometric Theory},
+	Pages = {445--469},
+	Volume = {26}
+}
 
 @book{Barndorff-Nielsen1978,
 	Address = {New York},
@@ -212,12 +208,13 @@
 	Title = {Aggregation and Imperfect Competition: On the                   Existence of Equilibrium},
 	Year = 1991}
 
-@article{ChangWalther2008,
+@article{ChangWalther2007,
 	Author = {Chang, G. and Walther, G.},
 	Journal = {Computational Statistics \& Data Analysis},
-	Note = {To appear},
+	Volume = {51},
+	Pages = {6242--6251},
 	Title = {Clustering with Mixtures of Log-concave Distributions},
-	Year = {2008},
+	Year = {2007},
         doi = {10.1016/j.csda.2007.01.008}
 }
 
@@ -237,14 +234,6 @@
   volume = {29},
   number = {2},
   url = {http://www.jstatsoft.org/v29/i02/},
-}
-
-@manual{CGS2007,
-	Author = {Madeleine Cule, Robert Gramacy and Richard Samworth},
-	Note = {\proglang{R}~package version~1.2-1},
-	Title = {\pkg{LogConcDEAD}: Maximum likelihood estimation of a log-concave density},
-	Year = {2008},
-        url = {http://CRAN.R-project.org/package=LogConcDEAD }
 }
 
 @article{Deheuvels1977,
@@ -306,7 +295,7 @@
 	Author = {Fix, E. and Hodges, J. L.},
 	Journal = {Internat.\ Statist.\ Rev.},
 	Pages = {238--247},
-	Title = {Discriminatory Analysis -- Nonparametric                   Discrimination: Consistency Properties},
+	Title = {Discriminatory Analysis -- Nonparametric Discrimination: Consistency Properties},
 	Volume = {57},
 	Year = {1989}}
 
@@ -347,15 +336,6 @@
 	Title = {Estimation of a Convex Function: Characterizations and Asymptotic Theory},
 	Volume = {29},
 	Year = {2001}}
-
-@article{GJW2008,
-	Author = {Groeneboom, P. and Jongbloed, G. and Wellner, J. A.},
-	Journal = {J.\ Computational and Graphical Statist.},
-	Note = {To appear},
-	Title = {The Support Reduction Algorithm for Computing Nonparametric Function Estimates in Mixture Models},
-	Url = {http://arxiv.org/abs/math.ST/0405511},
-	Year = {2008},
-	Bdsk-Url-1 = {http://arxiv.org/abs/math.ST/0405511}}
 
 @book{Hand1981,
 	Address = {New York},
@@ -536,13 +516,14 @@
 	Title = {Kernel Smoothing},
 	Year = {1995}}
 
-@article{DuembgenRufibach2008,
+@article{DuembgenRufibach2009,
 	Author = {D\"umbgen, L. and Rufibach, K. },
 	Journal = {Bernoulli},
 	Title = {Maximum Likelihood Estimation of a Log-concave Density: Basic Properties and Uniform Consistency},
-	Note = {To appear}, 
-	Year = {2008},}
-%Available at \url{http://isi.cbs.nl/bernoulli/future.htm}, 
+	Year = {2009},
+	Pages = {40--68},
+	Volume = {15}
+}
 	
 @techreport{DHR2007,
 	Author = {D\"umbgen, L. and  H\"usler, A. and Rufibach, K.},

@@ -1,0 +1,28 @@
+useDynLib(LogConcDEAD)
+
+# Export all names
+export(
+  dlcd,
+  dmarglcd,
+  dslcd,
+  EMmixlcd,
+  getinfolcd,
+  getweights,
+  hatA,
+  interactive2D,
+  interplcd,
+  interpmarglcd,
+  mlelcd,
+  rlcd,
+  rslcd,
+  cov.LogConcDEAD
+)
+
+# Import all packages listed as Imports or Depends
+import(
+  MASS,
+  mvtnorm
+)
+
+S3method( "plot", "LogConcDEAD")
+S3method( "print", "LogConcDEAD")

@@ -56,8 +56,8 @@ int *convhullnmlc(double *x_in, int *nrow_in, int* ncol_in, int *nf,
   int *idx = NULL;
   double *pt_array = NULL;
 
-  FILE *outfile = stdout;      
-  FILE *errfile = stderr;      /* error messages from qhull code */
+  FILE *outfile = NULL;      
+  FILE *errfile = NULL;      /* error messages from qhull code */
 
   dim = *ncol_in;
   n = *nrow_in;

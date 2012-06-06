@@ -501,7 +501,7 @@ void qh_init_qhull_command(int argc, char *argv[]) {
     }else {
       fprintf (qh ferr, "qhull input error: more than %d characters in command line\n",
         (int)sizeof(qh qhull_command));
-      exit (1);  /* can not use qh_errexit */
+      return;  /* can not use qh_errexit */
     }
   }
 } /* init_qhull_command */
@@ -1200,7 +1200,7 @@ void qh_initflags(char *command) {
 	  break;
 	case 'z':
 	  if (!qh fout)
-	    fprintf (qh ferr, "qhull warning: output file undefined (stdout).  Option 'Tz' ignored.\n");
+	    fprintf (qh ferr, "qhull warning: output file undefined (std out).  Option 'Tz' ignored.\n");
 	  else {
 	    qh_option ("Tz-stdout", NULL, NULL);
   	    qh ferr= qh fout;
@@ -1283,7 +1283,7 @@ void qh_initflags(char *command) {
 	    *t= '\0';
 	    if (isquote)
 	      fprintf (qh ferr, "qhull error: missing end quote for option 'TO'.  Rest of line ignored.\n");
-	    else if (!freopen (filename, "w", stdout)) {
+	    else if (!freopen (filename, "w", NULL)) {
 	      fprintf (qh ferr, "qhull error: could not open file \"%s\".", filename);
 	      qh_errexit (qh_ERRinput, NULL, NULL);
 	    }else {

@@ -66,8 +66,8 @@ SEXP delaunayn(const SEXP p, const SEXP options)
 	int *simpl;
 	double *pt_array;
 
-	FILE *outfile = stdout;      /* output from qh_produce_output() use NULL to skip qh_produce_output() */
-	FILE *errfile = stderr;      /* error messages from qhull code */
+	FILE *outfile = NULL;      /* output from qh_produce_output() use NULL to skip qh_produce_output() */
+	FILE *errfile = NULL;      /* error messages from qhull code */
 
 	retval = R_NilValue;
 

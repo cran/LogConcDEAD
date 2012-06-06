@@ -2,7 +2,7 @@
 \label{sec:highd}
 
 <<label=setn4, include=FALSE, echo=FALSE>>=
-n <- 500
+n <- 100
 @ 
 In our final example we illustrate the use of the log-concave density
 estimate for higher-dimensional data.  For this example the seed has

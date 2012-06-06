@@ -8,7 +8,7 @@
 
 Recall that the maximum likelihood estimator $\hat{f}_n$ of $f_0$ 
 may be completely specified by its values at the observations 
-$X_1, \ldots, X_n$.  Writing $C_n$ for the convex hull of the data, \citet{CSS2008} showed that the problem of 
+$X_1, \ldots, X_n$.  Writing $C_n$ for the convex hull of the data, \citet{CSS2010} showed that the problem of 
 computing the estimator may be rephrased as one of finding   
 \[\argmin_{y \in \rn} \sigma(y) = - \sum_{i=1}^n w_i y_i +
 \myintegral\] for suitable chosen weights $w_i$, where
@@ -42,7 +42,7 @@ at $y^t$, denoted $\partial \sigma(y^t)$, which determines the
 direction of the move to the next term $y^{t+1}$ in the sequence.
 
 Exact expressions for $\sigma(y^t)$ and $\partial \sigma(y^t)$ are
-provided in \citet{CSS2008}.  In practice, their computation requires
+provided in \citet{CSS2010}.  In practice, their computation requires
 the evaluation of convex hulls and triangulations of certain finite
 sets of points.  This can be done in a fast and robust way via the
 \pkg{Quickhull} algorithm \citep{BDH1996}, available in \proglang{R}
@@ -82,7 +82,7 @@ for some small tolerances $\delta$, $\epsilon$ and $\eta$.
 \eqref{ytol} and \eqref{sigmatol} are the criteria suggested by
 \citet{KappelKuntsevich2000}; \eqref{inttol} is based on the
 observation that the maximum likelihood estimator is
-density \citep{CSS2008}.  By default, these values are $\delta =
+density \citep{CSS2010}.  By default, these values are $\delta =
 10^{-4}$, $\epsilon = 10^{-8}$ and $\eta = 10^{-4}$, but they may be
 modified by the user as required, using the parameters \code{ytol},
 \code{sigmatol} and \code{integraltol} respectively.  The default

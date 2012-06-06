@@ -1,7 +1,7 @@
 \subsection{Example 3: 2-d binned data}
 \label{sec:egbin}
 <<label=setn3, include=FALSE, echo=FALSE>>=
-n <- 500
+n <- 100
 @ 
 In this section, we demonstrate the use of \pkg{LogConcDEAD} with binned data.  The
 seed here has been set to $333$ for reproducibility; you may wish to
@@ -19,7 +19,7 @@ set.seed(333)
 sigma <- matrix(c(1,0.2,0.2,1),nrow=2)
 d <- 2
 <<setn3>>
-y <- rmvnorm(n,sigma=sigma)
+y <- rmvnorm(n,sigma=0.1*sigma)
 xall <- round(y,digits=1)
 @ 
 

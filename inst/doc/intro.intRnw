@@ -57,7 +57,7 @@ Shape-constrained maximum likelihood dates back to
 \citet{Grenander1956}, who treated monotone densities in the context
 of mortality data.  Recently there has been considerable interest in
 alternative shape constraints, including convexity, $k$-monotonicity
-and log-concavity \citep{GJW2001, DuembgenRufibach2008,
+and log-concavity \citep{GJW2001, DuembgenRufibach2009,
   BalabdaouiWellner2007}.  However, these works have all focused on the 
 case of univariate data.
 
@@ -73,21 +73,21 @@ is a concave function.
 Several common parametric families of
 univariate densities are log-concave, such as Gaussian, logistic and
 Gumbel densities, as well as Weibull, Gamma and Beta densities for
-certain parameter values \citep{An1998}.  In fact, \citet{CSS2008}
+certain parameter values \citep{An1998}.  In fact, \citet{CSS2010}
 showed that even though the class of multivariate log-concave
 densities is large (infinite-dimensional), it still retains some of
 the simple and attractive properties of the class of Gaussian
 densities.
 
 One-dimensional log-concave density estimation via maximum likelihood
-is discussed in \citet{DuembgenRufibach2008}; computational aspects are
+is discussed in \citet{DuembgenRufibach2009}; computational aspects are
 treated in \citet{Rufibach2007}.  It is in the multivariate case,
 however, where kernel density estimation is more difficult and
 parametric models less obvious, where a log-concave model may be most
 useful.  
 
 Theoretical and computational aspects of multivariate log-concave
-density estimation are treated in \citet{CSS2008}. In particular, it
+density estimation are treated in \citet{CSS2010}. In particular, it
 is proved that if $Y_1, \ldots, Y_m$ are (distinct) independent and
 identically distributed observations from a distribution with
 log-concave density $f_0$ on $\rd$, then (with probability $1$) there is a
@@ -106,7 +106,7 @@ of maximizing over functions of the form $\hbary$ for some $y =
   \bar{h}_y(x) = \inf \{h(x) \colon h
 \textrm{ is concave},\; h(Y_i) \geq y_i,\; i = 1, \ldots, m\}.
 \end{equation}
-As discussed in \citet{CSS2008}, we may think of $\hbary$ as the
+As discussed in \citet{CSS2010}, we may think of $\hbary$ as the
 function obtained by placing a pole of height $y_i$ at $X_i$ and
 stretching a rubber sheet over the top of the poles. 
 
@@ -146,7 +146,7 @@ and
 \[\hat{f}_n = \argmax_{f \in \FF} \sum_{i=1}^n w_i \log f(X_i).\]
 
 This generalization may also be used for a multivariate version of a
-log-concave EM algorithm (\citealp{ChangWalther2008}, also discussed in \citealp{CSS2008}).
+log-concave EM algorithm (\citealp{ChangWalther2007}, also discussed in \citealp{CSS2010}).
 
 \subsection{Outline of the remainder of this document}
 \label{sec:outline}

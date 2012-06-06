@@ -48,9 +48,9 @@ rslcd(n=1, lcd, A=hatA(lcd), method=c("Independent","MH"))
   Richard Samworth}
 
 \references{
-Chen, Y. and Samworth, R. J. (2011), 
+Chen, Y. and Samworth, R. J. (2012), 
  \emph{Smoothed log-concave maximum likelihood estimation with applications} 
- Submitted. \url{http://arxiv.org/abs/1102.1191}
+ Submitted. \url{http://arxiv.org/abs/1102.1191v4}
 
 Cule, M. L., Samworth, R. J., and Stewart, M. I. (2010)
  \emph{Maximum likelihood estimation of a multi-dimensional log-concave density} 

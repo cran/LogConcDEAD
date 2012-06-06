@@ -14,7 +14,7 @@ library("logcondens")
 @ 
 
 <<label=setn,echo=FALSE,include=FALSE>>=
-n <- 200
+n <- 100
 @ 
 
 For this example, we will use \Sexpr{n} points from a Gamma($2,1$)

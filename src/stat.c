@@ -443,7 +443,7 @@ void qh_initstatistics (void) {
 #if qh_QHpointer
   if (!(qh_qhstat= (qhstatT *)malloc (sizeof(qhstatT)))) {
     fprintf (qhmem.ferr, "qhull error (qh_initstatistics): insufficient memory\n");
-    exit (1);  /* can not use qh_errexit() */
+    return;  /* can not use qh_errexit() */
   }
 #endif
   
@@ -472,7 +472,7 @@ void qh_initstatistics (void) {
       }
     }
 #endif 
-    exit (1);  /* can not use qh_errexit() */
+    return;  /* can not use qh_errexit() */
   }
   qhstat init[zinc].i= 0;
   qhstat init[zadd].i= 0;

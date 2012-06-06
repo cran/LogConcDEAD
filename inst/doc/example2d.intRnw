@@ -2,7 +2,7 @@
 \label{sec:eg2d}
 
 <<label=setn2, include=FALSE, echo=FALSE>>=
-n <- 500
+n <- 100
 @ 
 For this section, we will generate \Sexpr{n} points from a bivariate
 normal distribution with independent components.  Again, we have set
@@ -25,7 +25,7 @@ the log-concave maximum likelihood estimate $\hat{f}_n$.  The
 described in more detail below.
 
 <<>>=
-out <- mlelcd(x,verbose=200)
+out <- mlelcd(x,verbose=50)
 @ 
 
 The default \code{print} statement shows the value of the logarithm of
@@ -106,7 +106,7 @@ out$b[1:5,]
 out$beta[1:5]
 @ 
 (In all of the above cases, only the first 5 elements are shown.)
-As discussed in \citet{CSS2008}, for each $j \in J$ we may find a
+As discussed in \citet{CSS2010}, for each $j \in J$ we may find a
 matrix $A_j$ and a vector $\alpha_j$ such that the map $w \mapsto A_jw +
 \alpha_j$ maps the unit simplex in $\mathbb{R}^d$ to the $j$th simplex 
 in the triangulation.   The inverse of this map, $x \mapsto A_j^{-1} x -
@@ -164,7 +164,7 @@ default, \code{gridlen}=100, which is suitable for most plots.
 
 Where relevant, the colors were obtained by a call to \code{heat_hcl}
 in the package \pkg{colorspace} \citep{colorspace}, following the
-recommendation of \citet{HMZ2008}. Thanks to Achim Zeileis for this
+recommendation of \citet{HMZ2009}. Thanks to Achim Zeileis for this
 helpful suggestion.
 
 <<>>=
@@ -199,7 +199,7 @@ dev.off()
 
 If $d>1$, we can plot one-dimensional marginals by setting the
 \code{marg} parameter.  Note that the marginal densities of a
-log-concave density are log-concave (discussed in \citet{CSS2008}, as
+log-concave density are log-concave (discussed in \citet{CSS2010}, as
 a consequence of the theory of \citet{Prekopa1973}).  This is
 illustrated by Figure~\ref{fig:2dmarg} using the following code:
 <<label=plot:2dmarg, eval=FALSE>>=
@@ -292,12 +292,12 @@ achieved given an object of class \code{\char34LogConcDEAD\char34} as follows:
 nsamp <- 1000
 mysamp <- rlcd(nsamp,out)
 @
-Details of the function \code{rlcd} are given in \citet{CSS2008} and \citet{GopalCasella2010}.  
+Details of the function \code{rlcd} are given in \citet{CSS2010} and \citet{GopalCasella2010}.  
 
 Once we have a random sample, plug-in estimation of various
 functionals is straightforward.
 <<>>=
-apply(mysamp,2,mean)
+colMeans(mysamp)
 cov(mysamp)
 @
 

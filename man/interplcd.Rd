@@ -19,7 +19,7 @@ in \code{\link{plot.LogConcDEAD}}.}
 \details{
   Interpolates the MLE over a grid.
   
-    The output is of a form readily usab;e by
+    The output is of a form readily usable by
     \code{\link{plot.LogConcDEAD}}, \code{\link[graphics]{image}},
     \code{\link[graphics]{contour}}, etc, as illustrated in the examples below.
 

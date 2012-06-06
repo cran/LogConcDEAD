@@ -73,9 +73,9 @@ Barber, C.B., Dobkin, D.P., and Huhdanpaa, H.T. (1996)
  ACM Trans. on Mathematical Software, 22(4) p.469-483
  \url{http://www.qhull.org}
 
-Chen, Y. and Samworth, R. J. (2011), 
+Chen, Y. and Samworth, R. J. (2012), 
  \emph{Smoothed log-concave maximum likelihood estimation with applications} 
- Submitted. \url{http://arxiv.org/abs/1102.1191}
+ Submitted. \url{http://arxiv.org/abs/1102.1191v4}
 
 Cule, M. L. and D\"umbgen, L. (2008)]
  \emph{On an auxiliary function for log-density estimation}, 
@@ -133,7 +133,7 @@ plot(lcd, marg=2, g.marg=g.marg2)
 
 ## generate some points from the fitted density
 generated <- rlcd(100, lcd)
-genmean <- mean(generated)
+genmean <- colMeans(generated)
 
 ## evaluate the fitted density
 mypoint <- c(0, 0)

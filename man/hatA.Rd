@@ -38,9 +38,9 @@
 \note{Details of the computational aspects can be found in \cite{Chen and Samworth (2011)}.}
 
 \references{
- Chen, Y. and Samworth, R. J. (2011), 
+ Chen, Y. and Samworth, R. J. (2012), 
  \emph{Smoothed log-concave maximum likelihood estimation with applications} 
- Submitted. \url{http://arxiv.org/abs/1102.1191}
+ Submitted. \url{http://arxiv.org/abs/1102.1191v4}
 }
 
 

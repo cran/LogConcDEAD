@@ -517,7 +517,7 @@ setT *qh_detvridge3 (vertexT *atvertex, vertexT *vertex) {
   if (qh CHECKfrequently) {
     FOREACHneighbor_(vertex) {
       if (!neighbor->seen2) {
-	fprintf (stderr, "qh_detvridge3: neigbors of vertex p%d are not connected at facet %d\n",
+	fprintf (NULL, "qh_detvridge3: neigbors of vertex p%d are not connected at facet %d\n",
 	         qh_pointid (vertex->point), neighbor->id);
 	qh_errexit (qh_ERRqhull, neighbor, NULL);
       }

@@ -51,9 +51,9 @@ smoothed log-concave maximum likelihood estimator at a point or points.}
 }
 
 \references{
- Chen, Y. and Samworth, R. J. (2011), 
+ Chen, Y. and Samworth, R. J. (2012), 
  \emph{Smoothed log-concave maximum likelihood estimation with applications} 
- Submitted. \url{http://arxiv.org/abs/1102.1191}
+ Submitted. \url{http://arxiv.org/abs/1102.1191v4}
 
  Grundmann, A. and Moeller, M. (1978)
  \emph{Invariant Integration Formulas for the N-Simplex by Combinatorial Methods} 

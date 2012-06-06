@@ -32,9 +32,9 @@
 
 \references{
 
-Chen, Y. and Samworth, R. J. (2011), 
+Chen, Y. and Samworth, R. J. (2012), 
  \emph{Smoothed log-concave maximum likelihood estimation with applications} 
- Submitted. \url{http://arxiv.org/abs/1102.1191}
+ Submitted. \url{http://arxiv.org/abs/1102.1191v4}
 
 Cule, M. L., Samworth, R. J., and Stewart, M. I. (2010)
 \emph{Maximum likelihood estimation of a log-concave density},
@@ -54,7 +54,7 @@ Cule, M. L., Samworth, R. J., and Stewart, M. I. (2010)
 \examples{
 ##Simple bivariate normal data
   set.seed( 1 )
-  n = 30
+  n = 15
   d = 2
   props=c( 0.6, 0.4 )
   x <- matrix( rnorm( n*d ), ncol = d )

@@ -8,7 +8,7 @@
    
   To initialize memory:
 
-    qh_meminit (stderr);  
+    qh_meminit (NULL);  
     qh_meminitbuffers (qh IStracing, qh_MEMalign, 7, qh_MEMbufsize,qh_MEMinitbuf);
     qh_memsize(sizeof(facetT));
     qh_memsize(sizeof(facetT));
@@ -237,7 +237,7 @@ void qh_meminit (FILE *ferr) {
   qhmem.ferr= ferr;
   if (sizeof(void*) < sizeof(int)) {
     fprintf (ferr, "qhull internal error (qh_meminit): sizeof(void*) < sizeof(int).  qset.c will not work\n");
-    exit (1);  /* can not use qh_errexit() */
+    return;  /* can not use qh_errexit() */
   }
 } /* meminit */
 

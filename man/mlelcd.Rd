@@ -88,12 +88,11 @@ mlelcd(x, w=rep(1/nrow(x),nrow(x)), y=initialy(x),
   An implementation of Shor's \eqn{r}-algorithm based on \pkg{SolvOpt}
 is used.
 
-  Computing \eqn{\sigma}{sigma} makes use of the \pkg{qhull} library,
-adapted from the \R implementation in \pkg{geometry}.  Code from this
-package is copied here as it is not currently possible to use compiled
-code from another package.  For points not in general position, this
-requires a Taylor expansion of \eqn{\sigma}{sigma}, discussed in
-\cite{Cule and D\"umbgen (2008)}.
+  Computing \eqn{\sigma}{sigma} makes use of the \pkg{qhull} library.
+Code from this C-based library is copied here as it is not currently 
+possible to use compiled code from another library.  
+For points not in general position, this requires a Taylor expansion of 
+\eqn{\sigma}{sigma}, discussed in \cite{Cule and D\"umbgen (2008)}.
 }
 
 \value{
@@ -185,10 +184,10 @@ plot(lcd, marg=2, g.marg=g.marg2)
 ## generate some points from the fitted density
 ## via independent rejection sampling
 generated1 <- rlcd(100, lcd)
-genmean1 <- mean(generated1)
+genmean1 <- colMeans(generated1)
 ## via Metropolis-Hastings algorithm
 generated2 <- rlcd(100, lcd, "MH")
-genmean2 <- mean(generated2)
+genmean2 <- colMeans(generated2)
 
 ## evaluate the fitted density
 mypoint <- c(0, 0)
@@ -218,7 +217,6 @@ generated <- rslcd(100, lcd, A)
 }
 
 \seealso{
-  \code{\link[geometry:convhulln]{convhulln}},
   \code{\link[logcondens:logcondens-package]{logcondens}},
   \code{\link{interplcd}}, \code{\link{plot.LogConcDEAD}},
   \code{\link{interpmarglcd}}, \code{\link{rlcd}}, \code{\link{dlcd}},

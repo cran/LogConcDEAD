@@ -27,7 +27,7 @@
   }
  
   mat_2mom = t(mat)+mat-diag(diag(mat),nrow=nrow(mat))
-  m<-matrix((mean(as.data.frame(x))),nrow=1)
+  m<-matrix(colMeans(as.data.frame(x)),nrow=1)
   mat_cov<-mat_2mom- t(m)%*%m
   return (mat_cov)
 }

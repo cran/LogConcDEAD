@@ -65,3 +65,7 @@
 03/06/2011      1.5-4	Corrected and added function interactive2D which creates a GUI for classification
 			using smoothed log-concave in two dimensions
 			Removed deprecated functions from the previous versions
+06/06/2012      1.5-5	Added a NAMESPACE file to meet the new requirement of R-2.15
+			S3 methods consistency resolved
+			Removed functions in C code which might terminate R (i.e. stderr/stdout/exit)
+			Rewrote the vignette and some of the examples (thanks to Kurt Hornik for this suggestion)

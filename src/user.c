@@ -65,9 +65,9 @@
   coordT *points;           /* array of coordinates for each point */
   boolT ismalloc;           /* True if qhull should free points in qh_freeqhull() or reallocation */
   char flags[]= "qhull Tv"; /* option flags for qhull, see qh_opt.htm */
-  FILE *outfile= stdout;    /* output from qh_produce_output()
+  FILE *outfile= NULL;    /* output from qh_produce_output()
 			       use NULL to skip qh_produce_output() */
-  FILE *errfile= stderr;    /* error messages from qhull code */
+  FILE *errfile= NULL;    /* error messages from qhull code */
   int exitcode;             /* 0 if no error from qhull */
   facetT *facet;	    /* set by FORALLfacets */
   int curlong, totlong;	    /* memory remaining after qh_memfreeshort */
@@ -127,7 +127,7 @@ int qh_new_qhull (int dim, int numpoints, coordT *points, boolT ismalloc,
   }
   if (strncmp (qhull_cmd,"qhull ", 6)) {
     fprintf (errfile, "qh_new_qhull: start qhull_cmd argument with \"qhull \"\n");
-    exit(1);
+    return(0);
   }
   qh_initqhull_start (NULL, outfile, errfile);
   trace1(( qh ferr, "qh_new_qhull: build new Qhull for %d %d-d points with %s\n", numpoints, dim, qhull_cmd));
@@ -155,8 +155,7 @@ int qh_new_qhull (int dim, int numpoints, coordT *points, boolT ismalloc,
     qh_init_B (new_points, numpoints, hulldim, new_ismalloc);
     qh_qhull();
     qh_check_output();
-    if (outfile)
-      qh_produce_output(); 
+    qh_produce_output(); 
     if (qh VERIFYoutput && !qh STOPpoint && !qh STOPcone)
       qh_check_points();
   }
@@ -190,7 +189,7 @@ void qh_errexit(int exitcode, facetT *facet, ridgeT *ridge) {
 
   if (qh ERREXITcalled) {
     fprintf (qh ferr, "\nqhull error while processing previous error.  Exit program\n");
-    exit(1);
+    return;
   }
   qh ERREXITcalled= True;
   if (!qh QHULLfinished)
@@ -231,7 +230,7 @@ void qh_errexit(int exitcode, facetT *facet, ridgeT *ridge) {
     qh_printhelp_degenerate (qh ferr);
   if (qh NOerrexit) {
     fprintf (qh ferr, "qhull error while ending program.  Exit program\n");
-    exit(1);
+    return;
   }
   qh NOerrexit= True;
   longjmp(qh errexit, exitcode);
