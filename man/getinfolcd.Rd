@@ -11,7 +11,8 @@ Construct an object of class LogConcDEAD
   likelihood estimator at datapoints.
 }
 \usage{
-getinfolcd(x, y, w = rep(1/length(y), length(y)), chtol = 10^-6, MinSigma = NA, NumberOfEvaluations = NA)
+getinfolcd(x, y, w = rep(1/length(y), length(y)), chtol = 10^-6, MinSigma = NA, 
+  NumberOfEvaluations = NA)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

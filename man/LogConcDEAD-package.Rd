@@ -73,9 +73,9 @@ Barber, C.B., Dobkin, D.P., and Huhdanpaa, H.T. (1996)
  ACM Trans. on Mathematical Software, 22(4) p.469-483
  \url{http://www.qhull.org}
 
-Chen, Y. and Samworth, R. J. (2012), 
+Chen, Y. and Samworth, R. J. (2013), 
  \emph{Smoothed log-concave maximum likelihood estimation with applications} 
- Submitted. \url{http://arxiv.org/abs/1102.1191v4}
+ Statist. Sinica, 23, 1373-1398. \url{http://arxiv.org/abs/1102.1191v4}
 
 Cule, M. L. and D\"umbgen, L. (2008)]
  \emph{On an auxiliary function for log-density estimation}, 

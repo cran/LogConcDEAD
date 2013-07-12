@@ -32,9 +32,9 @@
 
 \references{
 
-Chen, Y. and Samworth, R. J. (2012), 
+Chen, Y. and Samworth, R. J. (2013), 
  \emph{Smoothed log-concave maximum likelihood estimation with applications} 
- Submitted. \url{http://arxiv.org/abs/1102.1191v4}
+ Statist. Sinica, 23, 1373-1398. \url{http://arxiv.org/abs/1102.1191v4}
 
 Cule, M. L., Samworth, R. J., and Stewart, M. I. (2010)
 \emph{Maximum likelihood estimation of a log-concave density},
@@ -52,15 +52,16 @@ Cule, M. L., Samworth, R. J., and Stewart, M. I. (2010)
   Richard Samworth}
 
 \examples{
-##Simple bivariate normal data
-  set.seed( 1 )
-  n = 15
-  d = 2
-  props=c( 0.6, 0.4 )
-  x <- matrix( rnorm( n*d ), ncol = d )
-  shiftvec <- ifelse( runif( n ) > props[ 1 ], 0, 1)
-  x[,1] <- x[,1] + shiftvec
-  interactive2D( x, shiftvec )
+## Simple bivariate normal data
+## only works interactively, not run as a test example here
+#  set.seed( 1 )
+#  n = 15
+#  d = 2
+#  props=c( 0.6, 0.4 )
+#  x <- matrix( rnorm( n*d ), ncol = d )
+#  shiftvec <- ifelse( runif( n ) > props[ 1 ], 0, 1)
+#  x[,1] <- x[,1] + shiftvec
+#  interactive2D( x, shiftvec )
 }
 
 \seealso{

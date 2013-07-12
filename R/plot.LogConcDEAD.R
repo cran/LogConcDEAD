@@ -17,9 +17,13 @@ plot.LogConcDEAD <- function (x, uselog = FALSE, type = "ic", addp =
       plot(y[o], x$logMLE[o], type = type, ylab = ylab, xlab = xlab, ...)
     } else {
       if( missing( ylab ) ) ylab <- "density estimate"
-      plot(y[o], exp(x$logMLE[o]), ylab = ylab,  xlab = xlab, type = type, ...)
+      ysample <- seq(min(y),max(y),length.out = 500)
+      logMLEsample <- dlcd(ysample,x,uselog=TRUE)
+      plot(ysample, exp(logMLEsample), ylab = ylab,  xlab = xlab, type = type, ...)
     }
   }
+
+
 
   ## marginals
   else if ( !missing(marg) ) {

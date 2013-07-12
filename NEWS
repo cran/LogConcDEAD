@@ -69,3 +69,6 @@
 			S3 methods consistency resolved
 			Removed functions in C code which might terminate R (i.e. stderr/stdout/exit)
 			Rewrote the vignette and some of the examples (thanks to Kurt Hornik for this suggestion)
+12/07/2012      1.5-6	Fixed a bug in 1D plotting (thanks to Mark Wolters for this suggestion)
+			Reference updated
+			Remove obsolete files (e.g. zzz.R) to meet the new requirement of R-3.0
