@@ -1,6 +1,6 @@
 \documentclass[article, shortnames, nojss]{jss}
 
-\usepackage{amsmath,amsthm,bbm,amssymb, amscd, ifthen, subfigure, psfrag}
+\usepackage{amsmath, amsthm, amssymb, amscd, ifthen, subfigure, psfrag}
 \renewcommand{\textfraction}{0.05}
 \renewcommand{\topfraction}{0.95}
 \renewcommand{\bottomfraction}{0.95}
@@ -20,7 +20,7 @@
 %\VignettePackage{LogConcDEAD} 
 
 %% almost as usual
-\author{Madeleine Cule, Robert Gramacy and  Richard Samworth\\
+\author{Madeleine Cule, Robert Gramacy and Richard Samworth\\
 University of Cambridge}
 \title{\pkg{LogConcDEAD}: An \proglang{R} Package for Maximum Likelihood
   Estimation of a Multivariate Log-Concave Density}
@@ -118,7 +118,6 @@ University of Cambridge}
 \newcommand{\KK}{\mathcal{K}}
 \newcommand{\RR}{\mathbb{R}}
 \newcommand{\FF}{\mathcal{F}}
-\newcommand{\indicator}{\mathbbm{1}}
 
 
 %%Here is where the actual document begins:

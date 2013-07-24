@@ -15,11 +15,13 @@ plot.LogConcDEAD <- function (x, uselog = FALSE, type = "ic", addp =
     if (uselog) {
       if( missing( ylab ) ) ylab <- "log density estimate"
       plot(y[o], x$logMLE[o], type = type, ylab = ylab, xlab = xlab, ...)
+      if (addp == TRUE) points(y[o], x$logMLE[o])
     } else {
       if( missing( ylab ) ) ylab <- "density estimate"
       ysample <- seq(min(y),max(y),length.out = 500)
       logMLEsample <- dlcd(ysample,x,uselog=TRUE)
       plot(ysample, exp(logMLEsample), ylab = ylab,  xlab = xlab, type = type, ...)
+      if (addp == TRUE) points(y[o], exp(x$logMLE[o]))
     }
   }
 

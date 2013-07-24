@@ -1,6 +1,7 @@
 		1.0-1 	Windows version corrected
 01/08/2007	1.0-3 	Corrected lcd.eval, removed reference to malloc.h (obsolete)
-02/08/2007      1.0-4 	Corrected some mismatched Calloc/Free/free in convhullnmlc,renormalise
+02/08/2007      1.0-4 	Corrected some mismatched Calloc/Free/free in convhullnmlc,
+			renormalise
 05/08/2007	1.0-5 	Fixed CR line endings
 18/08/2007      1.0-6 	Fixed summary
 16/11/2007      1.0-7 	Disabled strict-aliasing to fix incompatibility with gcc-4.2
@@ -8,67 +9,75 @@
 20/11/2007	1.0-10 	configure added for compiler-independent version
 04/12/2007	1.0-11 	configure for Windows added
 
-03/01/2008	1.1 	Added functions to compute the "weighted" MLE and tidied up some of the documentation.
+03/01/2008	1.1 	Added functions to compute the "weighted" MLE and tidied up some 
+			of the documentation.
 02/04/2008 	1.1 	Added a stable way to compute integrals
-07/04/2008      1.1-1 	Already a few fixes for very minor code things (removing unused variables etc)
-13/05/2008	1.1-2 	Streamlining the weights and some documentation improvements (minor)
+07/04/2008      1.1-1 	Already a few fixes for very minor code things (removing unused 
+			variables etc)
+13/05/2008	1.1-2 	Streamline the weights and some minor documentation improvements
 14/06/2008      1.1-2 	Improving handling of points not in general position
 
 05/07/2008  	1.2-0 	Changing the format of the verbose part slightly
 			Added lcd.getweights
 			Added lcd.eval.marg
-			Changed the way marginals are computed (hopefully
-			for the better!)
+			Changed the way marginals are computed
 
-11/12/2008	1.3-0 	changing to rlcd, dlcd for consistency with current
-			R conventions and changed the name of other
-			functions
+11/12/2008	1.3-0 	Changing to rlcd, dlcd for consistency with current R conventions 
+			and changed the name of other functions
 			Updated lcd.interp for compatibility with mixtures
-			Updated 1-d version for lcd.mle for compatability
-	              	with lcd.eval
-			Significant improvements and modifications to 
-			documentation
-15/12/2008	1.3-1 	Added vignettes, corrected arguments of plot (adding 
-			'drawlabels' in the correct place, corrected a use of 
-			deprecated function
-01/01/2009      1.3-2 	Updated vignette to be latest version of JSS paper,
-	              	including using png graphics
-	              	Changed the colors to use heatmap colors rather than
-	              	the slightly daft terrain (thanks to Achim Zeileis
-	              	for this suggestion and the references)
-29/01/2009	1.3-3 	Corrected a slight error with rgl axis labels, and 
-			fixed the vignette
+			Updated 1-d version for lcd.mle for compatability with lcd.eval
+			Significant improvements and modifications to documentation
+15/12/2008	1.3-1 	Added vignettes, corrected arguments of plot (adding 'drawlabels' 
+			in the correct place, corrected a use of deprecated function)
+01/01/2009      1.3-2 	Updated vignette to be latest version of JSS paper, including 
+			using png graphics
+	              	Changed the colors to use heatmap colors rather than the slightly 
+			daft terrain (thanks to Achim Zeileis for this suggestion and the 
+			references)
+29/01/2009	1.3-3 	Corrected a slight error with rgl axis labels
+			Fixed the vignette
 
-11/05/2009	1.4-0	Added A, alpha, detA to the output from mlelcd and
-			cleaned up rlcd; fixed some plot things; added bunique,
-			betaunique and removed dependence on 'akima' package.
-			Corrected qhull options NOT to joggle input, as this is clearly
-			ridiculous. Also removed an option that checks the triangulation
-			at every stage, instead just doing it at the end.
-			rlcd now uses a more sensible and faster methods of generating
+11/05/2009	1.4-0	Added A, alpha, detA to output from mlelcd and cleaned up rlcd 
+			Fixed some plot things
+			Added bunique, betaunique and removed dependence on 'akima' 
+			package
+			Corrected qhull options NOT to joggle input 
+			Also removed an option that checks the triangulation at every 
+			stage, instead just doing it at the end.
+			rlcd now uses a more sensible and faster methods of generating 
 			points on a simplex
-11/01/2010      1.4-1	Corrected autoconfiguration scripts (thanks to Brian
-			Ripley for this correction)
-09/07/2010      1.4-2	Implemented the Metropolis-Hasting option in rlcd (
-			thanks to Vikneswaran Gopal and George Casella for
-			this suggestion)
+11/01/2010      1.4-1	Corrected autoconfiguration scripts (thanks to Brian Ripley for 
+			this correction)
+09/07/2010      1.4-2	Implemented the Metropolis-Hasting option in rlcd (thanks to 
+			Vikneswaran Gopal and George Casella for this suggestion)
 09/12/2010      1.4-3	Corrected a slight error in getinfolcd 
 			Completely removed dependence on 'geometry' package
 
-01/01/2011      1.5-0	Added function cov.LogConcDEAD to compute the covariance matrix of the 
-                        log-concave maximum likelihood density estimates
-                        Added function hatA for the smoothed log-concave estimator		
-01/02/2011      1.5-1	Added function dslcd to evaluate the smoothed log-concave estimates
-			Added function rslcd to draw samples from the smoothed log-concave estimator
-01/04/2011      1.5-2	Vignette portable problem corrected (thanks to Brian Ripley for this correction)
+01/01/2011      1.5-0	Added function cov.LogConcDEAD to compute the covariance matrix 
+			of the log-concave maximum likelihood density estimates
+			Added function hatA for the smoothed log-concave estimator		
+01/02/2011      1.5-1	Added function dslcd to evaluate the smoothed log-concave mle
+			Added function rslcd to draw samples from the smoothed 
+			log-concave mle
+01/04/2011      1.5-2	Vignette portable problem corrected (thanks to Brian Ripley for 
+			this correction)
 21/05/2011      1.5-3	Added function EMlcdmix for clustering using EM algorithm
-03/06/2011      1.5-4	Corrected and added function interactive2D which creates a GUI for classification
-			using smoothed log-concave in two dimensions
+03/06/2011      1.5-4	Corrected and added function interactive2D which creates a GUI 
+			for classification using smoothed log-concave in two dimensions
 			Removed deprecated functions from the previous versions
 06/06/2012      1.5-5	Added a NAMESPACE file to meet the new requirement of R-2.15
 			S3 methods consistency resolved
-			Removed functions in C code which might terminate R (i.e. stderr/stdout/exit)
-			Rewrote the vignette and some of the examples (thanks to Kurt Hornik for this suggestion)
-12/07/2012      1.5-6	Fixed a bug in 1D plotting (thanks to Mark Wolters for this suggestion)
+			Removed functions in C code which might terminate R
+			Rewrote the vignette and some of the examples (thanks to 
+			Kurt Hornik for this suggestion)
+12/07/2012      1.5-6	Fixed a bug in 1D plotting (thanks to Mark Wolters for this 
+			correction)
 			Reference updated
-			Remove obsolete files (e.g. zzz.R) to meet the new requirement of R-3.0
+			Removed obsolete files (e.g. zzz.R) to meet the new requirement 
+			of R-3.0
+24/07/2012      1.5-7	Added cleanup script to remove unnecessary Makevars file after
+			compiling for portability (thanks to Brian Ripley for this 
+			suggestion)
+			Removed tcltk from the suggested package list as it is already 
+			included in the R distributions
+			A slight change was made to the vignette to enhance portability

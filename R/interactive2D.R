@@ -1,5 +1,4 @@
 interactive2D=function(data,cl){
-  require("tcltk")
   require("tkrplot")
   if (is.matrix(data) == FALSE || ncol(data) != 2)
      stop("data must be a matrix with two columns")

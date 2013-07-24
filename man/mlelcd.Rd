@@ -184,15 +184,15 @@ plot(lcd, marg=2, g.marg=g.marg2)
 ## generate some points from the fitted density
 ## via independent rejection sampling
 generated1 <- rlcd(100, lcd)
-genmean1 <- colMeans(generated1)
+colMeans(generated1)
 ## via Metropolis-Hastings algorithm
 generated2 <- rlcd(100, lcd, "MH")
-genmean2 <- colMeans(generated2)
+colMeans(generated2)
 
 ## evaluate the fitted density
 mypoint <- c(0, 0)
 dlcd(mypoint, lcd, uselog=FALSE)
-mypoint <- c(10, 0)
+mypoint <- c(1, 0)
 dlcd(mypoint, lcd, uselog=FALSE)
 
 ## evaluate the marginal density
@@ -209,7 +209,7 @@ A <- hatA(lcd)
 ## evaluate the fitted smoothed log-concave density
 mypoint <- c(0, 0)
 dslcd(mypoint, lcd, A)
-mypoint <- c(10, 0)
+mypoint <- c(1, 0)
 dslcd(mypoint, lcd, A)
 
 ## generate some points from the fitted smoothed log-concave density
@@ -217,10 +217,11 @@ generated <- rslcd(100, lcd, A)
 }
 
 \seealso{
-  \code{\link[logcondens:logcondens-package]{logcondens}},
-  \code{\link{interplcd}}, \code{\link{plot.LogConcDEAD}},
+  \code{\link[logcondens:logcondens-package]{logcondens}}, 
+  \code{\link{interplcd}},  \code{\link{plot.LogConcDEAD}}, 
   \code{\link{interpmarglcd}}, \code{\link{rlcd}}, \code{\link{dlcd}},
-  \code{\link{dmarglcd}},\code{\link{cov.LogConcDEAD}}
+
+  \code{\link{dmarglcd}}, \code{\link{cov.LogConcDEAD}}
 }
 \keyword{ nonparametric }
 \keyword{ multivariate }

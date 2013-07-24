@@ -51,14 +51,14 @@ estimator, optionally using the \pkg{rgl} package.
 }
 
 \author{
-  Madeleine Cule \email{mlc40@cam.ac.uk}
-  
-  Robert Gramacy \email{bobby@statslab.cam.ac.uk}
-
-  Richard Samworth \email{rjs57@cam.ac.uk}
-
   Yining Chen (maintainer) \email{yc319@statslab.cam.ac.uk}
-  }
+
+  Madeleine Cule 
+  
+  Robert Gramacy 
+
+  Richard Samworth
+}
 
 \note{The authors gratefully acknowledge the assistance of Lutz Duembgen
   at the University of Bern for his insight into the objective function
@@ -73,11 +73,11 @@ Barber, C.B., Dobkin, D.P., and Huhdanpaa, H.T. (1996)
  ACM Trans. on Mathematical Software, 22(4) p.469-483
  \url{http://www.qhull.org}
 
-Chen, Y. and Samworth, R. J. (2013), 
+Chen, Y. and Samworth, R. J. (2013) 
  \emph{Smoothed log-concave maximum likelihood estimation with applications} 
  Statist. Sinica, 23, 1373-1398. \url{http://arxiv.org/abs/1102.1191v4}
 
-Cule, M. L. and D\"umbgen, L. (2008)]
+Cule, M. L. and D\"umbgen, L. (2008)
  \emph{On an auxiliary function for log-density estimation}, 
  University of Bern technical report. \url{http://arxiv.org/abs/0807.4719}
 

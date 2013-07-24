@@ -16,7 +16,7 @@ plots of axis-aligned marginal density estimates are available.}
   \item{uselog}{Scalar \code{logical}: should the plot be on the log scale?}
   \item{type}{Plot type: \code{"p"} perspective, \code{"c"} contour, \code{"i"} image, \code{ic}
     image and contour, \code{r} using \pkg{\link[rgl:rgl-package]{rgl}} (the best!)}
-  \item{addp}{Scalar \code{logical}: should the data points be plotted? (On the surface    for \eqn{d \geq 2}{d >= 2}; as tick marks for \eqn{d=1})}
+  \item{addp}{Scalar \code{logical}: should the data points be plotted? (as black dots on the surface for \eqn{d \geq 2}{d >= 2}; as circles for \eqn{d=1})}
   \item{drawlabels}{Scalar \code{logical}: should labels be added to
   contour lines? (only relevant for \code{type}s \code{"ic"} and \code{"c"})}
   \item{gridlen}{Integer scalar indicating the number of points at which the maximum likelihood estimator is evaluated in each

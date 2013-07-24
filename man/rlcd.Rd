@@ -36,7 +36,7 @@ rlcd(n=1, lcd, method=c("Independent","MH"))
 }
 
 \author{
-  Yining Chen \email{yc319@statslab.cam.ac.uk}
+  Yining Chen
 
   Madeleine Cule
 
