@@ -11,11 +11,6 @@
                      sigmatol=10^-8,
                      integraltol=10^-4,
                      ytol=10^-4,
-                     stepscale=5.1,
-                     stepscale2=2,
-                     stepscale3=1.5,
-                     stepscale4=1.05,
-                     desiredsize=3.3,
                      Jtol=0.001,
                      chtol = 10^-6 ) {
 
@@ -50,7 +45,7 @@
   lcdsort <- c(outerpoints,innerpoints)
   
   ##Make the initial vector
-  opts <- rep(0,13)
+  opts <- rep(0,11)
   opts[1] <- as.double(-c) #-for minimization; c for initial step length
   opts[2] <- ytol #distance
   opts[3] <- sigmatol #function
@@ -59,7 +54,7 @@
   opts[6] <- integraltol #integral
   opts[7] <- as.double(alpha) #dilation factor
   opts[8] <- 1*10^(-11) #for numerical gradient approx
-  parameters <- c( stepscale, stepscale2, stepscale3, stepscale4, desiredsize )
+
 
   ## Set up the qhull options
   chopts <- paste( "Qt", sep="" )
@@ -72,7 +67,6 @@
             as.double( w [ lcdsort ] ),
             options = as.double( opts ),
             minvalue = double( 1 ),
-            parameters = as.double( parameters ),
             Jtol = as.double( Jtol ),
             chopts = as.character( chopts ),
             nouter = as.integer( nouter ),

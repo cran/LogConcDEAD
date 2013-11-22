@@ -16,8 +16,7 @@
  \usage{
 mlelcd(x, w=rep(1/nrow(x),nrow(x)), y=initialy(x),
   verbose=-1, alpha=5, c=1, sigmatol=10^-8, integraltol=10^-4,
-  ytol=10^-4, stepscale=5.1, stepscale2=2, stepscale3=1.5,
-  stepscale4=1.05, desiredsize=3.3, Jtol=0.001, chtol=10^-6)
+  ytol=10^-4, Jtol=0.001, chtol=10^-6)
  }
 
 \arguments{
@@ -49,8 +48,6 @@ mlelcd(x, w=rep(1/nrow(x),nrow(x)), y=initialy(x),
   \item{integraltol}{Real-valued scalar giving one of the stopping
     criteria:  \eqn{| 1 - \exp(\bar{h}_y) |}{ |exp(h_y) - 1|} must be below
   \code{integraltol} for algorithm to terminate. (See Details)}
-  \item{stepscale, stepscale2, stepscale3, stepscale4,
-  desiredsize}{Scalar parameters for \pkg{SolvOpt}.  Changing these is not recommended.}
   \item{Jtol}{Parameter controlling when Taylor expansion is used in
     computing the function \eqn{\sigma}{sigma}}
   \item{chtol}{Parameter controlling convex hull computations}

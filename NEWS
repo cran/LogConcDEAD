@@ -70,14 +70,16 @@
 			Removed functions in C code which might terminate R
 			Rewrote the vignette and some of the examples (thanks to 
 			Kurt Hornik for this suggestion)
-12/07/2012      1.5-6	Fixed a bug in 1D plotting (thanks to Mark Wolters for this 
+12/07/2013      1.5-6	Fixed a bug in 1D plotting (thanks to Mark Wolters for this 
 			correction)
 			Reference updated
 			Removed obsolete files (e.g. zzz.R) to meet the new requirement 
 			of R-3.0
-24/07/2012      1.5-7	Added cleanup script to remove unnecessary Makevars file after
+24/07/2013      1.5-7	Added cleanup script to remove unnecessary Makevars file after
 			compiling for portability (thanks to Brian Ripley for this 
 			suggestion)
 			Removed tcltk from the suggested package list as it is already 
 			included in the R distributions
 			A slight change was made to the vignette to enhance portability
+22/11/2013	1.5-8	Undefined coercion behaviour fixed in C
+			Cleaned up unused options in the function mlelcd 

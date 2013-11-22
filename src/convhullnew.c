@@ -119,11 +119,11 @@ SEXP convhullnew(const SEXP p, const SEXP options)
 			*/
 			FOREACHvertex_ (facet->vertices) {
 				/* qh_printvertex(stdout,vertex); */
-				if (j >= dim)
-					warning("extra vertex %d of facet %d = %d",
-					j++,i,1+qh_pointid(vertex->point));
-				else
+				if (j < dim)
 					idx[i+n*j++] = 1 + qh_pointid(vertex->point);
+				// else	warning("extra vertex %d of facet %d = %d",j++,i,1+qh_pointid(vertex->point));
+				
+					
 			}
 			if (j < dim) warning("facet %d only has %d vertices",i,j);
 			i++;

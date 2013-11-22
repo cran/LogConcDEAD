@@ -106,7 +106,6 @@
 'dslcd_com' <- function (y, lcd, A) 
 {
 #  Evaluate the density by Combinatorial Methods
-    library(mvtnorm)
     triang = lcd$triang
     x = lcd$x
     d = ncol(y)
@@ -135,7 +134,6 @@
 'dslcd_2D' <- function (y, lcd, A) 
 {
 #  Evaluate the density by Gaussian quadrature
-   library(MASS)
    d = ncol(y)
    n = nrow(y)
    if (d == 2) {
@@ -180,7 +178,6 @@
 'dslcd_1D' <- function (y, lcd, A) 
 {
 #  Evaluate the density in one dimension via explicit expression
-   library(MASS)
    d = ncol(y)
    n = nrow(y)
    if (d == 1) {

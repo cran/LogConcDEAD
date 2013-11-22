@@ -83,9 +83,28 @@ double solvoptweights(unsigned short n,
   grad    is the entry name of an external function which computes the gradient
           vector of the objective function 'fun' at a point x.
           synopsis: void grad(double x[],double g[])
-  options is a vector of optional parameters (see the description in SOLVOPT.H).
-        Returned optional values:
-        options[8], the number of iterations, if positive,
+  options is a vector of optional parameters:
+	  options[0]= H, where sign(H)=-1 resp. sign(H)=+1 means minimize
+                resp. maximize FUN (valid only for unconstrained problem)
+                and H itself is a factor for the initial trial step size 
+                (options[0]=-1.e0 by default),
+          options[1]= relative error for the argument
+                in terms of the max-norm (1.e-4 by default),
+          options[2]= relative error for the function value (1.e-6 by default),
+          options[3]= limit for the number of iterations (15000 by default),
+          options[4]= control of the display of intermediate results and
+                error resp. warning messages (default value is -1,
+                i.e., no intermediate output but error and warning
+                messages),
+          options[5]= admissible maximal residual for a set of constraints
+               (options[5]=1.e-8 by default),
+          options[6]= the coefficient of space dilation (2.5 by default),
+          options[7]= the lower bound for the stepsize used for the finite
+               difference approximation of gradients (1.e-11 by default).
+               (@ ... changes should be done with care)
+
+          Returned optional values:
+          options[8], the number of iterations, if positive,
             or an abnormal stop code, if negative (see manual for more),
             -1: allocation error,
             -2: improper space dimension,
@@ -100,16 +119,13 @@ double solvoptweights(unsigned short n,
            -12: Result may not provide the true optimum,
            -13: Result may be inaccurate in view of a point.
            -14: Result may be inaccurate in view of a function value,
-	   options[9] , the number of objective function evaluations,    
-        options[10], the number of gradient evaluations,
-        options[11], the number of constraint function evaluations, and
-        options[12], the number of constraint gradient evaluations.
-        options[13], do we do a subgradient algorithm on the end?
+	 options[9] , the number of objective function evaluations,    
+         options[10], the number of gradient evaluations,
 
 ____________________________________________________________________________*/
  
-      double default_options[13]=
-          {-1.0,1.e-4,1.e-6,15000.,0.0,1.e-8,2.5,1.e-11,0.0,0.0,0.0,0.0,0.0};
+      double default_options[11]=
+          {-1.0,1.e-4,1.e-6,15000.,-1.0,1.e-8,2.5,1.e-11,0.0,0.0,0.0};
       void null_entry(); //void apprgrdn();
       unsigned short app;
       unsigned short /*FsbPnt, FsbPnt1, */termflag, stopf;
@@ -119,7 +135,6 @@ ____________________________________________________________________________*/
       unsigned short ld, mxtc, termx, limxterm, nzero, krerun;
       unsigned short kflat, stepvanish, i,j,ni,ii, kd,kj,kc,ip;
       unsigned short iterlimit, kg,k1,k2/*, kless*/;
-      int dosubgrad;
       short dispdata, warnno;
       double nsteps[3]={0.0,0.0,0.0}, kk, nx;
       double gnorms[10]={0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
@@ -161,17 +176,17 @@ ____________________________________________________________________________*/
       B=(double *)calloc(n*n,sizeof(double));
       g=(double *)calloc(n,sizeof(double));
       g0=(double *)calloc(n,sizeof(double));
-     g1=(double *)calloc(n,sizeof(double));
-     gt=(double *)calloc(n,sizeof(double));
-     gc=(double *)calloc(n,sizeof(double));
-     z=(double *)calloc(n,sizeof(double));
-     x1=(double *)calloc(n,sizeof(double));
-     xopt=(double *)calloc(n,sizeof(double));
-     xrec=(double *)calloc(n,sizeof(double));
-     grec=(double *)calloc(n,sizeof(double));
-     xx=(double *)calloc(n,sizeof(double));
-     deltax=(double *)calloc(n,sizeof(double));
-     idx=(unsigned short *)calloc(n,sizeof(unsigned short));
+      g1=(double *)calloc(n,sizeof(double));
+      gt=(double *)calloc(n,sizeof(double));
+      gc=(double *)calloc(n,sizeof(double));
+      z=(double *)calloc(n,sizeof(double));
+      x1=(double *)calloc(n,sizeof(double));
+      xopt=(double *)calloc(n,sizeof(double));
+      xrec=(double *)calloc(n,sizeof(double));
+      grec=(double *)calloc(n,sizeof(double));
+      xx=(double *)calloc(n,sizeof(double));
+      deltax=(double *)calloc(n,sizeof(double));
+      idx=(unsigned short *)calloc(n,sizeof(unsigned short));
       if (B==NULL   ||g==NULL ||g0==NULL    ||g1==NULL  ||gt==NULL   ||
           gc==NULL  ||z==NULL ||x1==NULL    ||xopt==NULL||xrec==NULL ||
           grec==NULL||xx==NULL||deltax==NULL||idx==NULL)
@@ -194,13 +209,11 @@ ____________________________________________________________________________*/
        }
        else if (i==6) options[6]=max(options[i],1.5e0);
     }                                   
-    for (i=8;i<=12;i++)  options[i]=zero;                    
+    for (i=8;i<=10;i++)  options[i]=zero;                    
     
     iterlimit=options[3];
     /* integral tol */
     integraltol = options[5];
-/* set dosubgrad to control whether we do the subgradient algorithm on the end */
-    dosubgrad = options[13];
 /* Set h1 = -1: we are minimizing :*/
       h1=-one;
 /* Multiplier for the matrix for the inverse of the space dilation: */
@@ -213,7 +226,7 @@ ____________________________________________________________________________*/
 /* Display control : */
       if (options[4]<=zero) 
       {  dispdata=0;
-         if (options[4]==-one) dispwarn=0; else  dispwarn=1; 
+         if (options[4]<=-one+0.1) dispwarn=0; else  dispwarn=1; 
       }
       else   { dispdata=floor(options[4]+0.1);  dispwarn=1; }
       ld=dispdata;

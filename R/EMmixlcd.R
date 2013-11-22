@@ -15,7 +15,6 @@ epstheta=10^-8, verbose=-1 )
     ## By default, a Gaussian hierarchical clustering mixture is used
     ## as a starting point - allow variances to vary
     require( mclust )
-    require( mvtnorm )
     highclust <- hc( modelName="VVV", x )
     class <- c( hclass( highclust, k ) )
     props <- rep( 0, k )
@@ -50,7 +49,7 @@ epstheta=10^-8, verbose=-1 )
 
     for ( i in 1:k ) {
       whichx <- ( theta[ , i ]/sum( theta[ , i ] ) ) > epstheta / n
-      tmp <- mlelcd( x[ whichx, ], w = w[ whichx ] * theta[ whichx, i ] / sum( theta[ whichx, i ] ))
+      tmp <- mlelcd( x[ whichx, ], w = w[ whichx ] * theta[ whichx, i ] / sum( w[ whichx ] * theta[ whichx, i ] ))
       y[ whichx, i ] <- tmp$logMLE
       y[ !whichx, i ] <- -Inf
     }
