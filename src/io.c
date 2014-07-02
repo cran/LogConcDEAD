@@ -2103,7 +2103,7 @@ void qh_printfacet3geom_simplicial(FILE *fp, facetT *facet, realT color[3]) {
     FOREACHneighbor_(facet) {
       if (neighbor->visitid != qh visit_id) {
 	vertices= qh_setnew_delnthsorted (facet->vertices, qh hull_dim,
-	                  SETindex_(facet->neighbors, neighbor), 0);
+	                  (int)(SETindex_(facet->neighbors, neighbor)), 0);
         if (qh DOintersections)
 	   qh_printhyperplaneintersection(fp, facet, neighbor, vertices, black); 
         if (qh PRINTridges) {
@@ -2166,7 +2166,7 @@ void qh_printfacet3math (FILE *fp, facetT *facet, int format, int notfirst) {
     qh_memfree (point, qh normal_size);
   qh_settempfree(&points);
   qh_settempfree(&vertices);
-  fprintf(fp, endfmt);
+  fprintf(fp, "%s", endfmt);
 } /* printfacet3math */
 
 
@@ -2275,7 +2275,7 @@ void qh_printfacet4geom_simplicial(FILE *fp, facetT *facet, realT color[3]) {
     if (qh PRINTtransparent && !neighbor->good)
       continue;  
     vertices= qh_setnew_delnthsorted (facet->vertices, qh hull_dim,
-	                  SETindex_(facet->neighbors, neighbor), 0);
+	                  (int)(SETindex_(facet->neighbors, neighbor)), 0);
     if (qh DOintersections)
       qh_printhyperplaneintersection(fp, facet, neighbor, vertices, color);
     else {

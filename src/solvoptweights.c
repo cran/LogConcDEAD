@@ -140,7 +140,7 @@ ____________________________________________________________________________*/
       double gnorms[10]={0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
       double ajb,ajs, des, dq,du20,du10,du03;
       double n_float/*, inteps*/;
-      double low_bound, ZeroGrad, ddx, y;
+      double low_bound, ZeroGrad, y;
       double lowxbound, lowfbound, detfr, detxr, grbnd;
       double f,/*fp,fp1,fc,*/f1,f2,fm,fopt,frec,fst /*,fp_rate*/;
       double gamma,w,wdef,h1,h,hp;
@@ -211,7 +211,7 @@ ____________________________________________________________________________*/
     }                                   
     for (i=8;i<=10;i++)  options[i]=zero;                    
     
-    iterlimit=options[3];
+    iterlimit= (unsigned short) options[3];
     /* integral tol */
     integraltol = options[5];
 /* Set h1 = -1: we are minimizing :*/
@@ -228,7 +228,7 @@ ____________________________________________________________________________*/
       {  dispdata=0;
          if (options[4]<=-one+0.1) dispwarn=0; else  dispwarn=1; 
       }
-      else   { dispdata=floor(options[4]+0.1);  dispwarn=1; }
+      else   { dispdata=(short)(floor(options[4]+0.1));  dispwarn=1; }
       ld=dispdata;
 /* Stepsize control : */
    dq=5.1;               /* Step divider (at f_{i+1}>gamma*f_{i})  */
@@ -239,7 +239,7 @@ ____________________________________________________________________________*/
    mxtc=3;               /* Number of trial cycles (wall detect)   */
    termx=0; limxterm=50; /* Counter and limit for x-criterion      */
 
-   ddx=max(1.e-11,options[7]); /* stepsize for gradient approximation   */    
+   /*ddx=max(1.e-11,options[7]);    stepsize for gradient approximation   */    
    low_bound=-one+1.e-4;         /* Lower bound cosine to detect a ravine */
    ZeroGrad=n_float*1.e-16;      /* Lower bound for a gradient norm       */
    nzero=0;                      /* Zero-gradient events counter          */

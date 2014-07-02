@@ -743,7 +743,7 @@ void qh_checkfacet(facetT *facet, boolT newmerge, boolT *waserrorp) {
   }else { /* simplicial */
     FOREACHneighbor_(facet) {
       if (neighbor->simplicial) {    
-	skipA= SETindex_(facet->neighbors, neighbor);
+	skipA= (int) (SETindex_(facet->neighbors, neighbor));
 	skipB= qh_setindex (neighbor->neighbors, facet);
 	if (!qh_setequal_skip (facet->vertices, skipA, neighbor->vertices, skipB)) {
 	  fprintf (qh ferr, "qhull internal error (qh_checkfacet): facet f%d skip %d and neighbor f%d skip %d do not match \n",

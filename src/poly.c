@@ -13,6 +13,7 @@
 */
 
 #include "qhull_a.h"
+#include <stdint.h>
 
 /*======== functions in alphabetical order ==========*/
 
@@ -157,7 +158,7 @@ void qh_attachnewfacets (void ) {
 	if (neighbor->visible) {
 	  if (visible) {
 	    if (qh_setequal_skip (newfacet->vertices, 0, horizon->vertices,
-				  SETindex_(horizon->neighbors, neighbor))) {
+				  (int)(SETindex_(horizon->neighbors, neighbor)))) {
 	      visible= neighbor;
 	      break;
 	    }
@@ -178,7 +179,7 @@ void qh_attachnewfacets (void ) {
 	if (neighbor->visible) {
 	  neighbor->f.replace= newfacet;
 	  qh_setdelnth (horizon->neighbors,
-			SETindex_(horizon->neighbors, neighbor));
+			(int)(SETindex_(horizon->neighbors, neighbor)));
 	  neighborp--; /* repeat */
 	}
       }
@@ -401,38 +402,38 @@ setT *qh_facetintersect (facetT *facetA, facetT *facetB,
 */
 unsigned qh_gethash (int hashsize, setT *set, int size, int firstindex, void *skipelem) {
   void **elemp= SETelemaddr_(set, firstindex, void);
-  ptr_intT hash = 0, elem;
+  intptr_t hash = 0, elem;
   int i;
 
   switch (size-firstindex) {
   case 1:
-    hash= (ptr_intT)(*elemp) - (ptr_intT) skipelem;
+    hash= (intptr_t)(*elemp) - (intptr_t) skipelem;
     break;
   case 2:
-    hash= (ptr_intT)(*elemp) + (ptr_intT)elemp[1] - (ptr_intT) skipelem;
+    hash= (intptr_t)(*elemp) + (intptr_t)elemp[1] - (intptr_t) skipelem;
     break;
   case 3:
-    hash= (ptr_intT)(*elemp) + (ptr_intT)elemp[1] + (ptr_intT)elemp[2]
-      - (ptr_intT) skipelem;
+    hash= (intptr_t)(*elemp) + (intptr_t)elemp[1] + (intptr_t)elemp[2]
+      - (intptr_t) skipelem;
     break;
   case 4:
-    hash= (ptr_intT)(*elemp) + (ptr_intT)elemp[1] + (ptr_intT)elemp[2]
-      + (ptr_intT)elemp[3] - (ptr_intT) skipelem;
+    hash= (intptr_t)(*elemp) + (intptr_t)elemp[1] + (intptr_t)elemp[2]
+      + (intptr_t)elemp[3] - (intptr_t) skipelem;
     break;
   case 5:
-    hash= (ptr_intT)(*elemp) + (ptr_intT)elemp[1] + (ptr_intT)elemp[2]
-      + (ptr_intT)elemp[3] + (ptr_intT)elemp[4] - (ptr_intT) skipelem;
+    hash= (intptr_t)(*elemp) + (intptr_t)elemp[1] + (intptr_t)elemp[2]
+      + (intptr_t)elemp[3] + (intptr_t)elemp[4] - (intptr_t) skipelem;
     break;
   case 6:
-    hash= (ptr_intT)(*elemp) + (ptr_intT)elemp[1] + (ptr_intT)elemp[2]
-      + (ptr_intT)elemp[3] + (ptr_intT)elemp[4]+ (ptr_intT)elemp[5]
-      - (ptr_intT) skipelem;
+    hash= (intptr_t)(*elemp) + (intptr_t)elemp[1] + (intptr_t)elemp[2]
+      + (intptr_t)elemp[3] + (intptr_t)elemp[4]+ (intptr_t)elemp[5]
+      - (intptr_t) skipelem;
     break;
   default:
     hash= 0;
     i= 3;
     do {     /* this is about 10% in 10-d */
-      if ((elem= (ptr_intT)*elemp++) != (ptr_intT)skipelem) {
+      if ((elem= (intptr_t)*elemp++) != (intptr_t)skipelem) {
         hash ^= (elem << i) + (elem >> (32-i));
 	i += 3;
 	if (i >= 32)
@@ -441,9 +442,9 @@ unsigned qh_gethash (int hashsize, setT *set, int size, int firstindex, void *sk
     }while(*elemp);
     break;
   }
-  hash %= (ptr_intT) hashsize;
+  hash %= (intptr_t) hashsize;
   /* hash= 0; for debugging purposes */
-  return hash;
+  return (unsigned) hash;
 } /* gethash */
 
 /*-<a                             href="qh-poly.htm#TOC"
@@ -645,7 +646,7 @@ facetT *qh_makenew_simplicial (facetT *visible, vertexT *apex, int *numnew) {
   facetT *neighbor, **neighborp, *newfacet= NULL;
   setT *vertices;
   boolT flip, toporient;
-  int horizonskip, visibleskip;
+  int horizonskip=0, visibleskip=0;
 
   FOREACHneighbor_(visible) {
     if (!neighbor->seen && !neighbor->visible) {
@@ -942,8 +943,8 @@ boolT qh_matchvertices (int firstindex, setT *verticesA, int skipA,
   }while(*(++elemAp));
   if (!skipBp)
     skipBp= ++elemBp;
-  *skipB= SETindex_(verticesB, skipB);
-  *same= !(((ptr_intT)skipA & 0x1) ^ ((ptr_intT)*skipB & 0x1));
+  *skipB= (int) (SETindex_(verticesB, skipB));
+  *same= !(((intptr_t)skipA & 0x1) ^ ((intptr_t)*skipB & 0x1));
   trace4((qh ferr, "qh_matchvertices: matched by skip %d (v%d) and skip %d (v%d) same? %d\n",
 	  skipA, (*skipAp)->id, *skipB, (*(skipBp-1))->id, *same));
   return (True);

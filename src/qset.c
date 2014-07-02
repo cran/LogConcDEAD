@@ -280,7 +280,7 @@ void qh_setcompact(setT *set) {
 	break;
     }
   }
-  qh_settruncate (set, destp-firstp);
+  qh_settruncate (set, (int)(destp-firstp));
 } /* setcompact */
 
 

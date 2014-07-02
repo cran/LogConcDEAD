@@ -82,4 +82,8 @@
 			included in the R distributions
 			A slight change was made to the vignette to enhance portability
 22/11/2013	1.5-8	Undefined coercion behaviour fixed in C
-			Cleaned up unused options in the function mlelcd 
+			Cleaned up unused options in the function mlelcd
+01/07/2014	1.5-9	Fixed the problem that "format string is not a string literal"
+			Fixed the portability issue on casting pointers to integers
+			by replacing function "ptr_intT" by "intptr_t" from "stdint.h"
+			Fixed the issue of "implicitly casting long to int" in C code  

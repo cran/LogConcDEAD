@@ -313,7 +313,7 @@ qhull precision error: %d attempts to construct a convex hull\n\
     qh_freebuild (True);  /* first call is a nop */
     qh build_cnt++;
     if (!qh qhull_optionsiz)
-      qh qhull_optionsiz= strlen (qh qhull_options);
+      qh qhull_optionsiz= (int) (strlen (qh qhull_options));
     else { 
       qh qhull_options [qh qhull_optionsiz]= '\0';
       qh qhull_optionlen= 80;

@@ -794,7 +794,7 @@ vertexT *qh_find_newvertex (vertexT *oldvertex, setT *vertices, setT *ridges) {
   }
   FOREACHvertex_(vertices) {
     if (!vertex->visitid) {
-      qh_setdelnth (vertices, SETindex_(vertices,vertex));
+      qh_setdelnth (vertices, (int)(SETindex_(vertices,vertex)));
       vertexp--; /* repeat since deleted this vertex */
     }
   }

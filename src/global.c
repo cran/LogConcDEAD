@@ -1554,7 +1554,7 @@ void qh_initqhull_globals (coordT *points, int numpoints, int dim, boolT ismallo
     qh IStracing= 0;
   }
   if (qh ROTATErandom == 0 || qh ROTATErandom == -1) {
-    seed= time (&timedata);
+    seed= (int) (time (&timedata));
     if (qh ROTATErandom  == -1) {
       seed= -seed;
       qh_option ("QRandom-seed", &seed, NULL );
@@ -1926,7 +1926,7 @@ void qh_option (char *option, int *i, realT *r) {
     sprintf (buf+strlen(buf), " %d", *i);
   if (r)
     sprintf (buf+strlen(buf), " %2.2g", *r);
-  len= strlen(buf);
+  len= (int)(strlen(buf));
   qh qhull_optionlen += len;
   maxlen= sizeof (qh qhull_options) - len -1;
   maximize_(maxlen, 0);

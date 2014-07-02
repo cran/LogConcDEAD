@@ -24,7 +24,6 @@ double sigmaeffw( double y[] ) {
   int totaldim, totalpoints, nf;
   double *A;
   double *ytmp;
-  double sum;
   int inhull;
  
   /* Setup */
