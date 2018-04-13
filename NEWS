@@ -86,4 +86,7 @@
 01/07/2014	1.5-9	Fixed the problem that "format string is not a string literal"
 			Fixed the portability issue on casting pointers to integers
 			by replacing function "ptr_intT" by "intptr_t" from "stdint.h"
-			Fixed the issue of "implicitly casting long to int" in C code  
+			Fixed the issue of "implicitly casting long to int" in C code
+08/04/2018	1.6-0	Fixed the problems related to package dependence and variable 
+			protection in C
+12/04/2018	1.6-1	Fixed a bug in plotting log-density using rgl	

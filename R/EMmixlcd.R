@@ -14,7 +14,7 @@ epstheta=10^-8, verbose=-1 )
   if( missing( y ) || missing( props ) ) {
     ## By default, a Gaussian hierarchical clustering mixture is used
     ## as a starting point - allow variances to vary
-    require( mclust )
+    requireNamespace("mclust")
     highclust <- hc( modelName="VVV", x )
     class <- c( hclass( highclust, k ) )
     props <- rep( 0, k )

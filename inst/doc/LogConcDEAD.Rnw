@@ -1,6 +1,6 @@
 \documentclass[article, shortnames, nojss]{jss}
 
-\usepackage{amsmath,amsthm, amssymb, amscd, ifthen, subfigure, psfrag}
+\usepackage{amsmath, amsthm, amssymb, amscd, ifthen, subfigure, psfrag}
 \renewcommand{\textfraction}{0.05}
 \renewcommand{\topfraction}{0.95}
 \renewcommand{\bottomfraction}{0.95}
@@ -16,7 +16,7 @@
 
 %\VignetteIndexEntry{a guide to the LogConcDEAD package}                                          
 %\VignetteKeywords{LogConcDEAD}                                                 
-%\VignetteDepends{LogConcDEAD, logcondens, rgl, MASS, mvtnorm}                  
+%\VignetteDepends{LogConcDEAD, rgl, MASS, mvtnorm}                  
 %\VignettePackage{LogConcDEAD} 
 
 %% almost as usual
@@ -126,7 +126,6 @@ University of Cambridge}
 <<eval=TRUE,echo=FALSE,include=FALSE>>=
 options(prompt="R> ")
 require( "LogConcDEAD" )
-require( "logcondens" )
 require( "mvtnorm" )
 options(width=72)
 @ 
@@ -405,18 +404,6 @@ graphics facilities and the function \code{rlcd} for sampling from the fitted de
 
 \subsection{Example 1: 1-d data}
 \label{sec:eg1d}
-For one-dimensional data, the alternative active set algorithm from
-\pkg{logcondens} \citep{RufibachDuembgen2006, DHR2007} may be used to
-compute the log-concave maximum likelihood estimator.  In this section
-we will compare the output of the two procedures.
-
-First we must install and load the \pkg{logcondens} package
-\citep{RufibachDuembgen2006} .
-
-<<eval=FALSE>>=
-install.packages("logcondens")
-library("logcondens")
-@ 
 
 <<label=setn,echo=FALSE,include=FALSE>>=
 n <- 100
@@ -430,19 +417,15 @@ reproduced exactly; you may also like to try with a different seed.
 set.seed(1)
 <<setn>>
 x <- sort(rgamma(n,shape=2))
-out1 <- activeSetLogCon(x) ## logcondens estimate
-out2 <- mlelcd(x) ## LogConcDEAD estimate
+out1 <- mlelcd(x) ## LogConcDEAD estimate
 @ 
 
- We can see from Figure~\ref{fig:1d} that, as expected,
- \pkg{logcondens} and \pkg{LogConcDEAD} produce the same output. This
- figure is produced using the following code:
+The visual appearance of our estimator produced by \pkg{LogConcDEAD} can be seen in Figure~\ref{fig:1d}. This figure is produced using the following code:
 <<label=plot:1d, eval=FALSE>>=
 ylim <- c(0,0.4) 
-lgdtxt <- c("LogConcDEAD", "logcondens", "true")
-lgdlty <- c(1,2,3)
-plot(out2, ylim=ylim,lty=1)
-lines(x, exp(out1$phi), lty=2)
+lgdtxt <- c("LogConcDEAD", "true")
+lgdlty <- c(1,3)
+plot(out1, ylim=ylim,lty=1)
 lines(x, x*exp(-x), lty=3)
 legend(x=3, y=0.4, lgdtxt, lty=lgdlty)
 @ 
@@ -454,14 +437,16 @@ legend(x=3, y=0.4, lgdtxt, lty=lgdlty)
 
 <<label=plot:log1d, eval=FALSE>>=
 ylim <- c(-4,-1)
-lgdtxt <- c("LogConcDEAD", "logcondens", "true")
-lgdlty <- c(1,2,3)
-plot(out2, uselog=TRUE, lty=1)
-lines(x, out1$phi, lty=2)
+lgdtxt <- c("LogConcDEAD",  "true")
+lgdlty <- c(1,3)
+plot(out1, uselog=TRUE, lty=1)
 lines(x, log(x)-x, lty=3)
 legend(x=3, y=-1, lgdtxt, lty=lgdlty) 
 @ 
 
+For one-dimensional data, we note that the alternative active set algorithm from
+\pkg{logcondens} \citep{RufibachDuembgen2006, DHR2007} may also be used to
+compute the log-concave maximum likelihood estimator, which appears to be faster. Unsurprisingly, the output results from the two procedures are essentially the same.
 
 \begin{figure}[ht!]
   \centering

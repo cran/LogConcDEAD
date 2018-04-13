@@ -8,7 +8,7 @@ plots of axis-aligned marginal density estimates are available.}
 
 \usage{
 \method{plot}{LogConcDEAD}(x, uselog=FALSE, type="ic", addp=TRUE,
-  drawlabels=TRUE, gridlen=100, g, marg, g.marg, main, xlab, ylab, ...)
+  drawlabels=TRUE, gridlen=400, g, marg, g.marg, main, xlab, ylab, ...)
 }
 
 \arguments{
@@ -71,7 +71,9 @@ plots of axis-aligned marginal density estimates are available.}
 
   Robert B. Gramacy
 
-  Richard Samworth}
+  Richard Samworth
+  
+  Yining Chen}
 
 \seealso{\code{\link{mlelcd}}, \code{\link{interplcd}}, \code{\link{interpmarglcd}}, \code{\link[colorspace]{heat_hcl}} }
 

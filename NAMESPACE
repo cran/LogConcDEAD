@@ -1,4 +1,4 @@
-useDynLib(LogConcDEAD)
+useDynLib(LogConcDEAD, .registration = TRUE)
 
 # Export all names
 export(
@@ -21,8 +21,15 @@ export(
 # Import all packages listed as Imports or Depends
 import(
   MASS,
-  mvtnorm
+  mclust,
+  mvtnorm,
+  rgl,
+  tkrplot  
 )
+
+importFrom("tcltk", "tclVar", "tclvalue", "tklabel", "tkpack", "tkscale", "tktoplevel")
+importFrom("graphics", "contour", "image", "persp", "plot", "points")
+importFrom("stats", "cov", "dnorm", "integrate", "pnorm", "rexp", "runif", "sd", "var")
 
 S3method( "plot", "LogConcDEAD")
 S3method( "print", "LogConcDEAD")

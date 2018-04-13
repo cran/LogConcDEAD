@@ -51,7 +51,7 @@ estimator, optionally using the \pkg{rgl} package.
 }
 
 \author{
-  Yining Chen (maintainer) \email{yc319@statslab.cam.ac.uk}
+  Yining Chen (maintainer) \email{y.chen101@lse.ac.uk}
 
   Madeleine Cule 
   
@@ -95,7 +95,7 @@ Grundmann, A. and Moeller, M. (1978)
 
 Kappel, F. and Kuntsevich, A. V. (2000)
  \emph{An implementation of Shor's r-algorithm} Computational 
- Optimization and Applications 15  \cr \url{http://www.uni-graz.at/imawww/kuntsevich/solvopt/}
+ Optimization and Applications, Volume 15, Issue 2, 193-205.
 
 Shor, N. Z. (1985)
  \emph{Minimization methods for nondifferentiable functions}

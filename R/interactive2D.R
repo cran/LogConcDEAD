@@ -1,5 +1,5 @@
 interactive2D=function(data,cl){
-  require("tkrplot")
+  requireNamespace("tkrplot")
   if (is.matrix(data) == FALSE || ncol(data) != 2)
      stop("data must be a matrix with two columns")
   if (is.vector(cl) == FALSE || nrow(data) != length(cl))

@@ -48,7 +48,7 @@ documentation for the available options.)\n\n\
 @seealso{convhull, delaunayn}\n\
 @end deftypefn")
 */
-SEXP convhullnew(const SEXP p, const SEXP options)
+SEXP convhull(const SEXP p, const SEXP options)
 {
 	SEXP retval;
 	int curlong, totlong, i, j;
@@ -63,8 +63,6 @@ SEXP convhullnew(const SEXP p, const SEXP options)
 
 	FILE *outfile = NULL;      /* output from qh_produce_output() use NULL to skip qh_produce_output() */
 	FILE *errfile = NULL;      /* error messages from qhull code */
-
-	retval = R_NilValue;
 
 	if(!isString(options) || length(options) != 1){
 		error("Second argument must be a single string.");
@@ -132,14 +130,16 @@ SEXP convhullnew(const SEXP p, const SEXP options)
 		for(i=0;i<nrows(retval);i++)
 			for(j=0;j<ncols(retval);j++)
 				INTEGER(retval)[i+nrows(retval)*j] = idx[i+n*j];
-		UNPROTECT(1);
 	}
+    
 	qh_freeqhull(!qh_ALL);					/*free long memory */
 	qh_memfreeshort (&curlong, &totlong);	/* free short memory and memory allocator */
 
 	if (curlong || totlong) {
-		warning("convhulln: did not free %d bytes of long memory (%d pieces)",
+		warning("convhull: did not free %d bytes of long memory (%d pieces)",
 			totlong, curlong);
 	}
-	return retval;
+    
+    if (!exitcode) {UNPROTECT(1); return retval;}
+    else return R_NilValue;
 }

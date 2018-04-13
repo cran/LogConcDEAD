@@ -133,12 +133,12 @@ Cule, M. L., Samworth, R. J., and Stewart, M. I. (2010)
   Journal of the Royal Statistical Society, Series B, 72(5) p.545-607.
 
 Kappel, F. and Kuntsevich, A. V. (2000)
-\emph{An implementation of Shor's r-algorithm} Computational
-Optimization and Applications 15  \cr \url{http://www.uni-graz.at/imawww/kuntsevich/solvopt/}
+\emph{An implementation of Shor's r-algorithm},
+  Computational Optimization and Applications, Volume 15, Issue 2, 193-205.
 
 Shor, N. Z. (1985)
- \emph{Minimization methods for nondifferentiable functions}
- Springer-Verlag
+\emph{Minimization methods for nondifferentiable functions},
+  Springer-Verlag
  }
 
 \note{

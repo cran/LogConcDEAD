@@ -2,4 +2,4 @@
 "convhullnew" <-
 function (p, options = "Qt" )
   ## Default triangulated output
-.Call("convhullnew", as.matrix(p), as.character(options),PACKAGE="LogConcDEAD")
+.Call("convhull", as.matrix(p), as.character(options),PACKAGE="LogConcDEAD")
