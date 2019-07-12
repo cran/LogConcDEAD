@@ -89,4 +89,6 @@
 			Fixed the issue of "implicitly casting long to int" in C code
 08/04/2018	1.6-0	Fixed the problems related to package dependence and variable 
 			protection in C
-12/04/2018	1.6-1	Fixed a bug in plotting log-density using rgl	
+12/04/2018	1.6-1	Fixed a bug in plotting log-density using rgl
+09/07/2019	1.6-2	Minor updates on package dependence
+09/07/2019	1.6-3	Fixed compilation notes and warnings related to the C code		

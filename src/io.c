@@ -517,7 +517,7 @@ setT *qh_detvridge3 (vertexT *atvertex, vertexT *vertex) {
   if (qh CHECKfrequently) {
     FOREACHneighbor_(vertex) {
       if (!neighbor->seen2) {
-	fprintf (NULL, "qh_detvridge3: neigbors of vertex p%d are not connected at facet %d\n",
+	fprintf (qh ferr, "qh_detvridge3: neigbors of vertex p%d are not connected at facet %d\n",
 	         qh_pointid (vertex->point), neighbor->id);
 	qh_errexit (qh_ERRqhull, neighbor, NULL);
       }
@@ -2543,9 +2543,9 @@ void qh_printfacetridges(FILE *fp, facetT *facet) {
     }
     if (numridges != qh_setsize (facet->ridges)) {
       fprintf (fp, "     - all ridges:");
-      FOREACHridge_(facet->ridges) 
-	fprintf (fp, " r%d", ridge->id);
-        fprintf (fp, "\n");
+      FOREACHridge_(facet->ridges)
+      fprintf (fp, " r%d", ridge->id);
+      fprintf (fp, "\n");
     }
     FOREACHridge_(facet->ridges) {
       if (!ridge->seen) 

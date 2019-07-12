@@ -131,7 +131,7 @@ struct setT {
 #define FOREACHsetelement_(type, set, variable) \
         if (((variable= NULL), set)) for(\
           variable##p= (type **)&((set)->e[0].p); \
-	  (variable= *variable##p++);)
+          (variable= *variable##p++);)
 
 /*-<a                                      href="qh-set.htm#TOC"
   >----------------------------------------</a><a name="FOREACHsetelement_i_">-</a>

@@ -58,7 +58,7 @@ extern double *weights;
 extern int nouter;
 extern int truepoints;
 
-double solvoptweights(unsigned short n,
+double solvoptweights(int n,
                double x[],
                double fun(),
                void grad(),
@@ -265,7 +265,8 @@ ____________________________________________________________________________*/
    {  if (dispwarn) { Rprintf (errmes); Rprintf (error32); Rprintf (error6); }
       options[8]=-three; goto endrun;
    }
-   for (i=0;i<n;i++) xrec[i]=x[i]; frec=f;  /* record the point */
+   for (i=0;i<n;i++) xrec[i]=x[i];
+   frec=f;  /* record the point */
  
 /* COMPUTE THE GRADIENT (first time): */
    grad(x,g); options[10]+=one;
@@ -279,7 +280,8 @@ ____________________________________________________________________________*/
       options[8]=-four; goto endrun;
    }
    
-   for (i=0;i<n;i++) grec[i]=g[i];  nng=ng;
+   for (i=0;i<n;i++) grec[i]=g[i];
+   nng=ng;
 
 /* INITIAL STEPSIZE : */
       d=zero; for (i=0;i<n;i++) { if (d<fabs(x[i])) d=fabs(x[i]); }
@@ -343,7 +345,8 @@ while (1)
           for (i=0;i<n;i++) 
               /* Make a space transformation:  g1=gt+w*(z*gt')*z: */
           {   dd=zero; g1[i]=gt[i]+d*z[i]; ng1+=g1[i]*g1[i];
-              for (j=0;j<n;j++) dd+=B[j*n+i]*z[j]; dd*=w;
+              for (j=0;j<n;j++) dd+=B[j*n+i]*z[j];
+              dd*=w;
               /* New inverse matrix: B = B ( I + (1/alpha -1)zz' ) */
               for (j=0;j<n;j++) B[j*n+i]+=dd*z[j];
           }    
@@ -379,7 +382,8 @@ while (1)
 
    /* STORE THE CURRENT VALUES AND SET THE COUNTERS FOR 1-D SEARCH  */
 
-      for (i=0;i<n;i++) xopt[i]=x[i]; hp=h; fopt=f; k1=0; k2=0;
+      for (i=0;i<n;i++) xopt[i]=x[i];
+      hp=h; fopt=f; k1=0; k2=0;
       ksm=0; kc=0; knan=0;
 
    /* 1-D SEARCH   */
@@ -631,7 +635,8 @@ while (1)
         {  kflat+=1;
            if (dispwarn) { Rprintf(wrnmes); Rprintf(warn31); }
            warnno=1;  endwarn=endwarn1; 
-           for(i=0;i<n;i++) x1[i]=x[i];  fm=f;
+           for(i=0;i<n;i++) x1[i]=x[i];
+           fm=f;
            for(i=0;i<ni;i++) 
            { j=idx[i]; f2=fm; y=x[j];
              if (y==zero) x1[j]=one; 

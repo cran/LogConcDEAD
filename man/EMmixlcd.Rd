@@ -97,7 +97,7 @@ McLachlan, G. J. and Krishnan, T. (1997)
   x <- matrix( rnorm( n*d ), ncol = d )
   shiftvec <- ifelse( runif( n ) > props[ 1 ], 0, shift )
   x[,1] <- x[,1] + shiftvec
-  EMmixlcd( x, k = 2, max.iter = 5)
+  EMmixlcd( x, k = 2, max.iter = 2)
 }
 
 \seealso{

@@ -86,22 +86,22 @@ plot.LogConcDEAD <- function (x, uselog = FALSE, type = "ic", addp =
         zlim <- range(g$z[!is.na(g$z)])
 
         zcolors <- mycolors[(g$z - min(g$z,na.rm=TRUE))*128/diff(zlim) + 1]
-        open3d()
-        par3d(cex=0.8)
-        surface3d(g$x, g$y, g$z, color = zcolors, back = "lines")
+        rgl::open3d()
+        rgl::par3d(cex=0.8)
+        rgl::surface3d(g$x, g$y, g$z, color = zcolors, back = "lines")
         if (!uselog) {
-          decorate3d(xlim = range(y[, 1]), ylim = range(y[,
+          rgl::decorate3d(xlim = range(y[, 1]), ylim = range(y[,
                                              2]), zlim = zlim, zlab = "Density", ...)
         }
         else {
-          decorate3d(xlim = range(y[, 1]), ylim = range(y[,
+          rgl::decorate3d(xlim = range(y[, 1]), ylim = range(y[,
                                              2]), zlim = zlim, zlab = "Log density", 
                      ...)
         }
         zscale <- diff(range(c(g$x,g$y)))/diff(zlim)*0.8
-        par3d(scale=c(1,1,zscale))
+        rgl::par3d(scale=c(1,1,zscale))
         if (addp) {
-          plot3d(x$x[, 1], x$x[, 2], z, pch = 4, size = 2, add = TRUE, col = "black")
+          rgl::plot3d(x$x[, 1], x$x[, 2], z, pch = 4, size = 2, add = TRUE, col = "black")
         }
          
       }
