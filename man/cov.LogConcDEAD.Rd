@@ -26,7 +26,7 @@ log-concave maximum likelihood estimator.}
 
 \references{
 Cule, M. L. and D\"umbgen, L. (2008) On an auxiliary function for
-log-density estimation, University of Bern technical report. \url{http://arxiv.org/abs/0807.4719}
+log-density estimation, University of Bern technical report. \url{https://arxiv.org/abs/0807.4719}
 }
 
 \author{

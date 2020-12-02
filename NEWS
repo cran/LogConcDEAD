@@ -55,7 +55,7 @@
 
 01/01/2011      1.5-0	Added function cov.LogConcDEAD to compute the covariance matrix 
 			of the log-concave maximum likelihood density estimates
-			Added function hatA for the smoothed log-concave estimator		
+			Added function hatA for the smoothed log-concave estimator	
 01/02/2011      1.5-1	Added function dslcd to evaluate the smoothed log-concave mle
 			Added function rslcd to draw samples from the smoothed 
 			log-concave mle
@@ -91,4 +91,5 @@
 			protection in C
 12/04/2018	1.6-1	Fixed a bug in plotting log-density using rgl
 09/07/2019	1.6-2	Minor updates on package dependence
-09/07/2019	1.6-3	Fixed compilation notes and warnings related to the C code		
+09/07/2019	1.6-3	Fixed compilation notes and warnings related to the C code
+12/02/2020	1.6-4	Downgraded the dependence of tkrplot to "Suggests"			

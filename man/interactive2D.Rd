@@ -21,7 +21,7 @@
 \details{
   This function uses \code{\link[tkrplot:TkRplot]{tkrplot}} to create a GUI for two-class classification 
   in two dimensions using the smoothed log-concave maximum likelihood estimates. The construction of the 
-  classifier is standard, and can be found in \cite{Chen and Samworth (2011)}. The slider controls the risk 
+  classifier is standard, and can be found in \cite{Chen and Samworth (2013)}. The slider controls the risk 
   ratio of two classes (equals one by default), which provides a way of demonstrating how the decision boundaries 
   change as the ratio varies. Observations from different classes are plotted in red and green respectively.
 }
@@ -34,7 +34,7 @@
 
 Chen, Y. and Samworth, R. J. (2013) 
  \emph{Smoothed log-concave maximum likelihood estimation with applications} 
- Statist. Sinica, 23, 1373-1398. \url{http://arxiv.org/abs/1102.1191v4}
+ Statist. Sinica, 23, 1373-1398. \url{https://arxiv.org/abs/1102.1191v4}
 
 Cule, M. L., Samworth, R. J., and Stewart, M. I. (2010)
 \emph{Maximum likelihood estimation of a log-concave density},

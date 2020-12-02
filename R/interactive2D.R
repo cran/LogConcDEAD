@@ -1,5 +1,7 @@
 interactive2D=function(data,cl){
-  requireNamespace("tkrplot")
+  if (!requireNamespace("tkrplot", quietly = TRUE)) 
+    stop("you need to install the tkrplot package to use this function")
+  
   if (is.matrix(data) == FALSE || ncol(data) != 2)
      stop("data must be a matrix with two columns")
   if (is.vector(cl) == FALSE || nrow(data) != length(cl))
@@ -40,9 +42,9 @@ interactive2D=function(data,cl){
     points(data,col=ifelse(clnew==1,"red", "green"))
   }
 
-  img = tkrplot(tt,plotdens)
+  img = tkrplot::tkrplot(tt,plotdens)
   densplot = function(...){
-    tkrreplot(img)
+    tkrplot::tkrreplot(img)
   }
 
   scl=tkscale(tt, command=densplot, from=log(min(lh1/lh2))-1, to=log(max(lh1/lh2))+1, showvalue=FALSE, variable=logratio, resolution=0.01, orient='hori')

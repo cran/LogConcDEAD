@@ -75,11 +75,11 @@ Barber, C.B., Dobkin, D.P., and Huhdanpaa, H.T. (1996)
 
 Chen, Y. and Samworth, R. J. (2013) 
  \emph{Smoothed log-concave maximum likelihood estimation with applications} 
- Statist. Sinica, 23, 1373-1398. \url{http://arxiv.org/abs/1102.1191v4}
+ Statist. Sinica, 23, 1373-1398. \url{https://arxiv.org/abs/1102.1191v4}
 
 Cule, M. L. and D\"umbgen, L. (2008)
  \emph{On an auxiliary function for log-density estimation}, 
- University of Bern technical report. \url{http://arxiv.org/abs/0807.4719}
+ University of Bern technical report. \url{https://arxiv.org/abs/0807.4719}
 
 Cule, M. L., Samworth, R. J., and Stewart, M. I. (2010)
  \emph{Maximum likelihood estimation of a multi-dimensional log-concave density} 

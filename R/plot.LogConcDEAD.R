@@ -81,7 +81,7 @@ plot.LogConcDEAD <- function (x, uselog = FALSE, type = "ic", addp =
       }
       else if (type == "r") {
         if (!requireNamespace("rgl", quietly = TRUE)) 
-          stop("you need to install the rgl package")
+          stop("you need to install the rgl package for 2D interactive plots")
         if (uselog) g$z[g$z==-Inf]=min(g$z[g$z!=-Inf])-0.1*(max(g$z)-min(g$z[g$z!=-Inf]))
         zlim <- range(g$z[!is.na(g$z)])
 

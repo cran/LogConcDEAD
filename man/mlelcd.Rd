@@ -126,7 +126,7 @@ Barber, C.B., Dobkin, D.P., and Huhdanpaa, H.T. (1996)
 \url{http://www.qhull.org}
 
 Cule, M. L. and D\"umbgen, L. (2008) On an auxiliary function for
-log-density estimation, University of Bern technical report. \url{http://arxiv.org/abs/0807.4719}
+log-density estimation, University of Bern technical report. \url{https://arxiv.org/abs/0807.4719}
 
 Cule, M. L., Samworth, R. J., and Stewart, M. I. (2010)
 \emph{Maximum likelihood estimation of a log-concave density},
@@ -150,14 +150,18 @@ Shor, N. Z. (1985)
   at the University of Bern for his insight into the objective function
   \eqn{\sigma}{sigma}.
 
-  Further references, including definitions and background material, may be found in \cite{Cule, Samworth and Stewart (2008)}.
+  Further references, including definitions and background material, may be found in \cite{Cule, Samworth and Stewart (2010)}.
 }
 
-\author{Madeleine Cule 
+\author{
+  Madeleine Cule 
   
   Robert B. Gramacy
 
-  Richard Samworth}
+  Richard Samworth
+  
+  Yining Chen
+}
 
 \examples{
 ## Some simple normal data, and a few plots
@@ -170,6 +174,10 @@ plot(lcd, g=g, type="c")
 plot(lcd, g=g, type="c", uselog=TRUE)
 plot(lcd, g=g, type="i")
 plot(lcd, g=g, type="i", uselog=TRUE)
+
+## 2D interactive plot (need rgl package, not run here)
+#  plot(lcd, type="r")
+
 
 ## Some plots of marginal estimates
 par(mfrow=c(1,1))
