@@ -1,6 +1,6 @@
 Package: LogConcDEAD
-Version: 1.6-4
-Date: 2020-12-02
+Version: 1.6-5
+Date: 2022-01-18
 Title: Log-Concave Density Estimation in Arbitrary Dimensions
 Author: Madeleine Cule, Robert Gramacy, Richard Samworth, Yining Chen
 Maintainer: Yining Chen <Y.Chen101@lse.ac.uk>
@@ -11,5 +11,5 @@ Description: Software for computing a log-concave (maximum likelihood) estimator
 License: GPL (>= 2)
 Repository: CRAN
 NeedsCompilation: yes
-Packaged: 2020-12-02 17:02:21 UTC; chen
-Date/Publication: 2020-12-02 17:20:02 UTC
+Packaged: 2022-01-18 12:02:30 UTC; chen
+Date/Publication: 2022-01-18 12:32:42 UTC

@@ -1,4 +1,4 @@
-AC_INIT([LogConcDEAD], 1.5) dnl package name, version
+AC_INIT([LogConcDEAD],[1.5]) dnl package name, version
 
 dnl find what R uses for the C compiler and flags
 : ${R_HOME=`R RHOME`}
@@ -12,7 +12,7 @@ if test "${GCC}" = yes; then
   for option in -fno-strict-aliasing; do
 	SAVE_CFLAGS="$CFLAGS"
 	CFLAGS="$CFLAGS $option"
-	AC_TRY_COMPILE([], [], has_option=yes, has_option=no)
+	AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[]], [[]])],[has_option=yes],[has_option=no])
 	if test "$has_option" = "no"; then
 		CFLAGS="$SAVE_CFLAGS"
 	else
