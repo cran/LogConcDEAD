@@ -1882,7 +1882,7 @@ void qh_mergecycle_all (facetT *facetlist, boolT *wasmerge) {
       else
         horizon->nummerge= nummerge;
       zzinc_(Zcyclehorizon);
-      total += facets;
+      total = total + facets;
       zzadd_(Zcyclefacettot, facets);
       zmax_(Zcyclefacetmax, facets);
     }

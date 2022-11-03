@@ -2027,7 +2027,7 @@ coordT *qh_sethalfspace_all (int dim, int count, coordT *halfspaces, pointT *fea
       if two facets are in different quadrants
         set issharp
 */
-boolT qh_sharpnewfacets () {
+boolT qh_sharpnewfacets (void) {
   facetT *facet;
   boolT issharp = False;
   int *quadrant, k;

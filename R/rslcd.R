@@ -1,7 +1,7 @@
 ## Draw points from the smoothed log-concave
 'rslcd' <- function (n = 1, lcd, A=hatA(lcd), method = c("Independent","MH")) {
   method <- match.arg(method)
-  if(class(lcd) != "LogConcDEAD") {
+  if  (!("LogConcDEAD" %in% class(lcd)))  {
     stop("error: lcd must be of class LogConcDEAD")
   }
   d <- ncol(lcd$x)

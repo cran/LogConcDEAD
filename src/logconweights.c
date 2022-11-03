@@ -18,13 +18,13 @@ char *chopts;
 
 /* Function to be minimized: */
 double sigmaeffw(double *y);
-double dnull_entry();
+double dnull_entry(double *);
 
 /* Subgradient: */
-void subgradeffw(double y[], double g[]);
-void null_entry();
+void subgradeffw(double *y, double *g);
+void null_entry(double *, double *);
 
-double solvoptweights(int npoints, double *y_in, double sigma_ralg2(),void subgrad_ralg2(),double *opt_out, double fun() ,void fun2() );
+double solvoptweights(int npoints, double *y_in, double sigma_ralg2(double *), void subgrad_ralg2(double *, double *),double *opt_out, double fun(double *) , void fun2(double *, double *) );
 
 void renormalise( double *y );
 

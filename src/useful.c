@@ -56,10 +56,8 @@ double absdet(double *M, int n, int useLog)
   return det;
 }
 
-double determinant(M, n, useLog)
+double determinant(double *M, int n, int useLog)
      /* Computes the determinant */
-     int n, useLog;
-     double *M;
 {
   double det, modulus;
   int i, info, sign;

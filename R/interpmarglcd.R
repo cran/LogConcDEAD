@@ -39,7 +39,7 @@
 ##Computes one-dimensional marginals!
 
 'interpmarglcd' <- function(lcd, marg=1, gridlen=100) {
-  if(class(lcd) != "LogConcDEAD") {
+  if (!("LogConcDEAD" %in% class(lcd))) {
     stop("error: lcd must be of class LogConcDEAD")
   }
   x <- lcd$x
@@ -60,7 +60,7 @@
 
 
 'dmarglcd' <- function(x=0, lcd,  marg=1) {
-  if(class(lcd) != "LogConcDEAD") {
+  if  (!("LogConcDEAD" %in% class(lcd)))  {
     stop("error: lcd must be of class LogConcDEAD")
   }
   d <- ncol(lcd$x)

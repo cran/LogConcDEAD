@@ -59,8 +59,7 @@ plots of axis-aligned marginal density estimates are available.}
   \code{g.marg}.
 
   Where relevant, the colors were obtained from the function
-  \code{\link[colorspace]{heat_hcl}} in the package
-  \pkg{colorspace}. Thanks to
+  \code{heat_hcl} in the colorspace package. Thanks to
   Achim Zeileis for this suggestion.
 
   For examples, see \code{\link{mlelcd}}.

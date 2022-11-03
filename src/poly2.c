@@ -212,7 +212,7 @@ void qh_check_maxout (void) {
 	  if (qh ONLYgood && !bestfacet->good 
 	  && !((bestfacet= qh_findgooddist (point, bestfacet, &dist, &facetlist))
 	       && dist > maxoutside))
-	    notgood++;
+	    notgood=notgood+1;
 	  else
 	    maxoutside= dist;
 	}

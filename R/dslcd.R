@@ -1,6 +1,6 @@
 #Function to evaluate the smoothed fitted density at given points
 'dslcd' <- function(x, lcd, A = hatA(lcd)){
-  if(class(lcd) != "LogConcDEAD") {
+  if (!("LogConcDEAD" %in% class(lcd))) {
     stop("error: lcd must be of class LogConcDEAD")
   }
   d <- ncol(lcd$x)

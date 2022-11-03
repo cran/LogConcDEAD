@@ -1,5 +1,5 @@
 'cov.LogConcDEAD' <- function (lcd) {
-  if (class(lcd) != "LogConcDEAD") {
+  if  (!("LogConcDEAD" %in% class(lcd)))  {
       stop("error: lcd must be of class LogConcDEAD")
   }
   triang <- lcd$triang

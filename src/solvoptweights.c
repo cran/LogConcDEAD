@@ -17,7 +17,7 @@
 #include <stdio.h>
 /*#include <malloc.h>*/
 #include<R.h>
-
+#include <float.h> 
 #include <unistd.h>
 /* #include <macros.h> */
 
@@ -60,11 +60,11 @@ extern int truepoints;
 
 double solvoptweights(int n,
                double x[],
-               double fun(),
-               void grad(),
+               double fun(double *),
+               void grad(double *, double *),
                double options[],
-               double func(),
-               void gradc()
+               double func(double *),
+               void gradc(double *, double *)
               )
 {
 
@@ -126,7 +126,7 @@ ____________________________________________________________________________*/
  
       double default_options[11]=
           {-1.0,1.e-4,1.e-6,15000.,-1.0,1.e-8,2.5,1.e-11,0.0,0.0,0.0};
-      void null_entry(); //void apprgrdn();
+      void null_entry(double *, double *); //void apprgrdn();
       unsigned short app;
       unsigned short /*FsbPnt, FsbPnt1, */termflag, stopf;
       unsigned short stopping, dispwarn, /*Reset,*/ ksm,knan/*,obj*/;
@@ -694,7 +694,5 @@ while (1)
 }
 
 
-void null_entry(){}
-
-
-void dnull_entry(){}
+void null_entry(double *y, double *g){}
+double dnull_entry(double *y){return DBL_MAX;}

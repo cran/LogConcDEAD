@@ -92,4 +92,6 @@
 12/04/2018	1.6-1	Fixed a bug in plotting log-density using rgl
 09/07/2019	1.6-2	Minor updates on package dependence
 09/07/2019	1.6-3	Fixed compilation notes and warnings related to the C code
-12/02/2020	1.6-4	Downgraded the dependence of tkrplot to "Suggests"		18/01/2022	1.6-5	configure.ac updated
+12/02/2020	1.6-4	Downgraded the dependence of tkrplot to "Suggests"		
+18/01/2022	1.6-5	configure.ac updated
+31/10/2022	1.6-6	C functions prototype declaration updated

@@ -1,7 +1,7 @@
 #Function to evaluate the given density at a point (x,y)
 
 'dlcd' <- function(x, lcd, uselog=FALSE, eps=10^-10) {
-  if(class(lcd) != "LogConcDEAD") {
+  if (!("LogConcDEAD" %in% class(lcd))) {
     stop("error: lcd must be of class LogConcDEAD")
   }
   d <- ncol(lcd$x)
