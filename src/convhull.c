@@ -91,7 +91,7 @@ SEXP convhull(const SEXP p, const SEXP options)
 	ismalloc = False;   /* True if qhull should free points in qh_freeqhull() or reallocation */
 
 	/* hmm  lot's of options for qhull here */
-	sprintf(flags,"qhull %s", opts);
+	snprintf(flags, 250, "qhull %s", opts);
 	/* outfile = NULL; this produces nonsensical output ... needs to be fixed to get convexhulln quiet */
 	exitcode = qh_new_qhull (dim,n,pt_array,ismalloc,flags,outfile,errfile);
 	/* If you want some debugging information replace the NULL

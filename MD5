@@ -1,6 +1,6 @@
-cc52a40441092904698bd461f9ae3889 *DESCRIPTION
+558239cace0c42b8d41f1bdb530e7e30 *DESCRIPTION
 1aa9530c98c48691927d30c5f96914d6 *NAMESPACE
-93035b402e857eb524c00c7dc38718a9 *NEWS
+dd3f5955348bd1ce132d2bd3958d31a6 *NEWS
 2be597749ae1a6cc23d0864bdea366bb *R/EMmixlcd.R
 90f4b78b864efe41eb9ed3543baf652e *R/convhullnew.R
 b77a5016ee0e8935a90ff6dc07f84d3c *R/delaunaynew.R
@@ -27,7 +27,7 @@ d41d8cd98f00b204e9800998ecf8427e *configure.win
 1b4270e8adc336c0ca50d18cba2d462a *inst/CITATION
 13ca2011b1574ea678b776821d230d30 *inst/doc/LogConcDEAD.R
 29e7f45ec70a5f32864fea0cc9ebe9a3 *inst/doc/LogConcDEAD.Rnw
-fcdcf1c367efc58775a6252ae6b56ad1 *inst/doc/LogConcDEAD.pdf
+509a1f288bf2c9aceee1101027f9b45e *inst/doc/LogConcDEAD.pdf
 cb6ed98db4a240ecc398727b8b773183 *man/EMmixlcd.Rd
 bce616973675dd92f10eddcca0c43fa8 *man/LogConcDEAD-internal.Rd
 4a37c64db329c2f58bdfa1cbc3f3efa2 *man/LogConcDEAD-package.Rd
@@ -49,13 +49,13 @@ c8017d3b762b7a3ddf560a957958a2ab *man/rslcd.Rd
 29d9aeb797f3001fece266d51d87467b *src/LogConcDEAD_init.c
 e1f24b7edb94f3a3c57329925a7fa887 *src/Makevars.in
 3659d19a65b459cf936411a7aebb6243 *src/Makevars.win
-ea3e500ccd415ddbad9a06f1152bf79e *src/convhull.c
-3f66d667dd9e0b0a786a2344c0112f97 *src/convhullnmlc.c
-287ba51dd508c2e5ba6606c8bb9c9807 *src/delaunayn.c
+635258a9496c2d0a3d98b8a52f3eee26 *src/convhull.c
+cf360faac89793c6a2f3237eb885c2c1 *src/convhullnmlc.c
+d970bec4def8fa5de006a32e4b8ec583 *src/delaunayn.c
 7f879ec8f4014e56760e4fd8b58b9ce2 *src/geom.c
 9e25497d56a1b337d133f4dfa5011857 *src/geom.h
 683dcb4c28c78e0b001d07a261079b54 *src/geom2.c
-d6089e86e386dfadfb7940db87daf582 *src/global.c
+daa815757522102d6a5dfaffbf706da8 *src/global.c
 553398c5a4539bbb87c554907e0f6229 *src/io.c
 9703115ddb7b4f47f8c63bf0e5186fe2 *src/io.h
 7f3dd67d96f86118cf04353c76df05a6 *src/logcon.h

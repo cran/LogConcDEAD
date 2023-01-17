@@ -95,3 +95,4 @@
 12/02/2020	1.6-4	Downgraded the dependence of tkrplot to "Suggests"		
 18/01/2022	1.6-5	configure.ac updated
 31/10/2022	1.6-6	C functions prototype declaration updated
+17/01/2022	1.6-7	Removed the use of sprintf in C

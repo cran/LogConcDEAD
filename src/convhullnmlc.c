@@ -77,7 +77,7 @@ int *convhullnmlc(double *x_in, int *nrow_in, int* ncol_in, int *nf,
 
    /* hmm lots of options for qhull here */
 
-  sprintf( flags, "qhull %s", opts );
+  snprintf( flags, 250, "qhull %s", opts );
   exitcode = qh_new_qhull( dim, n, pt_array, ismalloc, flags, outfile,
 			   errfile );
 
