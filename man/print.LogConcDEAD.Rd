@@ -40,6 +40,10 @@
   Richard Samworth
 }
 
+
+\value{No return value, log MLE at
+  observation points will be printed out on the screen.}
+
 \seealso{\code{\link{mlelcd}}}
 
 \keyword{nonparametric}

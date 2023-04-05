@@ -1,20 +1,15 @@
-citHeader("To cite LogConcDEAD in publications use:")
+## R package reference generated from DESCRIPTION metadata
+citation(auto = meta)
 
-citEntry(entry = "Article",
-  title        = "{LogConcDEAD}: An {R} Package for Maximum Likelihood Estimation of a Multivariate Log-Concave Density",
-  author       = personList(as.person("Madeleine Cule"),
-                   as.person("Robert Gramacy"),
-                   as.person("Richard Samworth")),
-  journal      = "Journal of Statistical Software",
+## JSS paper
+bibentry(bibtype = "Article",
+         title = "{LogConcDEAD}: An {R} Package for Maximum Likelihood Estimation of a Multivariate Log-Concave Density",
+         author = c(person(given = "Madeleine", family = "Cule"),
+                    person(given = "Robert", family = "Gramacy"),
+                    person(given = "Richard", family = "Samworth")),
+ journal      = "Journal of Statistical Software",
   year         = "2009",
   volume       = "29",
   number       = "2",
-  url          = "https://www.jstatsoft.org/article/view/v029i02",
-
-  textVersion  =
-  paste("Madeleine Cule, Robert Gramacy, Richard Samworth (2009).",
-        "LogConcDEAD: An R Package for Maximum Likelihood Estimation of a Multivariate Log-Concave Density.",
-        "Journal of Statistical Software 29(2).",
-        "URL https://www.jstatsoft.org/article/view/v029i02")
+  doi          = "10.18637/jss.v029.i02"
 )
-

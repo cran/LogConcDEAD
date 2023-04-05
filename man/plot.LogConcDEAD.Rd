@@ -65,6 +65,7 @@ plots of axis-aligned marginal density estimates are available.}
   For examples, see \code{\link{mlelcd}}.
 }
 
+\value{No return value, plot will display}
 
 \author{Madeleine Cule
 

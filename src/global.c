@@ -1921,11 +1921,11 @@ void qh_option (char *option, int *i, realT *r) {
   char buf[200];
   int len, maxlen;
 
-  snprintf (buf, 200, "  %s", option);
-  if (i)
-    snprintf (buf+strlen(buf), 200, " %d", *i);
-  if (r)
-    snprintf (buf+strlen(buf), 200, " %2.2g", *r);
+  snprintf(buf, sizeof(buf), "  %s", option);
+  if(i)
+    snprintf(buf + strlen(buf), sizeof(buf) - strlen(buf), " %d", *i);
+  if(r)
+    snprintf(buf + strlen(buf), sizeof(buf) - strlen(buf), " %2.2g", *r);
   len= (int)(strlen(buf));
   qh qhull_optionlen += len;
   maxlen= sizeof (qh qhull_options) - len -1;

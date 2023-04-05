@@ -17,12 +17,6 @@
 */
 
 /*
-29. July 2000 - Kai Habel: first release
-2002-04-22 Paul Kienzle
-* Use warning(...) function rather than writing to cerr
-
-23. May 2005 - Raoul Grasman: ported to R
-* Changed the interface for R
 
 01. August 2007 R. B. Gramacy
 * modified for inclusion in the LogConcDEAD package 

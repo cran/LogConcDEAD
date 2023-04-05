@@ -652,17 +652,22 @@ The plots in Figure~\ref{fig:2d} show a contour plot of the estimator
 and a contour plot of its logarithm for \Sexpr{n} points in 2
 dimensions.  Note that the contours of log-concave densities enclose
 convex regions. This figure is produced using
+
+
 <<label=plot:2d, eval=FALSE>>=
 par(mfrow=c(1,2), pty="s", cex=0.7) #square plots
 plot(out,g=g,addp=FALSE,asp=1)
 plot(out,g=g,uselog=TRUE,addp=FALSE,asp=1)
 @ 
 
+
 \begin{figure}[ht!]
   \centering
 <<echo=FALSE, results=hide>>=
 png(file="LogConcDEAD-fig_2d.png")
+oldpar <- par(mfrow = c(1,1))
 <<plot:2d>>
+par(oldpar)
 dev.off()
 @
 \includegraphics[width=\textwidth, clip=TRUE, trim = 0 120 0 100]{LogConcDEAD-fig_2d}
@@ -686,8 +691,10 @@ plot(out,marg=2,g.marg=g2)
 
 \begin{figure}[ht!]
   \centering
-<<label=fig_2dmarg,mecho=FALSE,results=hide, fig=TRUE, include=FALSE>>=
+<<label=fig_2dmarg,echo=FALSE,results=hide, fig=TRUE, include=FALSE>>=
+oldpar <- par(mfrow = c(1,1))
 <<plot:2dmarg>>
+par(oldpar)
 @
   \includegraphics[width=\textwidth, clip=TRUE, trim=0 110 0
   100]{LogConcDEAD-fig_2dmarg}
@@ -869,7 +876,9 @@ plot(outw,g=gw,uselog=TRUE,asp=1,drawlabels=FALSE)
 \includegraphics[width=\textwidth, clip=TRUE, trim=0 120 0 100]{LogConcDEAD-fig_bin.png}
 <<results=hide, echo=FALSE>>=
 png(file="LogConcDEAD-fig_bin.png")
+oldpar <- par(mfrow = c(1,1))
 <<plot:bin>>
+par(oldpar)
 dev.off()
 @
 \caption{Density and log density estimate based on \Sexpr{n} points
@@ -927,8 +936,11 @@ title(main="True density")
 \centering
 \includegraphics[width=\textwidth, clip=TRUE, trim=0 10 0 20]{LogConcDEAD-fig_3deg}
 <<label=fig_3deg, results=hide, echo=FALSE, include=FALSE, fig=TRUE>>=
+oldpar <- par(mfrow = c(1,1))
 <<plot:3deg>>
+par(oldpar)
 @
+
 \caption{Marginal density estimates for 3 dimensional data (based on
   \Sexpr{n} points)}
 \label{fig:3d}
