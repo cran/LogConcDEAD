@@ -566,7 +566,7 @@ while (1)
                    if (warnno!=0)
                    {  options[8]=-warnno-ten;
                       if (dispwarn)
-                      {  Rprintf(termwarn1); Rprintf(endwarn);
+                      {  Rprintf(termwarn1); Rprintf("%s", endwarn);
 		      }
                    }   
                    else { options[8]=k; if (dispwarn) Rprintf(termwarn0); }

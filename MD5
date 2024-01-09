@@ -1,6 +1,6 @@
-2a1a8f7fadacbab3eb0ef35f3078cba0 *DESCRIPTION
+3685795c95293a73c8feb560b3836e43 *DESCRIPTION
 1aa9530c98c48691927d30c5f96914d6 *NAMESPACE
-7de225c7c151db2c07bb57e527b47b89 *NEWS
+70cd19b31d472d619c3c242e23262dec *NEWS
 2be597749ae1a6cc23d0864bdea366bb *R/EMmixlcd.R
 90f4b78b864efe41eb9ed3543baf652e *R/convhullnew.R
 b77a5016ee0e8935a90ff6dc07f84d3c *R/delaunaynew.R
@@ -19,7 +19,7 @@ b06e23dd7679a5da8d44aadf87befcfa *R/print.LogConcDEAD.R
 645aec491e0d73f2063f31adc9640d01 *R/rslcd.R
 ee82bf85aa77b3816402b6ce3e0db23e *R/summary.LogConcDEAD.R
 0191af464a37cad9050e955dc84a3336 *R/usefulfuncs.R
-a6c4f4a240f33b655ba2cb54d8202928 *build/vignette.rds
+ec4a1c815c48c2ab972deba2b097b3dc *build/vignette.rds
 df665c330920d29973e9723a009da3f1 *cleanup
 873e6cbb5dd92ff9ff74a9a1727349b5 *configure
 e732da8553296a91876737f7c6d1ada6 *configure.ac
@@ -27,7 +27,7 @@ d41d8cd98f00b204e9800998ecf8427e *configure.win
 981affa44c2bbeb2fb11546050cb2317 *inst/CITATION
 5e1d436dbe5b054ec9bb0a571635c40b *inst/doc/LogConcDEAD.R
 20cfd1bae20e55705a5df646957ebfcb *inst/doc/LogConcDEAD.Rnw
-e16df6c5bd4acce45075df2766963312 *inst/doc/LogConcDEAD.pdf
+d4630f3ef48e64067a656d15f982ba09 *inst/doc/LogConcDEAD.pdf
 cb6ed98db4a240ecc398727b8b773183 *man/EMmixlcd.Rd
 bce616973675dd92f10eddcca0c43fa8 *man/LogConcDEAD-internal.Rd
 26bc258c98fc76f780ad564add0198ed *man/LogConcDEAD-package.Rd
@@ -66,7 +66,7 @@ f60afaa2fddf3eeaa023041a1d81ac02 *src/mem.c
 5e4494bf44a3bfe7a6211d1ddaf3b2a3 *src/merge.h
 eaa68bb229f5dfdd8aecd41bb858be1c *src/poly.c
 414fd709f8da38d4f163323aa46c2283 *src/poly.h
-64313d280221b574dc6ee4285dd7620d *src/poly2.c
+22a3c2fffa88e1498a8aa4b546ec56df *src/poly2.c
 1898909afb33e0405c2cd17c18a70eb8 *src/qhull.c
 27aabcab7c6991aca877f3f40c56423c *src/qhull.h
 e7c2d246c345ead448269a86a6916e97 *src/qhull_a.h
@@ -74,7 +74,7 @@ e7c2d246c345ead448269a86a6916e97 *src/qhull_a.h
 2672a3661c0db17e01090599cb260068 *src/qset.h
 e4b97edf72abd10b4fd3655a6855f312 *src/renormalise.c
 ef8a1b61750444b574dbb3f3c6f16698 *src/sigmaeffw.c
-4c8480b4534d5538fe7a1d2c60215165 *src/solvoptweights.c
+54fb9e1f9dbce294655cd2be619e1d3c *src/solvoptweights.c
 f853fc1769c307601e70b17ad931c7d9 *src/stat.c
 898936c8b5c5de1a3e414a924061a7f3 *src/stat.h
 0df72d309dbb6124c52825295b204ad8 *src/subgradeffw.c

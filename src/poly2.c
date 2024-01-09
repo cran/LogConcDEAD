@@ -101,7 +101,7 @@ below %2.2g of the nearest %sfacet.\n",
       if (qh ONLYgood && !bestfacet->good 
 	  && !((bestfacet= qh_findgooddist (point, bestfacet, &dist, &facetlist))
 	       && dist > maxoutside))
-	notgood++;
+	notgood=notgood+1;
       else {
 	waserror= True;
 	fprintf(qh ferr, "qhull precision error: point p%d is outside facet f%d, distance= %6.8g maxoutside= %6.8g\n", 
@@ -112,7 +112,7 @@ below %2.2g of the nearest %sfacet.\n",
 	}
       }
     }else if (unassigned && dist < -qh MAXcoplanar)
-      notverified++;
+      notverified=notverified+1;
   }
   qh_settempfree (&facets);
   if (notverified && !qh DELAUNAY && !qh_QUICKhelp && qh PRINTprecision) 

@@ -96,6 +96,8 @@
 18/01/2022	1.6-5	configure.ac updated
 31/10/2022	1.6-6	C functions prototype declaration updated
 17/01/2022	1.6-7	Removed the use of sprintf in C
-03/04/2022	1.6-7	Fixed the issue of buffer overflow using snprintf ()
+03/04/2023	1.6-8	Fixed the issue of buffer overflow using snprintf ()
 			CITATION file and DESCRIPTION file updated
+05/01/2024	1.6-9	Fixed the issue of format string 
+
 
