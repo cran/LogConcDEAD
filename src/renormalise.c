@@ -31,9 +31,9 @@ void renormalise(double y[])
   double absdetA;
   double logintegral;
 
-  allpoints = Calloc((npoints)*(dim + 1),double);
-  A = Calloc((dim)*(dim),double);
-  ytmp = Calloc(dim+1,double);
+  allpoints = R_Calloc((npoints)*(dim + 1),double);
+  A = R_Calloc((dim)*(dim),double);
+  ytmp = R_Calloc(dim+1,double);
        
   yminimum = ymin(y,truepoints) - 1.0; 
   totaldim=dim+1; 
@@ -100,10 +100,10 @@ void renormalise(double y[])
       }
     }
 
-   Free(allpoints);
-   Free(A);
-   Free(ytmp);
-   Free(outpoints);
+   R_Free(allpoints);
+   R_Free(A);
+   R_Free(ytmp);
+   R_Free(outpoints);
   
    logintegral = log(integral);
    for (i=0; i<truepoints; i++) y[i]-=logintegral ;

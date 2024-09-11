@@ -89,7 +89,7 @@ is used.
 Code from this C-based library is copied here as it is not currently 
 possible to use compiled code from another library.  
 For points not in general position, this requires a Taylor expansion of 
-\eqn{\sigma}{sigma}, discussed in \cite{Cule and D\"umbgen (2008)}.
+\eqn{\sigma}{sigma}, discussed in \cite{Cule and Duembgen (2008)}.
 }
 
 \value{
@@ -103,8 +103,8 @@ For points not in general position, this requires a Taylor expansion of
     evaluations, and number of subgradient evaluations.  If the \pkg{SolvOpt}
     algorithm fails, the first component will be an error code \eqn{(<0)}.}
   \item{MinSigma}{Real-valued scalar giving minimum value of the objective function}
-  \item{b}{\code{matrix} (see Details)}
-  \item{beta}{\code{vector} (see Details)}
+  \item{b}{\code{matrix} containing row by row the values of \eqn{b_j}'s corresponding to each triangulation; see also the Details section above}
+  \item{beta}{\code{vector} containing the values of \eqn{\beta_j}'s corresponding to each triangulation; see also the Details section above}
   \item{triang}{\code{matrix} containing final triangulation of the convex hull of the data}
   \item{verts}{\code{matrix} containing details of triangulation for use in \code{\link{dlcd}}}
   \item{vertsoffset}{\code{matrix} containing details of triangulation for use in \code{\link{dlcd}}}
@@ -125,7 +125,7 @@ Barber, C.B., Dobkin, D.P., and Huhdanpaa, H.T. (1996)
   ACM Trans. on Mathematical Software, 22(4) p.469-483
 \url{http://www.qhull.org}
 
-Cule, M. L. and D\"umbgen, L. (2008) On an auxiliary function for
+Cule, M. L. and Duembgen, L. (2008) On an auxiliary function for
 log-density estimation, University of Bern technical report. \url{https://arxiv.org/abs/0807.4719}
 
 Cule, M. L., Samworth, R. J., and Stewart, M. I. (2010)

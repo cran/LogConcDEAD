@@ -27,9 +27,9 @@ double sigmaeffw( double y[] ) {
   int inhull;
  
   /* Setup */
-  allpoints = Calloc( ( npoints ) * ( dim + 1 ), double );
-  A = Calloc( ( dim ) * ( dim ), double );
-  ytmp = Calloc( (dim + 1), double );
+  allpoints = R_Calloc( ( npoints ) * ( dim + 1 ), double );
+  A = R_Calloc( ( dim ) * ( dim ), double );
+  ytmp = R_Calloc( (dim + 1), double );
   yminimum = ymin( y, truepoints );
   ymaximum = ymax( y, truepoints );
   totaldim = dim + 1; 
@@ -82,9 +82,9 @@ double sigmaeffw( double y[] ) {
   }
   
   /* Free everything */
-  Free(allpoints);
-  Free(A);
-  Free(outpoints);
-  Free(ytmp);
+  R_Free(allpoints);
+  R_Free(A);
+  R_Free(outpoints);
+  R_Free(ytmp);
   return( integral - dotprod(y,weights,truepoints));
 }

@@ -230,7 +230,7 @@ double JAD(double *y, int d, double eps) {
   double *z;
   int k;
   double tmp;
-  z=Calloc( d+1, double);
+  z=R_Calloc( d+1, double);
   for (k=0; k<=d; k++) {
     z[k] = y[k];
   }
@@ -238,7 +238,7 @@ double JAD(double *y, int d, double eps) {
 
   tmp = JAD_ord(z,d,eps);
   
-  Free(z);
+  R_Free(z);
   return(tmp);
 }
 

@@ -14,6 +14,7 @@ interactive2D=function(data,cl){
   if (nc != 2) 
      stop("only two classes allowed in cl")
 
+
   data_1 = subset(data,clnew==1)
   data_2 = subset(data,clnew==2) 
   lcd_1<-mlelcd(data_1)
@@ -31,6 +32,7 @@ interactive2D=function(data,cl){
   lh1<-dslcd(x,lcd_1,A1) * dim(data_1)[1]
   lh2<-dslcd(x,lcd_2,A2) * dim(data_2)[1]
  
+  if(interactive()){
   tt<-tktoplevel()
   start<-0
   logratio=tclVar(start)
@@ -53,4 +55,5 @@ interactive2D=function(data,cl){
   tkpack(img,side='top')
   tkpack(label)
   tkpack(scl)
+  }
 }

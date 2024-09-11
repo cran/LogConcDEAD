@@ -1,15 +1,14 @@
-## R package reference generated from DESCRIPTION metadata
+## R package reference
 citation(auto = meta)
 
 ## JSS paper
-bibentry(bibtype = "Article",
-         title = "{LogConcDEAD}: An {R} Package for Maximum Likelihood Estimation of a Multivariate Log-Concave Density",
-         author = c(person(given = "Madeleine", family = "Cule"),
-                    person(given = "Robert", family = "Gramacy"),
-                    person(given = "Richard", family = "Samworth")),
- journal      = "Journal of Statistical Software",
-  year         = "2009",
-  volume       = "29",
-  number       = "2",
-  doi          = "10.18637/jss.v029.i02"
+bibentry(
+bibtype = "Article", 
+title = "LogConcDEAD: An R Package for Maximum Likelihood Estimation of a Multivariate Log-Concave Density",
+author = c(person("Madeleine", "Cule"), person("Robert", "Gramacy"), person("Richard", "Samworth")),
+journal = "Journal of Statistical Software",
+year = "2009",
+volume = "29",
+number = "2",
+doi = "10.18637/jss.v029.i02"
 )

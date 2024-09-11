@@ -188,8 +188,9 @@ void qh_memfree(void *object, int size) {
     qhmem .freelong++;
     qhmem .totlong -= size;
     free (object);
+    /*
     if (qhmem.IStracing >= 5)
-      fprintf (qhmem.ferr, "qh_memfree long: %d bytes at %p\n", size, object);
+      fprintf (qhmem.ferr, "qh_memfree long: %d bytes at %p\n", size, object);*/
   }
 } /* memfree */
 

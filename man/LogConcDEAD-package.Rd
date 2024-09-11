@@ -77,7 +77,7 @@ Chen, Y. and Samworth, R. J. (2013)
  \emph{Smoothed log-concave maximum likelihood estimation with applications} 
  Statist. Sinica, 23, 1373-1398. \url{https://arxiv.org/abs/1102.1191v4}
 
-Cule, M. L. and D\"umbgen, L. (2008)
+Cule, M. L. and Duembgen, L. (2008)
  \emph{On an auxiliary function for log-density estimation}, 
  University of Bern technical report. \url{https://arxiv.org/abs/0807.4719}
 

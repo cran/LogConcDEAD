@@ -67,7 +67,7 @@ int *convhullnmlc(double *x_in, int *nrow_in, int* ncol_in, int *nf,
 
   j=0;
   /* pt_array = malloc(n*dim*sizeof(double)); */
-  pt_array = Calloc(n*dim,double);
+  pt_array = R_Calloc(n*dim,double);
 
   for (i=0; i < n; i++)
     for (j=0; j < dim; j++)
@@ -89,7 +89,7 @@ int *convhullnmlc(double *x_in, int *nrow_in, int* ncol_in, int *nf,
     *nf = qh num_facets;
 
     /* allocate the memory for the output */
-    idx = Calloc((*nf)*dim,int);
+    idx = R_Calloc((*nf)*dim,int);
 	
     qh_vertexneighbors();
 		
@@ -119,6 +119,6 @@ int *convhullnmlc(double *x_in, int *nrow_in, int* ncol_in, int *nf,
     if (curlong || totlong) {
 	  warning("convhulln: did not free %d bytes of long memory (%d pieces)",totlong, curlong);
 	}
-	Free(pt_array);
+	R_Free(pt_array);
 	return(idx);
 }

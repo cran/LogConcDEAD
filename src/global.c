@@ -1283,7 +1283,7 @@ void qh_initflags(char *command) {
 	    *t= '\0';
 	    if (isquote)
 	      fprintf (qh ferr, "qhull error: missing end quote for option 'TO'.  Rest of line ignored.\n");
-	    else if (!freopen (filename, "w", NULL)) {
+	    else if (!freopen (filename, "w", qh fout)) {
 	      fprintf (qh ferr, "qhull error: could not open file \"%s\".", filename);
 	      qh_errexit (qh_ERRinput, NULL, NULL);
 	    }else {

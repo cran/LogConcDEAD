@@ -54,8 +54,8 @@ getinfolcd(x, y, w = rep(1/length(y), length(y)), chtol = 10^-6,
     evaluations, and number of subgradient evaluations.  If the \pkg{SolvOpt}
     algorithm fails, the first component will be an error code \eqn{(<0)}.}
   \item{MinSigma}{Real-valued scalar giving minimum value of the objective function}
-  \item{b}{\code{matrix} (see Details)}
-  \item{beta}{\code{vector} (see Details)}
+  \item{b}{\code{matrix} containing row by row the values of \eqn{b_j}'s corresponding to each triangulation; see also \code{\link{mlelcd}}}
+  \item{beta}{\code{vector} containing the values of \eqn{\beta_j}'s corresponding to each triangulation; see also \code{\link{mlelcd}}}
   \item{triang}{\code{matrix} containing final triangulation of the convex hull of the data}
   \item{verts}{\code{matrix} containing details of triangulation for use in \code{\link{dlcd}}}
   \item{vertsoffset}{\code{matrix} containing details of triangulation for use in \code{\link{dlcd}}}

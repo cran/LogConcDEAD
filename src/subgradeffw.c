@@ -26,9 +26,9 @@ void subgradeffw(double y[], double g[])
   int inhull;
   double absdetA;
 
-  allpoints = Calloc((npoints)*(dim + 1),double);
-  A = Calloc((dim)*(dim),double);
-  ytmp = Calloc((dim+1),double);
+  allpoints = R_Calloc((npoints)*(dim + 1),double);
+  A = R_Calloc((dim)*(dim),double);
+  ytmp = R_Calloc((dim+1),double);
 
   /* initialise the subgradient vector     */
   for (j=0; j<truepoints;j++) 
@@ -88,8 +88,8 @@ void subgradeffw(double y[], double g[])
 	}
     }
   /* Free the allocated memory*/
-  Free(allpoints);
-  Free(A);
-  Free(ytmp);
-  Free(outpoints);
+  R_Free(allpoints);
+  R_Free(A);
+  R_Free(ytmp);
+  R_Free(outpoints);
 }
