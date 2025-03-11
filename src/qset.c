@@ -688,7 +688,7 @@ void qh_setfree(setT **setp) {
   void **freelistp;  /* used !qh_NOmem */
   
   if (*setp) {
-    size= sizeof(setT) + ((*setp)->maxsize)*SETelemsize; 
+    size= SETbasesize + ((*setp)->maxsize)*SETelemsize; 
     if (size <= qhmem.LASTsize) {
       qh_memfree_(*setp, size, freelistp);
     }else
@@ -741,7 +741,7 @@ void qh_setfreelong(setT **setp) {
   int size;
   
   if (*setp) {
-    size= sizeof(setT) + ((*setp)->maxsize)*SETelemsize; 
+    size= SETbasesize + ((*setp)->maxsize)*SETelemsize; 
     if (size > qhmem.LASTsize) {
       qh_memfree (*setp, size);
       *setp= NULL;
@@ -895,7 +895,7 @@ setT *qh_setnew(int setsize) {
 
   if (!setsize)
     setsize++;
-  size= sizeof(setT) + setsize * SETelemsize;
+  size= SETbasesize + setsize * SETelemsize;
   if ((unsigned) size <= (unsigned) qhmem.LASTsize) {
     qh_memalloc_(size, freelistp, set, setT);
 #ifndef qh_NOmem

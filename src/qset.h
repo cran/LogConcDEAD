@@ -90,8 +90,14 @@ struct setT {
    
   SETelemsize
     size of a set element in bytes
+
+  SETbasesize 
+    size of setT with a single element in e[]
+    Needed for gcc-UBSAN
 */
 #define SETelemsize sizeof(setelemT) 
+
+#define SETbasesize (sizeof(setT) + SETelemsize)
 
 
 /*=========== -macros- =========================*/

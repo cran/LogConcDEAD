@@ -101,3 +101,4 @@
 05/01/2024	1.6-9	Fixed the issue of format string 
 10/09/2024	1.6-10	Compliance with STRICT_R_HEADERS=1 using R_forms of Calloc and Free
 			Manual updated (thanks to Olga Kuznetsova for this suggestion)
+11/03/2025	1.6-11	Fixed issues for compiling with gcc-UBSAN

@@ -1375,7 +1375,7 @@ void qh_initflags(char *command) {
 void qh_initqhull_buffers (void) {
   int k;
 
-  qh TEMPsize= (qhmem.LASTsize - sizeof (setT))/SETelemsize;
+  qh TEMPsize= (qhmem.LASTsize - SETbasesize)/SETelemsize;
   if (qh TEMPsize <= 0 || qh TEMPsize > qhmem.LASTsize)
     qh TEMPsize= 8;  /* e.g., if qh_NOmem */
   qh other_points= qh_setnew (qh TEMPsize);
@@ -1715,7 +1715,7 @@ void qh_initqhull_mem (void) {
     qh_memsize(sizeof(mergeT));
   }
   qh_memsize(sizeof(facetT));
-  i= sizeof(setT) + (qh hull_dim - 1) * SETelemsize;  /* ridge.vertices */
+  i= SETbasesize + (qh hull_dim - 1) * SETelemsize;  /* ridge.vertices */
   qh_memsize(i);
   qh_memsize(qh normal_size);        /* normal */
   i += SETelemsize;                 /* facet.vertices, .ridges, .neighbors */
