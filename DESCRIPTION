@@ -1,8 +1,8 @@
 Type: Package
 Package: LogConcDEAD
 Title: Log-Concave Density Estimation in Arbitrary Dimensions
-Version: 1.6-11
-Date: 2025-03-11
+Version: 1.6-12
+Date: 2025-03-13
 Authors@R: c(
     person("Madeleine", "Cule", role = "aut"),
     person("Robert", "Gramacy", role = "aut"),
@@ -48,5 +48,5 @@ Author: Madeleine Cule [aut],
   Franz Kappel [cph] (author of the C function for Shor's r algorithm)
 Maintainer: Yining Chen <y.chen101@lse.ac.uk>
 Repository: CRAN
-Packaged: 2025-03-11 13:29:35 UTC; CHENY100
-Date/Publication: 2025-03-11 14:30:02 UTC
+Packaged: 2025-03-13 10:39:05 UTC; CHENY100
+Date/Publication: 2025-03-13 12:00:06 UTC

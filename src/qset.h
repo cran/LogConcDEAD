@@ -76,11 +76,7 @@ union setelemT {
 
 struct setT {
   int maxsize;          /* maximum number of elements (except NULL) */
-  setelemT e[1];        /* array of pointers, tail is NULL */
-                        /* last slot (unless NULL) is actual size+1 
-                           e[maxsize]==NULL or e[e[maxsize]-1]==NULL */
-                        /* this may generate a warning since e[] contains
-			   maxsize elements */
+  setelemT e[];        /* array of pointers, tail is NULL */
 };
 
 /*=========== -constants- =========================*/
